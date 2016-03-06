@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.Entity;
 
-namespace MoM.Blog
+namespace MoM.Blog.Models
 {
     public class ApplicationDbContext : DbContext
     {

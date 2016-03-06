@@ -1,7 +1,6 @@
 ﻿using Microsoft.Data.Entity;
-using MoM.Blog.Models;
 
-namespace MoM.Blog
+namespace MoM.Blog.Models
 {
     public class ModelBuilderFactory
     {
