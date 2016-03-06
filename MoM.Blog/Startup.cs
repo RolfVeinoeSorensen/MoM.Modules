@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MoM.Identity
+namespace MoM.Blog
 {
     public class Startup
     {
