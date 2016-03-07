@@ -6,7 +6,7 @@ namespace MoM.Tutorial.Models
     {
         public static void BuildModels(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<HelloPlanet>().ForSqlServerToTable("HelloPlanet", "Tutorial");
+            //modelBuilder.Entity<HelloPlanet>().ForSqlServerToTable("HelloPlanet", "Tutorial");
             //Custom properties should be set here
 
         }
