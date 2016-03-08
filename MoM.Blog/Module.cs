@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using MoM.Module.Managers;
 
-namespace MoM.Tutorial
+namespace MoM.Blog
 {
     public class Module : IModule
     {
@@ -17,7 +17,7 @@ namespace MoM.Tutorial
         {
             get
             {
-                return "Tutorial";
+                return "Blog";
             }
         }
 
@@ -55,16 +55,16 @@ namespace MoM.Tutorial
 
         public void RegisterRoutes(IRouteBuilder routeBuilder)
         {
-            routeBuilder.MapRoute(name: "Tutorial", template: "tutorial", defaults: new { controller = "Tutorial", action = "Index" });
+            routeBuilder.MapRoute(name: "Blog", template: "blog", defaults: new { controller = "Blog", action = "Index" });
         }
 
         private Type GetIStorageImplementationType()
         {
-            AssemblyName a = new AssemblyName {Name = "MoM.Module" };
+            AssemblyName a = new AssemblyName { Name = "MoM.Module" };
             var t = Assembly.Load(a).GetTypes();
-                foreach (Type type in t)
-                    if (typeof(IDataStorage).IsAssignableFrom(type) && type.GetTypeInfo().IsClass)
-                        return type;
+            foreach (Type type in t)
+                if (typeof(IDataStorage).IsAssignableFrom(type) && type.GetTypeInfo().IsClass)
+                    return type;
 
             return null;
         }

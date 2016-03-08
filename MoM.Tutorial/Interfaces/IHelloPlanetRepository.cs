@@ -7,5 +7,6 @@ namespace MoM.Tutorial.Interfaces
     public interface IHelloPlanetRepository : IDataRepository
     {
         IEnumerable<HelloPlanet> All();
+        void Init();
     }
 }

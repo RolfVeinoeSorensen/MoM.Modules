@@ -14,13 +14,19 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0DE951A9-844B-43DA-95CD-8D8F8B34B5B7}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
-		..\MoM\package.json = ..\MoM\package.json
-		..\MoM\typings.json = ..\MoM\typings.json
+		package.json = package.json
+		typings.json = typings.json
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MoM.Blog", "MoM.Blog\MoM.Blog.xproj", "{CAEF0A87-50B5-4F29-8C77-123906D3BB2D}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MoM.Tutorial", "MoM.Tutorial\MoM.Tutorial.xproj", "{DDD9ED41-5F43-4EA9-AC47-83568CE8224A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F57B0476-A557-4D35-B2E3-4B8EAD0837D3}"
+	ProjectSection(SolutionItems) = preProject
+		..\MoM\package.json = ..\MoM\package.json
+		..\MoM\typings.json = ..\MoM\typings.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,5 +61,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D3C87F61-4C59-4806-919F-3846A92120B9} = {E691D9A8-B39A-40D0-B101-F154466C095F}
 		{B08799DB-58D3-42C2-8CB1-CE190E2A6C17} = {E691D9A8-B39A-40D0-B101-F154466C095F}
+		{F57B0476-A557-4D35-B2E3-4B8EAD0837D3} = {0DE951A9-844B-43DA-95CD-8D8F8B34B5B7}
 	EndGlobalSection
 EndGlobal

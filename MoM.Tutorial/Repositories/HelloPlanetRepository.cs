@@ -10,7 +10,20 @@ namespace MoM.Tutorial.Repositories
     {
         public IEnumerable<HelloPlanet> All()
         {
-            return dbSet.OrderBy(i => i.Name);
+            return DatabaseSet.OrderBy(i => i.Name);
+        }
+
+        public void Init()
+        {
+            if (All().Count() == 0)
+            {
+                var items = Models.Init.HelloPlanetInit.HelloPlanetListV1;
+                foreach(var item in items)
+                {
+                    DatabaseSet.Add(item);
+                }
+                DatabaseContext.SaveChanges();
+            }
         }
     }
 }

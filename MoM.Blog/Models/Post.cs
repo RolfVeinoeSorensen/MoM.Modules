@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MoM.Module.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoM.Blog.Models
 {
     [Table("Post", Schema = "Blog")]
-    public partial class Post
+    public partial class Post : IDataEntity
     {
         public int PostId { get; set; }
         public string Title { get; set; }

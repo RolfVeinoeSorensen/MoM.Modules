@@ -1,7 +1,7 @@
 ﻿using MoM.Module.Interfaces;
 using Microsoft.Data.Entity;
 
-namespace MoM.Tutorial.Models
+namespace MoM.Blog.Models
 {
     public class DataModelRegistrator : IDataModelRegistrator
     {
@@ -9,16 +9,13 @@ namespace MoM.Tutorial.Models
         {
             // build the model
             ModelBuilderFactory.BuildModels(modelBuilder);
-            //modelBuilder.Entity<HelloPlanet>(etb =>
-            //{
-            //    etb.HasKey(e => e.HelloPlanetId);
-            //    etb.Property(e => e.HelloPlanetId);
-            //    etb.ForSqlServerToTable("HelloPlanet", "Tutorial");
-            //});
+
             //Add data to tables
             //modelBuilder.Entity<HelloPlanet>();
         }
 
-        public DbSet<HelloPlanet> HelloPlanets { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 // Text and data from http://www.theplanetstoday.com/the_planets.html
-namespace MoM.Tutorial.Models.Seed
+namespace MoM.Tutorial.Models.Init
 {
     public class HelloPlanetInit
     {

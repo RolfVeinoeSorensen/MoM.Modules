@@ -3,29 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using MoM.Blog.Interfaces;
 using MoM.Module.Interfaces;
-using MoM.Tutorial.Interfaces;
-using MoM.Tutorial.Dtos;
+using MoM.Blog.Dtos;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MoM.Tutorial.Controllers.Api
+namespace MoM.Blog.Controllers.Api
 {
     [Route("api/[controller]")]
-    public class TutorialController : Controller
+    public class BlogController : Controller
     {
         private IDataStorage Storage;
 
-        public TutorialController(IDataStorage storage)
+        public BlogController(IDataStorage storage)
         {
             Storage = storage;
         }
         // GET: api/values
         [HttpGet]
-        public IEnumerable<HelloPlanetDto> Get()
+        public IEnumerable<PostDto> Get()
         {
-            Storage.GetRepository<IHelloPlanetRepository>().Init();
-            return Storage.GetRepository<IHelloPlanetRepository>().All().ToDTOs();
+            return Storage.GetRepository<IPostRepository>().All().ToDTOs();
         }
 
         // GET api/values/5
