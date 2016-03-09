@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using MoM.Module.Managers;
+using Microsoft.AspNet.Hosting;
 
 namespace MoM.Blog
 {
@@ -27,7 +28,7 @@ namespace MoM.Blog
         }
 
 
-        public void Configure(IApplicationBuilder applicationBuilder)
+        public void Configure(IApplicationBuilder applicationBuilder, IHostingEnvironment hostingEnvironment)
         {
 
         }

@@ -8,6 +8,7 @@
     "MoM.Module": "1.0.0-*"
   },
   "exclude": [
+    "wwwroot",
     "node_modules"
   ],
   "frameworks": {

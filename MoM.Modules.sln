@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0DE951A9-844B-43DA-95CD-8D8F8B34B5B7}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		..\MoM\MoM.Web\global.json = ..\MoM\MoM.Web\global.json
 		package.json = package.json
 		typings.json = typings.json
 	EndProjectSection
@@ -27,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F57B0476-A
 		..\MoM\package.json = ..\MoM\package.json
 		..\MoM\typings.json = ..\MoM\typings.json
 	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MoM.CMS", "MoM.CMS\MoM.CMS.xproj", "{9A68D8D9-8C5F-45F8-87EC-9BC97F10D6C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +57,10 @@ Global
 		{DDD9ED41-5F43-4EA9-AC47-83568CE8224A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDD9ED41-5F43-4EA9-AC47-83568CE8224A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDD9ED41-5F43-4EA9-AC47-83568CE8224A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A68D8D9-8C5F-45F8-87EC-9BC97F10D6C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A68D8D9-8C5F-45F8-87EC-9BC97F10D6C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A68D8D9-8C5F-45F8-87EC-9BC97F10D6C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A68D8D9-8C5F-45F8-87EC-9BC97F10D6C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

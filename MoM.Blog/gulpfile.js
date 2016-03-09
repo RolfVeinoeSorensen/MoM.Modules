@@ -1,4 +1,4 @@
-﻿/// <binding AfterBuild='copy-module, copy-scripts' />
+﻿/// <binding AfterBuild='copy-module, copy-scripts' ProjectOpened='watch' />
 /*
 This file in the main entry point for defining Gulp tasks and using Gulp plugins.
 Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
@@ -20,28 +20,30 @@ var gulp = require("gulp"),
 
 var tsProject = typescript.createProject('app/tsconfig.json');
 
+var moduleName = "MoM.Blog";
+
 var paths = {
-    modulepath: "../artifacts/bin/MoM.Blog/Debug/dnxcore50/",
+    modulepath: "../artifacts/bin/" + moduleName + "/Debug/dnxcore50/",
     moduleDestination: "../../MoM/artifacts/bin/Modules",
-    scripDist: "./wwwroot",
-    scriptDestination: "../../MoM/MoM.Web/wwwroot/app/modules/blog"
+    scripDist: "./dist",
+    scriptDestination: "../../MoM/MoM.Web/wwwroot/app/modules/" + moduleName
 }
 
 gulp.task('copy-module', function () {
     gulp.src([
-                paths.modulepath + "MoM.Blog.dll",
-                paths.modulepath + "MoM.Blog.pdb"
+                paths.modulepath + moduleName + ".dll",
+                paths.modulepath + moduleName + ".pdb"
     ])
     .pipe(gulp.dest(paths.moduleDestination));
 });
 
 gulp.task('copy-scripts', ['typescript-transpile'], function () {
-    gulp.src(paths.scripDist + "/app/modules/blog/**/*.js")
+    gulp.src(paths.scripDist + "/app/modules/" + moduleName + "/**/*.js")
     .pipe(gulp.dest(paths.scriptDestination))
 });
 
 gulp.task('lint-typescript', function () {
-    gulp.src(['app/*.ts', 'app/**/**/*.ts', 'app/**/*.ts'])
+    gulp.src(['app/**/*.ts'])
         .pipe(tslint())
         .pipe(tslint.report('verbose'));
 });
@@ -49,5 +51,8 @@ gulp.task('lint-typescript', function () {
 gulp.task('typescript-transpile', ['lint-typescript'], function () {
     var tsResult = tsProject.src()
         .pipe(typescript(tsProject));
-    return tsResult.js.pipe(gulp.dest(paths.scripDist + "/app/modules/blog"));
+    return tsResult.js.pipe(gulp.dest(paths.scripDist + "/app/modules/" + moduleName));
+});
+gulp.task('watch', function () {
+    gulp.watch('app/**/*.ts', ['copy-scripts']);
 });
