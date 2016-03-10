@@ -1,10 +1,13 @@
-﻿{
+{
   "authors": [ "Rolf Veinø Sørensen" ],
   "commands": {
     "ef": "EntityFramework.Commands",
     "web": "Microsoft.AspNet.Server.Kestrel"
   },
   "dependencies": {
+    "EntityFramework.Core": "7.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
     "MoM.Module": "1.0.0-*"
   },
   "exclude": [
