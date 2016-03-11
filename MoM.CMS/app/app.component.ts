@@ -29,7 +29,14 @@ export class AppComponent implements OnInit {
                     path: "/services",
                     name: "Services",
                     loader: () => System.import("app/components/services").then(c => c["ServicesComponent"])
-                }) //,
+                }),
+                new AsyncRoute({
+                    path: "/admin",
+                    name: "Admin",
+                    loader: () => System.import("app/components/admin").then(c => c["AdminComponent"])
+                }) 
+
+                //,
                 //new AsyncRoute({
                 //    path: "/filemanager",
                 //    name: "FileManager",

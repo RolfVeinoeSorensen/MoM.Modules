@@ -11,5 +11,7 @@ namespace MoM.CMS.Controllers
         public IActionResult Home() => PartialView();
 
         public IActionResult Services() => PartialView();
+
+        public IActionResult Admin() => PartialView();
     }
 }
