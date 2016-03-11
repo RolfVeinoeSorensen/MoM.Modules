@@ -8,8 +8,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>ff3055e1-b6a6-49c8-9dad-08003f170bd7</ProjectGuid>
     <RootNamespace>MoM.Identity</RootNamespace>
-    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">..\..\artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
-    <OutputPath Condition="'$(OutputPath)'=='' ">..\..\artifacts\bin\$(MSBuildProjectName)\</OutputPath>
+    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">..\artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+    <OutputPath Condition="'$(OutputPath)'=='' ">..\artifacts\bin\$(MSBuildProjectName)\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>

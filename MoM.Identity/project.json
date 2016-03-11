@@ -3,10 +3,9 @@
   "commands": {
     "ef": "EntityFramework.Commands"
   },
-  "dependencies": {
-    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
+  "dependencies": {    
     "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0-rc1-final",
-    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",    
     "MoM.Module": "1.0.0-*"
   },
   "exclude": [

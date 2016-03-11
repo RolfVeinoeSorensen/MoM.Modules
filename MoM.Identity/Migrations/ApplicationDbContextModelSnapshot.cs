@@ -3,7 +3,7 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
-using MoM.Identity;
+using MoM.Identity.Models;
 
 namespace MoM.Identity.Migrations
 {
@@ -109,7 +109,7 @@ namespace MoM.Identity.Migrations
                     b.HasAnnotation("Relational:TableName", "UserRole");
                 });
 
-            modelBuilder.Entity("MoM.Identity.Models.ApplicationUser", b =>
+            modelBuilder.Entity("MoM.Module.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasAnnotation("Relational:ColumnName", "UserId");
@@ -169,14 +169,14 @@ namespace MoM.Identity.Migrations
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MoM.Identity.Models.ApplicationUser")
+                    b.HasOne("MoM.Module.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MoM.Identity.Models.ApplicationUser")
+                    b.HasOne("MoM.Module.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });
@@ -187,7 +187,7 @@ namespace MoM.Identity.Migrations
                         .WithMany()
                         .HasForeignKey("RoleId");
 
-                    b.HasOne("MoM.Identity.Models.ApplicationUser")
+                    b.HasOne("MoM.Module.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
                 });

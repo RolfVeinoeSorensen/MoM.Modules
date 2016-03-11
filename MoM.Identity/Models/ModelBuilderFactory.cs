@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
+using MoM.Module.Models;
 
 namespace MoM.Identity.Models
 {

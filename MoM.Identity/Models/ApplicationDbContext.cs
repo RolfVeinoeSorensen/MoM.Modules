@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
-using MoM.Identity.Models;
+using MoM.Module.Models;
 
-namespace MoM.Identity
+namespace MoM.Identity.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

@@ -14,7 +14,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0DE951A9-844B-43DA-95CD-8D8F8B34B5B7}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
-		..\MoM\MoM.Web\global.json = ..\MoM\MoM.Web\global.json
 		package.json = package.json
 		typings.json = typings.json
 	EndProjectSection
@@ -25,6 +24,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MoM.Tutorial", "MoM.Tutoria
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F57B0476-A557-4D35-B2E3-4B8EAD0837D3}"
 	ProjectSection(SolutionItems) = preProject
+		..\MoM\MoM.Web\global.json = ..\MoM\MoM.Web\global.json
 		..\MoM\package.json = ..\MoM\package.json
 		..\MoM\typings.json = ..\MoM\typings.json
 	EndProjectSection

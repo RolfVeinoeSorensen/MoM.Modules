@@ -5,7 +5,7 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace MoM.Identity.Migrations
 {
-    public partial class v1 : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -165,7 +165,6 @@ namespace MoM.Identity.Migrations
             migrationBuilder.DropTable(name: "UserRole", schema: "Identity");
             migrationBuilder.DropTable(name: "Role", schema: "Identity");
             migrationBuilder.DropTable(name: "User", schema: "Identity");
-            migrationBuilder.DropSchema("Identity");
         }
     }
 }
