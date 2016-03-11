@@ -10,7 +10,7 @@ namespace MoM.Tutorial.Repositories
     {
         public IEnumerable<HelloPlanet> All()
         {
-            return DatabaseSet.OrderBy(i => i.Name);
+            return DbSet.OrderBy(i => i.Name);
         }
 
         public void Init()
@@ -20,7 +20,7 @@ namespace MoM.Tutorial.Repositories
                 var items = Models.Init.HelloPlanetInit.HelloPlanetListV1;
                 foreach(var item in items)
                 {
-                    DatabaseSet.Add(item);
+                    DbSet.Add(item);
                 }
                 DatabaseContext.SaveChanges();
             }

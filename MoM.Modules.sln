@@ -9,8 +9,6 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MoM.Module", "..\MoM\MoM.Mo
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MoM.Web", "..\MoM\MoM.Web\MoM.Web.xproj", "{B08799DB-58D3-42C2-8CB1-CE190E2A6C17}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MoM.Identity", "MoM.Identity\MoM.Identity.xproj", "{FF3055E1-B6A6-49C8-9DAD-08003F170BD7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0DE951A9-844B-43DA-95CD-8D8F8B34B5B7}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
@@ -45,10 +43,6 @@ Global
 		{B08799DB-58D3-42C2-8CB1-CE190E2A6C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B08799DB-58D3-42C2-8CB1-CE190E2A6C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B08799DB-58D3-42C2-8CB1-CE190E2A6C17}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF3055E1-B6A6-49C8-9DAD-08003F170BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF3055E1-B6A6-49C8-9DAD-08003F170BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF3055E1-B6A6-49C8-9DAD-08003F170BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF3055E1-B6A6-49C8-9DAD-08003F170BD7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CAEF0A87-50B5-4F29-8C77-123906D3BB2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CAEF0A87-50B5-4F29-8C77-123906D3BB2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAEF0A87-50B5-4F29-8C77-123906D3BB2D}.Release|Any CPU.ActiveCfg = Release|Any CPU

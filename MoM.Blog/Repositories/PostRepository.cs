@@ -10,7 +10,11 @@ namespace MoM.Blog.Repositories
     {
         public IEnumerable<Post> All()
         {
-            return DatabaseSet.OrderByDescending(i => i.ModifiedDate);
+            using (var ctx = DatabaseContext)
+            {
+                return DbSet.OrderByDescending(i => i.ModifiedDate);
+            }
+            
         }
     }
 }

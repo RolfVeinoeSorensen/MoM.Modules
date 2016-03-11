@@ -56,10 +56,6 @@ namespace MoM.CMS
 
         public void RegisterRoutes(IRouteBuilder routeBuilder)
         {
-            routeBuilder.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
-            routeBuilder.MapRoute("error", "{controller=Error}/{action=Index}");
-            //routeBuilder.MapRoute("spa-fallback", "{*anything}", new { controller = "Home", action = "Index" });
-            routeBuilder.MapRoute("defaultApi", "api/{controller}/{id?}");
             routeBuilder.MapRoute("CMSComponents", "{controller=Components}/{action}");
             //routeBuilder.MapRoute(name: "CMSComponents", template: "cms", defaults: new { controller = "Home", action = "Index" });
         }
