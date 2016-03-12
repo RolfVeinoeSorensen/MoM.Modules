@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Core", "_Core", "{E691D9A8-B39A-40D0-B101-F154466C095F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E691D9A8-B39A-40D0-B101-F154466C095F}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MoM.Module", "..\MoM\MoM.Module\MoM.Module.xproj", "{D3C87F61-4C59-4806-919F-3846A92120B9}"
 EndProject
@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
 		package.json = package.json
+		README.md = README.md
 		typings.json = typings.json
 	EndProjectSection
 EndProject
@@ -24,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F57B0476-A
 	ProjectSection(SolutionItems) = preProject
 		..\MoM\MoM.Web\global.json = ..\MoM\MoM.Web\global.json
 		..\MoM\package.json = ..\MoM\package.json
+		..\MoM\README.md = ..\MoM\README.md
 		..\MoM\typings.json = ..\MoM\typings.json
 	EndProjectSection
 EndProject
