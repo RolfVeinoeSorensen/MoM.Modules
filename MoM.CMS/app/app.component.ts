@@ -34,7 +34,12 @@ export class AppComponent implements OnInit {
                     path: "/admin",
                     name: "Admin",
                     loader: () => System.import("app/components/admin").then(c => c["AdminComponent"])
-                }) 
+                }),
+                new AsyncRoute({
+                    path: "/blog",
+                    name: "Blog",
+                    loader: () => System.import("app/components/blog/blog").then(c => c["BlogComponent"])
+                })
 
                 //,
                 //new AsyncRoute({
@@ -46,11 +51,6 @@ export class AppComponent implements OnInit {
                 //    path: "/testfileupload",
                 //    name: "TestFileUpload",
                 //    loader: () => System.import("app/components/testfileupload").then(c => c["TestFileUploadComponent"])
-                //}),
-                //new AsyncRoute({
-                //    path: "/blog",
-                //    name: "Blog",
-                //    loader: () => System.import("app/components/blog/blog").then(c => c["BlogComponent"])
                 //})
             ];
 
