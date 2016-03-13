@@ -1,6 +1,6 @@
 ﻿<nav class="navbar navbar-static-top navbar-dark navbar-em">
     <a [routerLink]="['./Home']">
-        <img src="css/images/em-logo.png" srcset="css/images/em-logo.svg 1x" class="navbar-brand" alt="EasyModules.NET Logo" width="320" height="48">
+        <img src="~/site/logo.png" srcset="~/site/logo.svg 1x" class="navbar-brand" alt="EasyModules.NET Logo" width="320" height="48">
     </a>
     <ul *ngIf="routes != null" class="nav navbar-nav">
         <li *ngFor="#rt of routes" [class.active]="getLinkStyle(rt)" class="nav-item">

@@ -7,12 +7,13 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using MoM.Module.Managers;
 using Microsoft.AspNet.Hosting;
+using MoM.Module.Enums;
 
 namespace MoM.Tutorial
 {
     public class Module : IModule
     {
-        private IConfigurationRoot ConfigurationRoot;
+        private IConfiguration Configuration;
         private DataStorageManager StorageManager;
         public string Name
         {
@@ -22,9 +23,22 @@ namespace MoM.Tutorial
             }
         }
 
-        public void SetConfigurationRoot(IConfigurationRoot configurationRoot)
+        public ExtensionType Type
         {
-            ConfigurationRoot = configurationRoot;
+            get
+            {
+                return ExtensionType.Module;
+            }
+        }
+
+        public void SetConfiguration(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public IConfiguration GetConfiguration()
+        {
+            return Configuration;
         }
 
 
@@ -42,12 +56,12 @@ namespace MoM.Tutorial
                 PropertyInfo connectionStringPropertyInfo = type.GetProperty("ConnectionString");
 
                 if (connectionStringPropertyInfo != null)
-                    connectionStringPropertyInfo.SetValue(null, this.ConfigurationRoot["Data:DefaultConnection:ConnectionString"]);
+                    connectionStringPropertyInfo.SetValue(null, Configuration["Data:DefaultConnection:ConnectionString"]);
 
                 PropertyInfo assembliesPropertyInfo = type.GetProperty("Assemblies");
 
                 if (assembliesPropertyInfo != null)
-                    assembliesPropertyInfo.SetValue(null, ModuleManager.GetAssemblies);
+                    assembliesPropertyInfo.SetValue(null, AssemblyManager.GetAssemblies);
 
                 services.AddScoped(typeof(IDataStorage), type);
             }
