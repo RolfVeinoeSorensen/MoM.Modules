@@ -9,4 +9,8 @@ export class BlogService {
     getTopCategories(onNext: (json: any) => void) {
         this.http.get("api/blog/categories").map(response => response.json()).subscribe(onNext);
     }
+
+    getLatestsPosts(onNext: (json: any) => void) {
+        this.http.get("api/blog/categories").map(response => response.json()).subscribe(onNext);
+    }
 }

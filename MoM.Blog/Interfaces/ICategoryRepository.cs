@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 namespace MoM.Blog.Interfaces
 {
-    public interface IPostRepository : IDataRepository
+    public interface ICategoryRepository : IDataRepository
     {
-        IEnumerable<Post> All();
+        IEnumerable<Category> All();
     }
 }

@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace MoM.Blog.Repositories
 {
-    public class PostRepository : RepositoryBase<Post>, IPostRepository
+    public class CategoryRepository : RepositoryBase<Category>, ICategoryRepository
     {
-        public IEnumerable<Post> All()
+        public IEnumerable<Category> All()
         {
-                return DbSet.OrderByDescending(i => i.ModifiedDate);
+                return DbSet.OrderByDescending(i => i.Posts.Count);
         }
     }
 }
