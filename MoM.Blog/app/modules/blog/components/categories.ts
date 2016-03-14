@@ -4,12 +4,12 @@ import {BlogService} from "../service/blog";
 import {Category} from "../interfaces/category";
 
 @Component({
-    selector: "blog-top-categories",
-    templateUrl: "/components/blogtopcategories",
+    selector: "blog-categories",
+    templateUrl: "/blog/components/categories",
     providers: [BlogService],
     directives: CORE_DIRECTIVES
 })
-export class TopCategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit {
     categories: Category;
     isLoading: boolean = false;
 
@@ -21,7 +21,7 @@ export class TopCategoriesComponent implements OnInit {
 
     get() {
         this.isLoading = true;
-        this.service.getTopCategories(json => {
+        this.service.getCategories(json => {
             if (json) {
                 console.log(json);
                 this.categories = json;

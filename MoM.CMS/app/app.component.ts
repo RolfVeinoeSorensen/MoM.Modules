@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
         if (this.routes === null) {
             this.routes = [
                 new AsyncRoute({
-                    path: "/home",
+                    path: "/",
                     name: "Home",
                     useAsDefault: true,
                     loader: () => System.import("app/components/home").then(c => c["HomeComponent"])
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
                 new AsyncRoute({
                     path: "/blog",
                     name: "Blog",
-                    loader: () => System.import("app/components/blog/blog").then(c => c["BlogComponent"])
+                    loader: () => System.import("app/modules/MoM.Blog/components/blog").then(c => c["BlogComponent"])
                 })
 
                 //,

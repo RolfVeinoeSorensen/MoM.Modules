@@ -6,7 +6,7 @@ import {Injectable} from "angular2/core";
 export class BlogService {
     constructor(private http: Http) { }
 
-    getTopCategories(onNext: (json: any) => void) {
+    getCategories(onNext: (json: any) => void) {
         this.http.get("api/blog/categories").map(response => response.json()).subscribe(onNext);
     }
 
