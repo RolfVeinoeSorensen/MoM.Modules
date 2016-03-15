@@ -1,13 +1,14 @@
 ﻿import {Component, OnInit} from "angular2/core";
 import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
 import {CategoriesComponent} from "./categories";
+import {PostsComponent} from "./posts";
 import {BlogService} from "../service/blog";
 
 @Component({
     selector: "blog",
     templateUrl: "/blog/components/index",
     providers: [BlogService],
-    directives: [CORE_DIRECTIVES, CategoriesComponent]
+    directives: [CORE_DIRECTIVES, CategoriesComponent, PostsComponent]
 })
 export class BlogComponent implements OnInit {
     //message: string;

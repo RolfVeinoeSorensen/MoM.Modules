@@ -26,5 +26,13 @@ namespace MoM.Blog.Controllers.Api
         {
             return Service.Categories();
         }
+
+        [HttpPost]
+        [Route("posts")]
+        public IList<PostDto> Posts([FromBody]PagingDto paging)
+        {
+            return Service.Posts(paging.pageNo, paging.
+                pageSize);
+        }
     }
 }

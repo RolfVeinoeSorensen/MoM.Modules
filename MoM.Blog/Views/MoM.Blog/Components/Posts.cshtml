@@ -1,0 +1,13 @@
+﻿<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Top Categories</h4>
+        <h6 class="card-subtitle text-muted">These are the most used categories on this blog</h6>
+    </div>
+    <div class="card-block" *ngFor="#post of posts">
+        <div class="row" >
+            <h1>{{post.title}}</h1>
+        </div>
+        <div class="row" [innerHTML]="post.shortDescription"></div>
+        <div class="row"><a href="#" class="btn btn-primary">read more...</a></div>
+    </div>    
+</div>
