@@ -42,7 +42,7 @@ namespace MoM.Blog.Dtos
         /// Converts this instance of <see cref="Category"/> to an instance of <see cref="CategoryDto"/>.
         /// </summary>
         /// <param name="entity"><see cref="Category"/> to convert.</param>
-        public static CategoryDto ToDTO(this Category entity)
+        public static CategoryDto ToDTO(this Category entity, bool includePost =  false)
         {
             if (entity == null) return null;
 
@@ -52,7 +52,11 @@ namespace MoM.Blog.Dtos
             dto.name = entity.Name;
             dto.urlSlug = entity.UrlSlug;
             dto.description = entity.Description;
-            dto.postCount = entity.Posts.Where(p => p.IsPublished == 1).Count();
+            if (includePost)
+            {
+                dto.postCount = entity.Posts.Where(p => p.IsPublished == 1).Count();
+            }
+            
             entity.OnDTO(dto);
 
             return dto;
@@ -75,11 +79,11 @@ namespace MoM.Blog.Dtos
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public static List<CategoryDto> ToDTOs(this IEnumerable<Category> entities)
+        public static List<CategoryDto> ToDTOs(this IEnumerable<Category> entities, bool includePosts = false)
         {
             if (entities == null) return null;
 
-            return entities.Select(e => e.ToDTO()).ToList();
+            return entities.Select(e => e.ToDTO(includePosts)).ToList();
         }
     }
 }

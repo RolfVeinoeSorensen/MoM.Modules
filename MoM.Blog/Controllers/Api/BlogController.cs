@@ -21,10 +21,10 @@ namespace MoM.Blog.Controllers.Api
         }
 
         [HttpGet]
-        [Route("categories")]
-        public IList<CategoryDto> Categories()
+        [Route("categorieswithpostcount")]
+        public IList<CategoryDto> CategoriesWithPostCount()
         {
-            return Service.Categories();
+            return Service.CategoriesWithPostCount(10);
         }
 
         [HttpPost]

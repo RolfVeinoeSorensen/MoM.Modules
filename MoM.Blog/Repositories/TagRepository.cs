@@ -38,7 +38,7 @@ namespace MoM.Blog.Repositories
             return DbSet.FirstOrDefault(t => t.UrlSlug == tagSlug);
         }
 
-        public IEnumerable<Tag> Tags()
+        public IEnumerable<Tag> Table()
         {
             return DbSet;
         }

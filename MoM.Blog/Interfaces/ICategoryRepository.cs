@@ -6,11 +6,7 @@ namespace MoM.Blog.Interfaces
 {
     public interface ICategoryRepository : IDataRepository
     {
-        IEnumerable<Category> All();
-        IEnumerable<Category> AdminCategories();
-        IEnumerable<Category> Categories();
-        IEnumerable<Category> CategoriesWithPostCount(int pageSize);
-        int TotalCategories();
+        IEnumerable<Category> Table();
         Category Category(string categorySlug);
         Category Category(int id);
         int AddCategory(Category category);

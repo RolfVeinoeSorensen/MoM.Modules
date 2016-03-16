@@ -120,51 +120,14 @@ namespace MoM.Blog.Repositories
             }
         }
 
-        public IEnumerable<Post> PostsForCategory(string categorySlug, int pageNo, int pageSize)
+        public IEnumerable<Post> Table()
         {
-            return DbSet
-                    .Where(p => p.IsPublished == 1 && p.Category.UrlSlug == categorySlug)
-                    .OrderByDescending(p => p.PostedDate)
-                    .Skip(pageNo * pageSize)
-                    .Take(pageSize);
+            return DbSet;
         }
 
-        public IEnumerable<Post> PostsForSearch(string search, int pageNo, int pageSize)
+        public int TotalPosts(int isPublished = 1)
         {
-            return DbSet
-                    .Where(p => p.IsPublished == 1 && (p.Title.Contains(search) || p.Category.Name.Equals(search) || p.PostTags.Any(t => t.Tag.Name.Equals(search))))
-                    .OrderByDescending(p => p.PostedDate)
-                    .Skip(pageNo * pageSize)
-                    .Take(pageSize);
-        }
-
-        public IEnumerable<Post> PostsForTag(string tagSlug, int pageNo, int pageSize)
-        {
-            return DbSet
-                    .Where(p => p.IsPublished == 1 && p.PostTags.Any(t => t.Tag.UrlSlug.Equals(tagSlug)))
-                    .OrderByDescending(p => p.PostedDate)
-                    .Skip(pageNo * pageSize)
-                    .Take(pageSize);
-        }
-
-        public int TotalPosts(bool checkIsPublished = true)
-        {
-            return DbSet.Count(p => checkIsPublished || p.IsPublished == 1);
-        }
-
-        public int TotalPostsForCategory(string categorySlug)
-        {
-            return DbSet.Count(p => p.IsPublished == 1 && p.Category.UrlSlug.Equals(categorySlug));
-        }
-
-        public int TotalPostsForSearch(string search)
-        {
-            return DbSet.Count(p => p.IsPublished == 1 && (p.Title.Contains(search) || p.Category.Name.Equals(search) || p.PostTags.Any(t => t.Tag.Name.Equals(search))));
-        }
-
-        public int TotalPostsForTag(string tagSlug)
-        {
-            return DbSet.Count(p => p.IsPublished == 1 && p.PostTags.Any(t => t.Tag.UrlSlug.Equals(tagSlug)));
+            return DbSet.Count(p => p.IsPublished == isPublished);
         }
     }
 }

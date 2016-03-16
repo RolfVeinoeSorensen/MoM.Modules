@@ -44,16 +44,22 @@ namespace MoM.Blog.Dtos
         /// Converts this instance of <see cref="PostTag"/> to an instance of <see cref="PostTagDto"/>.
         /// </summary>
         /// <param name="entity"><see cref="PostTag"/> to convert.</param>
-        public static PostTagDto ToDTO(this PostTag entity)
+        public static PostTagDto ToDTO(this PostTag entity, bool includePost = false, bool includeTag = false)
         {
             if (entity == null) return null;
 
             var dto = new PostTagDto();
 
             dto.postId = entity.PostId;
-            dto.post = entity.Post.ToDTO();
             dto.tagId = entity.TagId;
-            dto.tag = entity.Tag.ToDTO();
+            if (includePost)
+            {
+                dto.post = entity.Post.ToDTO();
+            }
+            if (includeTag)
+            {
+                dto.tag = entity.Tag.ToDTO();
+            }
 
             entity.OnDTO(dto);
 
@@ -77,11 +83,11 @@ namespace MoM.Blog.Dtos
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
-        public static List<PostTagDto> ToDTOs(this IEnumerable<PostTag> entities)
+        public static List<PostTagDto> ToDTOs(this IEnumerable<PostTag> entities, bool includePosts = false, bool includeTags = false)
         {
             if (entities == null) return null;
 
-            return entities.Select(e => e.ToDTO()).ToList();
+            return entities.Select(e => e.ToDTO(includePosts, includeTags)).ToList();
         }
     }
 }

@@ -7,9 +7,7 @@ namespace MoM.Blog.Interfaces
 {
     public interface ITagRepository : IDataRepository
     {
-        IEnumerable<Tag> Tags();
-        IEnumerable<Tag> TagsWithPostsCount(int pageSize);
-        int TotalTags();
+        IEnumerable<Tag> Table();
         Tag Tag(string tagSlug);
         Tag Tag(int id);
         int AddTag(Tag tag);

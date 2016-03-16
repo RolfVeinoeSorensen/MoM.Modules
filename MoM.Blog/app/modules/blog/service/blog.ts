@@ -9,7 +9,7 @@ export class BlogService {
     constructor(private http: Http) { }
 
     getCategories(onNext: (json: Category) => void) {
-        this.http.get("api/blog/categories").map(response => response.json()).subscribe(onNext);
+        this.http.get("api/blog/categorieswithpostcount").map(response => response.json()).subscribe(onNext);
     }
 
     getPosts(paging: Paging, onNext: (json: Post) => void) {

@@ -17,26 +17,9 @@ namespace MoM.Blog.Repositories
 
         }
 
-        public IEnumerable<Category> AdminCategories()
+        public IEnumerable<Category> Table()
         {
-            return DbSet.OrderBy(t => t.Name);
-        }
-
-        public IEnumerable<Category> All()
-        {
-                return DbSet.OrderByDescending(i => i.Posts.Count);
-        }
-
-        public IEnumerable<Category> Categories()
-        {
-            return DbSet.OrderByDescending(x => x.Posts.Count).ToList();
-        }
-
-        public IEnumerable<Category> CategoriesWithPostCount(int pageSize)
-        {
-            return DbSet.OrderByDescending(t => t.Posts.Count)
-                    .Where(t => t.Posts.Count > 0)
-                    .Take(pageSize);
+                return DbSet;
         }
 
         public Category Category(int id)
@@ -60,11 +43,6 @@ namespace MoM.Blog.Repositories
         {
             DbSet.Update(category);
             DatabaseContext.SaveChanges();
-        }
-
-        public int TotalCategories()
-        {
-            return DbSet.Count();
         }
     }
 }

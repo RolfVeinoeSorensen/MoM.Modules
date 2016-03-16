@@ -64,8 +64,8 @@ namespace MoM.Blog.Dtos
             dto.isPublished = entity.IsPublished;
             dto.postedDate = entity.PostedDate;
             dto.modifiedDate = entity.ModifiedDate;
-            dto.category = entity.Category.ToDTO();
-            dto.postTags = entity.PostTags.ToDTOs();
+            dto.category = entity.Category.ToDTO(false);
+            dto.postTags = entity.PostTags.ToDTOs(false, true);
 
             entity.OnDTO(dto);
 

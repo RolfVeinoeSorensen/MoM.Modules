@@ -31,26 +31,22 @@ namespace MoM.Blog.Services
             return Storage.GetRepository<ITagRepository>().AddTag(tag.ToEntity());
         }
 
-        public IList<CategoryDto> AdminCategories()
-        {
-            return Storage.GetRepository<ICategoryRepository>().AdminCategories().ToDTOs();
-        }
-
         public IList<CategoryDto> Categories()
         {
-            var categories = Storage.GetRepository<ICategoryRepository>().All();
-            var categoryIds = categories.Select(x => x.CategoryId);
-            var posts = Storage.GetRepository<IPostRepository>().All().Where(p => categoryIds.Contains(p.Category.CategoryId));
-            foreach(var category in categories)
-            {
-                category.Posts = posts.Where(p => p.Category.CategoryId == category.CategoryId).ToList();
-            }
+            var categories = Storage.GetRepository<ICategoryRepository>().Table();
             return categories.ToDTOs();
         }
 
         public IList<CategoryDto> CategoriesWithPostCount(int pageSize)
         {
-            return Storage.GetRepository<ICategoryRepository>().CategoriesWithPostCount(pageSize).ToDTOs();
+            var categories = Storage.GetRepository<ICategoryRepository>().Table();
+            var categoryIds = categories.Select(x => x.CategoryId);
+            var posts = Storage.GetRepository<IPostRepository>().Table().Where(p => categoryIds.Contains(p.Category.CategoryId));
+            foreach (var category in categories)
+            {
+                category.Posts = posts.Where(p => p.Category.CategoryId == category.CategoryId).ToList();
+            }
+            return categories.OrderByDescending(c => c.Posts.Count()).Take(pageSize).ToDTOs(true);
         }
 
         public CategoryDto Category(int id)
@@ -119,7 +115,26 @@ namespace MoM.Blog.Services
 
         public IList<PostDto> Posts(int pageNo, int pageSize)
         {
-            return Storage.GetRepository<IPostRepository>().Posts(pageNo, pageSize).ToDTOs();
+            var posts = Storage.GetRepository<IPostRepository>().Posts(pageNo, pageSize);
+            var categories = Storage.GetRepository<ICategoryRepository>().Table()
+                .Where(c => posts.Select(p => p.Category.CategoryId)
+                .Contains(c.CategoryId));
+            var postTags = Storage.GetRepository<IPostTagRepository>().Table()
+                .Where(pt => posts.Select(p => p.PostId)
+                .Contains(pt.PostId));
+            var tags = Storage.GetRepository<ITagRepository>().Table()
+                .Where(t => postTags.Select(pt => pt.TagId)
+                .Contains(t.TagId));
+            foreach (var postTag in postTags)
+            {
+                postTag.Tag = tags.FirstOrDefault(t => t.TagId == postTag.TagId);
+            }
+            foreach (var post in posts)
+            {
+                post.Category = categories.FirstOrDefault(c => c.CategoryId == post.Category.CategoryId);
+                post.PostTags = postTags.ToList();
+            }
+            return posts.ToDTOs();
         }
 
         public IList<PostDto> Posts(int pageNo, int pageSize, string sortColumn, bool sortByAscending)
@@ -129,17 +144,20 @@ namespace MoM.Blog.Services
 
         public IList<PostDto> PostsForCategory(string categorySlug, int pageNo, int pageSize)
         {
-            return Storage.GetRepository<IPostRepository>().PostsForCategory(categorySlug, pageNo, pageSize).ToDTOs();
+            //return Storage.GetRepository<IPostRepository>().PostsForCategory(categorySlug, pageNo, pageSize).ToDTOs();
+            return null;
         }
 
         public IList<PostDto> PostsForSearch(string search, int pageNo, int pageSize)
         {
-            return Storage.GetRepository<IPostRepository>().PostsForSearch(search, pageNo, pageSize).ToDTOs();
+            //return Storage.GetRepository<IPostRepository>().PostsForSearch(search, pageNo, pageSize).ToDTOs();
+            return null;
         }
 
         public IList<PostDto> PostsForTag(string tagSlug, int pageNo, int pageSize)
         {
-            return Storage.GetRepository<IPostRepository>().PostsForTag(tagSlug, pageNo, pageSize).ToDTOs();
+            //return Storage.GetRepository<IPostRepository>().PostsForTag(tagSlug, pageNo, pageSize).ToDTOs();
+            return null;
         }
 
         public TagDto Tag(int id)
@@ -154,42 +172,46 @@ namespace MoM.Blog.Services
 
         public IList<TagDto> Tags()
         {
-            return Storage.GetRepository<ITagRepository>().Tags().ToDTOs();
+            return Storage.GetRepository<ITagRepository>().Table().ToDTOs();
         }
 
         public IList<TagDto> TagsWithPostsCount(int pageSize)
         {
-            return Storage.GetRepository<ITagRepository>().TagsWithPostsCount(pageSize).ToDTOs();
+            //return Storage.GetRepository<ITagRepository>().TagsWithPostsCount(pageSize).ToDTOs();
+            return null;
         }
 
         public int TotalCategories()
         {
-            return Storage.GetRepository<ITagRepository>().TotalTags();
+            return Storage.GetRepository<ITagRepository>().Table().Count();
         }
 
-        public int TotalPosts(bool checkIsPublished = true)
+        public int TotalPosts(int isPublished = 1)
         {
-            return Storage.GetRepository<IPostRepository>().TotalPosts(checkIsPublished);
+            return Storage.GetRepository<IPostRepository>().Table().Count(p => p.IsPublished == isPublished);
         }
 
         public int TotalPostsForCategory(string categorySlug)
         {
-            return Storage.GetRepository<IPostRepository>().TotalPostsForCategory(categorySlug);
+            //return Storage.GetRepository<IPostRepository>().TotalPostsForCategory(categorySlug);
+            return 0;
         }
 
         public int TotalPostsForSearch(string search)
         {
-            return Storage.GetRepository<IPostRepository>().TotalPostsForSearch(search);
+            //return Storage.GetRepository<IPostRepository>().TotalPostsForSearch(search);
+            return 0;
         }
 
         public int TotalPostsForTag(string tagSlug)
         {
-            return Storage.GetRepository<IPostRepository>().TotalPostsForTag(tagSlug);
+            //return Storage.GetRepository<IPostRepository>().TotalPostsForTag(tagSlug);
+            return 0;
         }
 
         public int TotalTags()
         {
-            return Storage.GetRepository<ITagRepository>().TotalTags();
+            return Storage.GetRepository<ITagRepository>().Table().Count();
         }
     }
 }

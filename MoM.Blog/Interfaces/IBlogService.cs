@@ -45,7 +45,7 @@ namespace MoM.Blog.Interfaces
         /// </summary>
         /// <param name="checkIsPublished">True to count only published posts</param>
         /// <returns></returns>
-        int TotalPosts(bool checkIsPublished = true);
+        int TotalPosts(int isPublished = 1);
 
         /// <summary>
         /// Return total no. of posts belongs to a particular category.
@@ -112,12 +112,6 @@ namespace MoM.Blog.Interfaces
         /// </summary>
         /// <param name="id"></param>
         void DeletePost(int id);
-
-        /// <summary>
-        /// Return all the categories.
-        /// </summary>
-        /// <returns></returns>
-        IList<CategoryDto> AdminCategories();
 
         /// <summary>
         /// Return all the categories where postcount > 0
