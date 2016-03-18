@@ -1,4 +1,4 @@
-﻿/// <binding AfterBuild='copy-module, copy-scripts' ProjectOpened='watch' />
+﻿/// <binding AfterBuild='copy-module, copy-scripts' ProjectOpened='watch-cms' />
 /*
 This file in the main entry point for defining Gulp tasks and using Gulp plugins.
 Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
@@ -53,6 +53,6 @@ gulp.task('typescript-transpile', ['lint-typescript'], function () {
         .pipe(typescript(tsProject));
     return tsResult.js.pipe(gulp.dest(paths.scripDist + "/app/"));
 });
-gulp.task('watch', function () {
+gulp.task('watch-cms', function () {
     gulp.watch('app/**/*.ts', ['copy-scripts']);
 });

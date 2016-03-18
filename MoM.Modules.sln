@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{674CFB51-A
 	ProjectSection(SolutionItems) = preProject
 		..\gulpfile.js = ..\gulpfile.js
 		..\package.json = ..\package.json
-		typings.json = typings.json
+		..\typings.json = ..\typings.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MoM.Module", "MoM.Module", "{BC89C5BA-5C9B-4828-AE42-395B33A28682}"

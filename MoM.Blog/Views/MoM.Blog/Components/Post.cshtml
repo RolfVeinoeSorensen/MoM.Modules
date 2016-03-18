@@ -1,0 +1,6 @@
+﻿<blog-post>
+    <div class="container-fluid" *ngIf="post">
+        <h1>{{post.title}}</h1>
+        <div [innerHTML]="post.description"></div>
+    </div>
+</blog-post>

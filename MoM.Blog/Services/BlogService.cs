@@ -40,8 +40,9 @@ namespace MoM.Blog.Services
         public IList<CategoryDto> CategoriesWithPostCount(int pageSize)
         {
             var categories = Storage.GetRepository<ICategoryRepository>().Table();
-            var categoryIds = categories.Select(x => x.CategoryId);
-            var posts = Storage.GetRepository<IPostRepository>().Table().Where(p => categoryIds.Contains(p.Category.CategoryId));
+            var posts = Storage.GetRepository<IPostRepository>().Table()
+                .Where(p => categories.Select(x => x.CategoryId)
+                .Contains(p.Category.CategoryId));
             foreach (var category in categories)
             {
                 category.Posts = posts.Where(p => p.Category.CategoryId == category.CategoryId).ToList();
@@ -134,7 +135,7 @@ namespace MoM.Blog.Services
                 post.Category = categories.FirstOrDefault(c => c.CategoryId == post.Category.CategoryId);
                 post.PostTags = postTags.ToList();
             }
-            return posts.ToDTOs();
+            return GetBlogPostsDateFormatted(posts.ToDTOs());
         }
 
         public IList<PostDto> Posts(int pageNo, int pageSize, string sortColumn, bool sortByAscending)
@@ -177,8 +178,49 @@ namespace MoM.Blog.Services
 
         public IList<TagDto> TagsWithPostsCount(int pageSize)
         {
-            //return Storage.GetRepository<ITagRepository>().TagsWithPostsCount(pageSize).ToDTOs();
-            return null;
+            var tags = Storage.GetRepository<ITagRepository>().Table();
+            var postTags = Storage.GetRepository<IPostTagRepository>().Table()
+                        .Where(pt => tags.Select(p => p.TagId)
+                        .Contains(pt.TagId));
+
+            foreach (var tag in tags)
+            {
+                tag.PostTags = postTags.Where(pt => pt.TagId == tag.TagId).ToList();
+            }
+
+            var result = tags.OrderByDescending(t => t.PostTags.Count()).Take(pageSize).ToDTOs();
+
+            var min = tags.Min(t => t.PostTags.Count);
+            var max = tags.Max(t => t.PostTags.Count);
+            var dist = (max - min) / 3;
+
+            foreach (var tag in result)
+            {
+                string tagClass;
+                if (tag.postCount == max)
+                {
+                    tagClass = "largest";
+                }
+                else if (tag.postCount > (min + (dist * 2)))
+                {
+                    tagClass = "large";
+                }
+                else if (tag.postCount > (min + dist))
+                {
+                    tagClass = "medium";
+                }
+                else if (tag.postCount == min)
+                {
+                    tagClass = "smallest";
+                }
+                else
+                {
+                    tagClass = "small";
+                }
+                tag.className = tagClass;
+            }
+
+            return result;
         }
 
         public int TotalCategories()

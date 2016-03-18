@@ -36,7 +36,7 @@ namespace MoM.Blog.Dtos
             dto.name = entity.Name;
             dto.urlSlug = entity.UrlSlug;
             dto.description = entity.Description;
-            //dto.BlogPost = entity.BlogPost.ToDTOs();
+            dto.postCount = entity.PostTags.Count();
             entity.OnDTO(dto);
 
             return dto;

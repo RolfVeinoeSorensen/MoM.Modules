@@ -20,11 +20,11 @@ namespace MoM.Blog.Controllers.Api
             Service = new BlogService(storage);
         }
 
-        [HttpGet]
+        [HttpGet("{pagesize}")]
         [Route("categorieswithpostcount")]
-        public IList<CategoryDto> CategoriesWithPostCount()
+        public IList<CategoryDto> CategoriesWithPostCount(int pageSize)
         {
-            return Service.CategoriesWithPostCount(10);
+            return Service.CategoriesWithPostCount(pageSize);
         }
 
         [HttpPost]
@@ -33,6 +33,20 @@ namespace MoM.Blog.Controllers.Api
         {
             return Service.Posts(paging.pageNo, paging.
                 pageSize);
+        }
+
+        [HttpGet("{pagesize}")]
+        [Route("tagswithpostcount")]
+        public IList<TagDto> TagsWithPostCount(int pageSize)
+        {
+            return Service.TagsWithPostsCount(pageSize);
+        }
+
+        [HttpGet("{year}/{month}/{urlslug}")]
+        [Route("post")]
+        public PostDto Post(int year, int month, string urlSlug)
+        {
+            return Service.Post(year, month, urlSlug);
         }
     }
 }

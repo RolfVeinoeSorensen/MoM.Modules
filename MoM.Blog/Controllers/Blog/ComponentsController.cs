@@ -9,7 +9,9 @@ namespace MoM.Blog.Controllers.Blog
     {
         //TODO alter the view location finder to add support for each module
         public IActionResult Index() => PartialView("~/Views/MoM.Blog/Components/Index.cshtml");
-        public IActionResult Categories() => PartialView("~/Views/MoM.Blog/Components/Categories.cshtml");
-        public IActionResult Posts() => PartialView("~/Views/MoM.Blog/Components/Posts.cshtml");
+        public IActionResult TopCategories() => PartialView("~/Views/MoM.Blog/Components/TopCategories.cshtml");
+        public IActionResult LatestsPosts() => PartialView("~/Views/MoM.Blog/Components/LatestsPosts.cshtml");
+        public IActionResult TagCloud() => PartialView("~/Views/MoM.Blog/Components/TagCloud.cshtml");
+        public IActionResult Post() => PartialView("~/Views/MoM.Blog/Components/Post.cshtml");
     }
 }

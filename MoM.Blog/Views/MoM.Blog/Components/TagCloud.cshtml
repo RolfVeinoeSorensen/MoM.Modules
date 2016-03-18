@@ -1,0 +1,14 @@
+﻿<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Tags</h4>
+        <h6 class="card-subtitle text-muted">These are the most used tags on this blog</h6>
+    </div>
+    <div class="card-block">
+        <div class="row" *ngFor="#tag of tags">
+            <div class="col-xs-12 mom-tag-cloud">
+                <span class="{{tag.postCount}}">{{tag.name}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="card-block text-xs-right"><a href="#" class="btn btn-primary">View all</a></div>
+</div>
