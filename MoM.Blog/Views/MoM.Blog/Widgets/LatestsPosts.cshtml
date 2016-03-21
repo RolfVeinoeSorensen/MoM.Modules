@@ -1,6 +1,20 @@
-﻿<div class="container-fluid" *ngFor="#post of posts">
+﻿<div class="container-fluid latest-posts" *ngFor="#post of posts">
     <div class="row">
-        <h1>{{post.title}}</h1>
+        <h1>{{post.title}}</h1>   
+    </div>
+    <div class="row">
+        <div class="col-xs-5">
+            <span class="text-muted">Rolf Veinø Sørensen</span>
+        </div>
+        <div class="col-xs-2">
+            <span class="label label-primary">{{post.category.name}}</span>
+        </div>
+        <div class="col-xs-2">
+            <span class="text-muted">{{post.day}}. {{post.monthName}} {{post.year}}</span>
+        </div>
+        <div class="col-xs-3">
+            <p><span class="label label-default tags" *ngFor="#postTag of post.postTags">{{postTag.tag.name}}</span></p>
+        </div>
     </div>
     <div class="row" [innerHTML]="post.shortDescription"></div>
     <div class="row text-xs-right"><button type="button" (click)="onPostViewMore(post)" class="btn btn-primary">read more...</button></div>

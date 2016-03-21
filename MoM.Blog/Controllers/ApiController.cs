@@ -7,15 +7,15 @@ using MoM.Blog.Services;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MoM.Blog.Controllers.Api
+namespace MoM.Blog.Controllers
 {
-    [Route("api/[controller]")]
-    public class BlogController : Controller
+    [Route("blog/[controller]")]
+    public class ApiController : Controller
     {
         private IDataStorage Storage;
         private readonly IBlogService Service;
 
-        public BlogController(IDataStorage storage)
+        public ApiController(IDataStorage storage)
         {
             Service = new BlogService(storage);
         }

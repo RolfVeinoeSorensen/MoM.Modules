@@ -5,7 +5,7 @@ import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
 
 @Component({
     selector: "blog-topcategories",
-    templateUrl: "/blog/components/topcategories",
+    templateUrl: "/blog/widgets/topcategories",
     providers: [BlogService],
     directives: CORE_DIRECTIVES
 })

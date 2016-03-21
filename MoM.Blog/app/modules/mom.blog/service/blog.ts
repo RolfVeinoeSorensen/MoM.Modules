@@ -9,20 +9,20 @@ export class BlogService {
     constructor(private http: Http) { }
 
     getCategoriesWithPostcount(pageSize: number, onNext: (json: Category) => void) {
-        this.http.get("api/blog/categorieswithpostcount/?pageSize=" + pageSize).map(response => response.json()).subscribe(onNext);
+        this.http.get("blog/api/categorieswithpostcount/?pageSize=" + pageSize).map(response => response.json()).subscribe(onNext);
     }
 
     getTagsWithPostcount(pageSize: number, onNext: (json: Tag) => void) {
-        this.http.get("api/blog/tagswithpostcount/?pagesize=" + pageSize).map(response => response.json()).subscribe(onNext);
+        this.http.get("blog/api/tagswithpostcount/?pagesize=" + pageSize).map(response => response.json()).subscribe(onNext);
     }
 
     getPost(year: number, month:  number, urlSlug: string, onNext: (json: Post) => void) {
-        this.http.get("api/blog/post/?year=" + year + "&month=" + month + "&urlSlug=" + urlSlug).map(response => response.json()).subscribe(onNext);
+        this.http.get("blog/api/post/?year=" + year + "&month=" + month + "&urlSlug=" + urlSlug).map(response => response.json()).subscribe(onNext);
     }
 
     getLatestsPosts(paging: Paging, onNext: (json: Post) => void) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        this.http.post("api/blog/posts", JSON.stringify(paging), { headers }).map(response => response.json()).subscribe(onNext);
+        this.http.post("blog/api/posts", JSON.stringify(paging), { headers }).map(response => response.json()).subscribe(onNext);
     }
 }

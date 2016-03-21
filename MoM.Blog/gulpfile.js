@@ -40,7 +40,7 @@ gulp.task('copy-module', function () {
 
 gulp.task('copy-scripts', ['typescript-transpile'], function () {
     gulp.src(paths.scripDist + "/app/modules/" + moduleName + "/**/*.js")
-    .pipe(webpack())
+    //.pipe(webpack())
     .pipe(gulp.dest(paths.scriptDestination))
 });
 

@@ -5,12 +5,12 @@ import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
 import {Router, RouteParams} from 'angular2/router';
 
 @Component({
-    selector: "blog-latestsposts",
-    templateUrl: "/blog/widgets/latestsposts",
+    selector: "blog-admin",
+    templateUrl: "/blog/pages/admin",
     providers: [BlogService],
     directives: CORE_DIRECTIVES
 })
-export class LatestsPostsComponent implements OnInit {
+export class AdminComponent implements OnInit {
     posts: Post;
     isLoading: boolean = false;
     paging: Paging;
@@ -27,12 +27,12 @@ export class LatestsPostsComponent implements OnInit {
 
     onPostViewMore(post: Post) {
         console.log(post)
-        this.router.navigate(['../Post', { year: post.year, month: post.month, urlSlug: post.urlSlug }]);
+        this.router.navigate(['../EditPost', { year: post.year, month: post.month, urlSlug: post.urlSlug }]);
     }
 
     get() {
         this.isLoading = true;
-        this.paging = {pageNo:0, pageSize:10 };
+        this.paging = { pageNo: 0, pageSize: 10 };
         this.service.getLatestsPosts(this.paging, json => {
             if (json) {
                 this.posts = json;

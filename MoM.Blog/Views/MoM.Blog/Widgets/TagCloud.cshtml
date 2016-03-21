@@ -4,9 +4,9 @@
         <h6 class="card-subtitle text-muted">These are the most used tags on this blog</h6>
     </div>
     <div class="card-block">
-        <div class="row" *ngFor="#tag of tags">
-            <div class="col-xs-12 mom-tag-cloud">
-                <span class="{{tag.postCount}}">{{tag.name}}</span>
+        <div class="row">
+            <div class="col-xs-12 tag-cloud">
+                <span *ngFor="#tag of tags" class="{{tag.className}}">{{tag.name}}</span>
             </div>
         </div>
     </div>

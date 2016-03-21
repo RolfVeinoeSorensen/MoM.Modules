@@ -69,7 +69,7 @@ namespace MoM.Blog
 
         public void RegisterRoutes(IRouteBuilder routeBuilder)
         {
-            routeBuilder.MapRoute("Blog", "blog/{controller}/{action}", new { controller = "Blog/Components", action = "Index" });
+            routeBuilder.MapRoute("Blog", "blog/{controller}/{action}", new { controller = "Blog/Pages", action = "Blog" });
         }
 
         private Type GetIStorageImplementationType()

@@ -3,12 +3,14 @@ import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
 import {BlogService} from "../service/blog";
 import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
 import {Router, RouteParams} from 'angular2/router';
+//import {Codeblock} from 'ng2-prism/codeblock';
+//import {Csharp, Css, Javascript, Json} from 'ng2-prism/languages';
 
 @Component({
     selector: "blog-post",
-    templateUrl: "/blog/components/post",
+    templateUrl: "/blog/pages/admin",
     providers: [BlogService],
-    directives: CORE_DIRECTIVES
+    directives: [CORE_DIRECTIVES] //, Csharp, Css, Javascript, Json]
 })
 export class PostComponent implements OnInit {
     post: Post;

@@ -8,7 +8,7 @@ import {Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/rout
 
 @Component({
     selector: "blog",
-    templateUrl: "/blog/components/index",
+    templateUrl: "/blog/pages/blog",
     providers: [BlogService],
     directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES, TopCategoriesComponent, LatestsPostsComponent, TagCloudComponent]
 })

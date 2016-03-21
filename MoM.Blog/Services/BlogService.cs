@@ -133,7 +133,7 @@ namespace MoM.Blog.Services
             foreach (var post in posts)
             {
                 post.Category = categories.FirstOrDefault(c => c.CategoryId == post.Category.CategoryId);
-                post.PostTags = postTags.ToList();
+                post.PostTags = postTags.Where(pt => pt.PostId == post.PostId).ToList();
             }
             return GetBlogPostsDateFormatted(posts.ToDTOs());
         }

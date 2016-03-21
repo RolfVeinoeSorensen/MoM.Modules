@@ -5,7 +5,7 @@ import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
 
 @Component({
     selector: "blog-tagcloud",
-    templateUrl: "/blog/components/tagcloud",
+    templateUrl: "/blog/widgets/tagcloud",
     providers: [BlogService],
     directives: CORE_DIRECTIVES
 })

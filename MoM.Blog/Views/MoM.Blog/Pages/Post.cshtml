@@ -1,0 +1,12 @@
+﻿<blog-post>
+    <div class="container margin-top margin-bottom" *ngIf="post">
+        <div class="col-md-9">
+            <h1>{{post.title}}</h1>
+            <div [innerHTML]="post.description"></div>
+        </div>
+        <div class="col-md-3">
+            <blog-topcategories></blog-topcategories>
+            <blog-tagcloud></blog-tagcloud>
+        </div>
+    </div>
+</blog-post>
