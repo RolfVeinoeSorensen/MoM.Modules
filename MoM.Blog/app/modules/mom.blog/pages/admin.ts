@@ -8,7 +8,7 @@ import {Router, RouteParams} from 'angular2/router';
     selector: "blog-admin",
     templateUrl: "/blog/pages/admin",
     providers: [BlogService],
-    directives: CORE_DIRECTIVES
+    directives: [CORE_DIRECTIVES]
 })
 export class AdminComponent implements OnInit {
     posts: Post;
@@ -25,9 +25,12 @@ export class AdminComponent implements OnInit {
         this.get();
     }
 
-    onPostViewMore(post: Post) {
-        console.log(post)
-        this.router.navigate(['../EditPost', { year: post.year, month: post.month, urlSlug: post.urlSlug }]);
+    onPostEdit(post: Post) {
+        this.router.navigate(['../AdminBlogPostEdit', { postId: post.postId }]);
+    }
+
+    onPostCreate() {
+        this.router.navigate(['../AdminBlogPostCreate']);
     }
 
     get() {

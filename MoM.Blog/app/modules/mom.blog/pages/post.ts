@@ -8,7 +8,7 @@ import {Router, RouteParams} from 'angular2/router';
 
 @Component({
     selector: "blog-post",
-    templateUrl: "/blog/pages/admin",
+    templateUrl: "/blog/pages/post",
     providers: [BlogService],
     directives: [CORE_DIRECTIVES] //, Csharp, Css, Javascript, Json]
 })

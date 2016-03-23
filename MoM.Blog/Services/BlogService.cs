@@ -41,11 +41,11 @@ namespace MoM.Blog.Services
         {
             var categories = Storage.GetRepository<ICategoryRepository>().Table();
             var posts = Storage.GetRepository<IPostRepository>().Table()
-                .Where(p => categories.Select(x => x.CategoryId)
+                .Where(p => p.Category != null && categories.Select(x => x.CategoryId)
                 .Contains(p.Category.CategoryId));
             foreach (var category in categories)
             {
-                category.Posts = posts.Where(p => p.Category.CategoryId == category.CategoryId).ToList();
+                category.Posts = posts.Where(p => p.Category != null && p.Category.CategoryId == category.CategoryId).ToList();
             }
             return categories.OrderByDescending(c => c.Posts.Count()).Take(pageSize).ToDTOs(true);
         }
@@ -140,7 +140,26 @@ namespace MoM.Blog.Services
 
         public IList<PostDto> Posts(int pageNo, int pageSize, string sortColumn, bool sortByAscending)
         {
-            return Storage.GetRepository<IPostRepository>().Posts(pageNo, pageSize, sortColumn, sortByAscending).ToDTOs();
+            var posts = Storage.GetRepository<IPostRepository>().Posts(pageNo, pageSize, sortColumn, sortByAscending);
+            var categories = Storage.GetRepository<ICategoryRepository>().Table()
+                .Where(c => posts.Select(p => p.Category.CategoryId)
+                .Contains(c.CategoryId));
+            var postTags = Storage.GetRepository<IPostTagRepository>().Table()
+                .Where(pt => posts.Select(p => p.PostId)
+                .Contains(pt.PostId));
+            var tags = Storage.GetRepository<ITagRepository>().Table()
+                .Where(t => postTags.Select(pt => pt.TagId)
+                .Contains(t.TagId));
+            foreach (var postTag in postTags)
+            {
+                postTag.Tag = tags.FirstOrDefault(t => t.TagId == postTag.TagId);
+            }
+            foreach (var post in posts)
+            {
+                post.Category = categories.FirstOrDefault(c => c.CategoryId == post.Category.CategoryId);
+                post.PostTags = postTags.Where(pt => pt.PostId == post.PostId).ToList();
+            }
+            return GetBlogPostsDateFormatted(posts.ToDTOs());
         }
 
         public IList<PostDto> PostsForCategory(string categorySlug, int pageNo, int pageSize)

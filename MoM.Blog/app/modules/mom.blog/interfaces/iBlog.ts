@@ -1,20 +1,20 @@
 ﻿export interface Post {
     postId: number;
     title: string;
-    shortDescription: string;
+    shortDescription?: string;
     description: string;
-    meta: string;
-    urlSlug: string;
-    isPublished: number;
-    postedDate: Date;
-    modifiedDate: Date;
-    category: Category;
-    postTags: Array<PostTag>
-    day: number;
-    month: number;
-    year: number;
-    monthName: string;
-    monthNameShort: string;
+    meta?: string;
+    urlSlug?: string;
+    isPublished?: number;
+    postedDate?: Date;
+    modifiedDate?: Date;
+    category?: Category;
+    postTags?: Array<PostTag>
+    day?: number;
+    month?: number;
+    year?: number;
+    monthName?: string;
+    monthNameShort?: string;
 }
 
 export interface Category {

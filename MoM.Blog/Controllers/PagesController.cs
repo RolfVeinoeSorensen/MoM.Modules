@@ -12,5 +12,6 @@ namespace MoM.Blog.Controllers
         public IActionResult Post() => PartialView("~/Views/MoM.Blog/Pages/Post.cshtml");
         // Admin
         public IActionResult Admin() => PartialView("~/Views/MoM.Blog/Pages/Admin.cshtml");
+        public IActionResult AdminPost() => PartialView("~/Views/MoM.Blog/Pages/AdminPost.cshtml");
     }
 }
