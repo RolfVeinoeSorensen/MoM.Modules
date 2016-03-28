@@ -23,11 +23,11 @@ namespace MoM.Tutorial
             }
         }
 
-        public ExtensionType Type
+        public ModuleType Type
         {
             get
             {
-                return ExtensionType.Module;
+                return ModuleType.Module;
             }
         }
 
@@ -56,7 +56,7 @@ namespace MoM.Tutorial
                 PropertyInfo connectionStringPropertyInfo = type.GetProperty("ConnectionString");
 
                 if (connectionStringPropertyInfo != null)
-                    connectionStringPropertyInfo.SetValue(null, Configuration["Data:DefaultConnection:ConnectionString"]);
+                    connectionStringPropertyInfo.SetValue(null, Configuration["Site:ConnectionString"]);
 
                 PropertyInfo assembliesPropertyInfo = type.GetProperty("Assemblies");
 

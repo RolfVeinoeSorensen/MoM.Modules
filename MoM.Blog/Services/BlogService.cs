@@ -208,6 +208,9 @@ namespace MoM.Blog.Services
             }
 
             var result = tags.OrderByDescending(t => t.PostTags.Count()).Take(pageSize).ToDTOs();
+            //Do not evaluate tagclasses if there are no tags
+            if (result.Count == 0)
+                return result;
 
             var min = tags.Min(t => t.PostTags.Count);
             var max = tags.Max(t => t.PostTags.Count);

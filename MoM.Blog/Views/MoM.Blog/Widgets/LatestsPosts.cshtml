@@ -16,7 +16,7 @@
             <p><i class="fa fa-tags"></i><span class="label label-default tags" *ngFor="#postTag of post.postTags">{{postTag.tag.name}}</span></p>
         </div>
     </div>
-    <div class="row" [innerHTML]="post.shortDescription"></div>
+    <div class="row" [innerHTML]="post.teaser"></div>
     <div class="row text-xs-right"><button type="button" (click)="onPostViewMore(post)" class="btn btn-primary">read more...</button></div>
 </div>
 <div class="container-fluid">

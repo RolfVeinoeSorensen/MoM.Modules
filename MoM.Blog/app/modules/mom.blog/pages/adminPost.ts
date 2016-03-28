@@ -38,7 +38,7 @@ export class AdminPostComponent implements OnInit {
         }
         else {
             this.pageTitle = "Create post";
-            this.post = { title: '', postId: 0, description:'' }; //, category: null, shortDescription: '', description: '', isPublished: 0, meta: '', day: 0, modifiedDate: new Date(), month: null, monthName: '', monthNameShort: '', postedDate: new Date(), postTags:[], urlSlug:'', year:0
+            this.post = { title: '', postId: 0, content: '', category: null, teaser: '', isPublished: 0, meta: '', day: 0, modifiedDate: new Date(), month: null, monthName: '', monthNameShort: '', postedDate: new Date(), postTags: [], urlSlug: '', year: 0 };
             this.isLoading = false;
         }   
     }

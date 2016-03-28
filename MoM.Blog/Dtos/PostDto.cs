@@ -9,8 +9,8 @@ namespace MoM.Blog.Dtos
     {
         public int postId { get; set; }
         public string title { get; set; }
-        public string shortDescription { get; set; }
-        public string description { get; set; }
+        public string teaser { get; set; }
+        public string content { get; set; }
         public string meta { get; set; }
         public string urlSlug { get; set; }
         public int isPublished { get; set; }
@@ -31,8 +31,8 @@ namespace MoM.Blog.Dtos
         public PostDto(
             int PostId, 
             string Title, 
-            string ShortDescription, 
-            string Description, 
+            string Teaser, 
+            string Content, 
             string Meta, 
             string UrlSlug, 
             int IsPublished, 
@@ -45,8 +45,8 @@ namespace MoM.Blog.Dtos
         {
             postId = PostId;
             title = Title;
-            shortDescription = ShortDescription;
-            description = Description;
+            teaser = Teaser;
+            content = Content;
             meta = Meta;
             urlSlug = UrlSlug;
             isPublished = IsPublished;

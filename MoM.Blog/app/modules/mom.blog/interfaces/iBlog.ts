@@ -1,8 +1,8 @@
 ﻿export interface Post {
     postId: number;
     title: string;
-    shortDescription?: string;
-    description: string;
+    teaser?: string;
+    content: string;
     meta?: string;
     urlSlug?: string;
     isPublished?: number;

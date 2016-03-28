@@ -30,8 +30,8 @@ namespace MoM.Blog.Dtos
 
             entity.PostId = dto.postId;
             entity.Title = dto.title;
-            entity.ShortDescription = dto.shortDescription;
-            entity.Description = dto.description;
+            entity.Teaser = dto.teaser;
+            entity.Content = dto.content;
             entity.Meta = dto.meta;
             entity.UrlSlug = dto.urlSlug;
             entity.IsPublished = dto.isPublished;
@@ -57,8 +57,8 @@ namespace MoM.Blog.Dtos
 
             dto.postId = entity.PostId;
             dto.title = entity.Title;
-            dto.shortDescription = entity.ShortDescription;
-            dto.description = entity.Description;
+            dto.teaser = entity.Teaser;
+            dto.content = entity.Content;
             dto.meta = entity.Meta;
             dto.urlSlug = entity.UrlSlug;
             dto.isPublished = entity.IsPublished;
