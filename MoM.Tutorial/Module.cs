@@ -8,6 +8,7 @@ using System.Reflection;
 using MoM.Module.Managers;
 using Microsoft.AspNet.Hosting;
 using MoM.Module.Enums;
+using MoM.Module.Dtos;
 
 namespace MoM.Tutorial
 {
@@ -15,19 +16,21 @@ namespace MoM.Tutorial
     {
         private IConfiguration Configuration;
         private DataStorageManager StorageManager;
-        public string Name
-        {
-            get
-            {
-                return "Tutorial";
-            }
-        }
 
-        public ModuleType Type
+        public ExtensionInfoDto Info
         {
             get
             {
-                return ModuleType.Module;
+                return new ExtensionInfoDto
+                {
+                    name = "Tutorial",
+                    description = "This module contains the basic methods and examples you need as a module developer to get started.",
+                    authors = "Rolf Veinø Sørensen",
+                    iconCss = "fa fa-graduation-cap",
+                    type = ModuleType.Module,
+                    versionMajor = 1,
+                    versionMinor = 0
+                };
             }
         }
 

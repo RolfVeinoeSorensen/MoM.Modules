@@ -8,6 +8,7 @@ using System.Reflection;
 using MoM.Module.Managers;
 using Microsoft.AspNet.Hosting;
 using MoM.Module.Enums;
+using MoM.Module.Dtos;
 
 namespace MoM.Blog
 {
@@ -16,19 +17,20 @@ namespace MoM.Blog
         private IConfiguration Configuration;
         private DataStorageManager StorageManager;
 
-        public string Name
+        public ExtensionInfoDto Info
         {
             get
             {
-                return "Blog";
-            }
-        }
-
-        public ModuleType Type
-        {
-            get
-            {
-                return ModuleType.Module;
+                return new ExtensionInfoDto
+                {
+                    name = "Blog",
+                    description = "This module contains all you need to create a personal blog for your site.",
+                    authors = "Rolf Veinø Sørensen",
+                    iconCss = "fa fa-bullhorn",
+                    type = ModuleType.Module,
+                    versionMajor = 1,
+                    versionMinor = 0
+                };
             }
         }
 
