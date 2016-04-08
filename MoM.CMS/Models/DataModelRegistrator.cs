@@ -8,14 +8,24 @@ namespace MoM.CMS.Models
         public void RegisterModels(ModelBuilder modelBuilder)
         {
             // build the model
-            //ModelBuilderFactory.BuildModels(modelBuilder);
+            modelBuilder.Entity<NavigationMenu>();
+            modelBuilder.Entity<NavigationMenuItem>();
+
+            modelBuilder.Entity<NavigationMenuNavigationMenuItem>()
+                .HasKey(t => new { t.NavigationMenuId, t.NavigationMenuItemId });
+
+            modelBuilder.Entity<NavigationMenuNavigationMenuItem>()
+                .HasOne(pt => pt.NavigationMenu)
+                .WithMany(p => p.MenuItems)
+                .HasForeignKey(pt => pt.NavigationMenuId);
+
+            modelBuilder.Entity<NavigationMenuNavigationMenuItem>()
+                .HasOne(pt => pt.NavigationMenuItem)
+                .WithMany(t => t.MenuItems)
+                .HasForeignKey(pt => pt.NavigationMenuItemId);
 
             //Add data to tables
             //modelBuilder.Entity<HelloPlanet>();
         }
-
-        //public DbSet<Post> Posts { get; set; }
-        //public DbSet<Tag> Tags { get; set; }
-        //public DbSet<Category> Categories { get; set; }
     }
 }

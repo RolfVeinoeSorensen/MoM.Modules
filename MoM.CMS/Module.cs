@@ -8,6 +8,7 @@ using System.Reflection;
 using MoM.Module.Managers;
 using Microsoft.AspNet.Hosting;
 using MoM.Module.Enums;
+using MoM.Module.Dtos;
 
 namespace MoM.CMS
 {
@@ -15,19 +16,21 @@ namespace MoM.CMS
     {
         private IConfiguration Configuration;
         private DataStorageManager StorageManager;
-        public string Name
-        {
-            get
-            {
-                return "CMS";
-            }
-        }
 
-        public ExtensionType Type
+        public ExtensionInfoDto Info
         {
             get
             {
-                return ExtensionType.Module;
+                return new ExtensionInfoDto
+                {
+                    name = "CMS",
+                    description = "This module contains all you need to create a site with pages and widgets. The admin part also resides here",
+                    authors = "Rolf Veinø Sørensen",
+                    iconCss = "fa fa-bullhorn",
+                    type = ModuleType.Module,
+                    versionMajor = 1,
+                    versionMinor = 0
+                };
             }
         }
 
@@ -40,7 +43,6 @@ namespace MoM.CMS
         {
             return Configuration;
         }
-
 
         public void Configure(IApplicationBuilder applicationBuilder, IHostingEnvironment hostingEnvironment)
         {
@@ -56,7 +58,7 @@ namespace MoM.CMS
                 PropertyInfo connectionStringPropertyInfo = type.GetProperty("ConnectionString");
 
                 if (connectionStringPropertyInfo != null)
-                    connectionStringPropertyInfo.SetValue(null, Configuration["Data:DefaultConnection:ConnectionString"]);
+                    connectionStringPropertyInfo.SetValue(null, Configuration["Site:ConnectionString"]);
 
                 PropertyInfo assembliesPropertyInfo = type.GetProperty("Assemblies");
 
@@ -70,8 +72,7 @@ namespace MoM.CMS
 
         public void RegisterRoutes(IRouteBuilder routeBuilder)
         {
-            routeBuilder.MapRoute("CMSComponents", "{controller=Components}/{action}");
-            //routeBuilder.MapRoute(name: "CMSComponents", template: "cms", defaults: new { controller = "Home", action = "Index" });
+            routeBuilder.MapRoute("CMS", "cms/{controller}/{action}", new { controller = "CMS/Pages", action = "CMS" });
         }
 
         private Type GetIStorageImplementationType()
@@ -85,4 +86,5 @@ namespace MoM.CMS
             return null;
         }
     }
+
 }

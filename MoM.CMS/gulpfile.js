@@ -16,7 +16,8 @@ var gulp = require("gulp"),
     rimraf = require('rimraf'),
     uglify = require('gulp-uglify'),
     cssmin = require('gulp-cssmin'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    webpack = require('gulp-webpack');
 
 var tsProject = typescript.createProject('app/tsconfig.json');
 
@@ -26,7 +27,7 @@ var paths = {
     modulepath: "../artifacts/bin/" + moduleName + "/Debug/dnxcore50/",
     moduleDestination: "../../MoM/artifacts/bin/Modules",
     scripDist: "./dist",
-    scriptDestination: "../../MoM/MoM.Web/wwwroot/app/"
+    scriptDestination: "../../MoM/MoM.Web/wwwroot/app/modules/" + moduleName
 }
 
 gulp.task('copy-module', function () {
@@ -38,7 +39,8 @@ gulp.task('copy-module', function () {
 });
 
 gulp.task('copy-scripts', ['typescript-transpile'], function () {
-    gulp.src(paths.scripDist + "/app/**/*.js")
+    gulp.src(paths.scripDist + "/app/modules/" + moduleName + "/**/*.js")
+    //.pipe(webpack())
     .pipe(gulp.dest(paths.scriptDestination))
 });
 
@@ -51,7 +53,7 @@ gulp.task('lint-typescript', function () {
 gulp.task('typescript-transpile', ['lint-typescript'], function () {
     var tsResult = tsProject.src()
         .pipe(typescript(tsProject));
-    return tsResult.js.pipe(gulp.dest(paths.scripDist + "/app/"));
+    return tsResult.js.pipe(gulp.dest(paths.scripDist + "/app/modules/" + moduleName));
 });
 gulp.task('watch-cms', function () {
     gulp.watch('app/**/*.ts', ['copy-scripts']);
