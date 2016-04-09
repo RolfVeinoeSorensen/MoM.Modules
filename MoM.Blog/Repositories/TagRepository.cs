@@ -11,7 +11,7 @@ namespace MoM.Blog.Repositories
         public int AddTag(Tag tag)
         {
             DbSet.Add(tag);
-            DatabaseContext.SaveChanges();
+            Db.SaveChanges();
             return tag.TagId;
         }
 
@@ -19,13 +19,13 @@ namespace MoM.Blog.Repositories
         {
             var tagToDelete = DbSet.FirstOrDefault(t => t.TagId == id);
             DbSet.Remove(tagToDelete);
-            DatabaseContext.SaveChanges();
+            Db.SaveChanges();
         }
 
         public void EditTag(Tag tag)
         {
             DbSet.Update(tag);
-            DatabaseContext.SaveChanges();
+            Db.SaveChanges();
         }
 
         public Tag Tag(int id)

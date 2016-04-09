@@ -12,7 +12,7 @@ namespace MoM.Blog.Repositories
         public int AddCategory(Category category)
         {
             DbSet.Add(category);
-            DatabaseContext.SaveChanges();
+            Db.SaveChanges();
             return category.CategoryId;
 
         }
@@ -36,13 +36,13 @@ namespace MoM.Blog.Repositories
         {
             var categoryToDelete = DbSet.FirstOrDefault(x => x.CategoryId == id);
             DbSet.Remove(categoryToDelete);
-            DatabaseContext.SaveChanges();
+            Db.SaveChanges();
         }
 
         public void EditCategory(Category category)
         {
             DbSet.Update(category);
-            DatabaseContext.SaveChanges();
+            Db.SaveChanges();
         }
     }
 }

@@ -9,15 +9,12 @@ namespace MoM.CMS.Dtos
         public string displayName { get; set; }
         public string iconClass { get; set; }
 
-        public virtual List<NavigationMenuNavigationMenuItemDto> menuItems { get; set; }
-
         public NavigationMenuDto() { }
-        public NavigationMenuDto(int NavigationMenuId, string Name, string DisplayName, string IconClass, List<NavigationMenuNavigationMenuItemDto> MenuItems) {
+        public NavigationMenuDto(int NavigationMenuId, string Name, string DisplayName, string IconClass) {
             navigationMenuId = NavigationMenuId;
             name = Name;
             displayName = DisplayName;
             iconClass = IconClass;
-            menuItems = MenuItems;
         }
     }
 }

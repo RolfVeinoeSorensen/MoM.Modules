@@ -22,7 +22,7 @@ namespace MoM.Tutorial.Repositories
                 {
                     DbSet.Add(item);
                 }
-                DatabaseContext.SaveChanges();
+                Db.SaveChanges();
             }
         }
     }

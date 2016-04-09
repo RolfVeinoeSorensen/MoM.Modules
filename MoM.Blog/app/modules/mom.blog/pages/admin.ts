@@ -1,6 +1,6 @@
 ﻿import {Component, OnInit} from "angular2/core";
 import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
-import {BlogService} from "../service/blog";
+import {BlogService} from "../services/blog";
 import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
 import {Router, RouteParams} from 'angular2/router';
 

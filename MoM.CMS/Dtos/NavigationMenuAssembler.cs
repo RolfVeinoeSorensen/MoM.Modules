@@ -20,7 +20,6 @@ namespace MoM.CMS.Dtos
             entity.Name = dto.name;
             entity.DisplayName = dto.displayName;
             entity.IconClass = dto.iconClass;
-            entity.MenuItems = dto.menuItems.ToEntities();
             dto.OnEntity(entity);
 
             return entity;
@@ -36,7 +35,6 @@ namespace MoM.CMS.Dtos
             dto.name = entity.Name;
             dto.displayName = entity.DisplayName;
             dto.iconClass = entity.IconClass;
-            dto.menuItems = entity.MenuItems.ToDTOs();
             entity.OnDTO(dto);
 
             return dto;

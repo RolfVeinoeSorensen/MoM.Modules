@@ -18,6 +18,8 @@ namespace MoM.CMS.Models
         [StringLength(100)]
         public string IconClass { get; set; }
 
-        public virtual List<NavigationMenuNavigationMenuItem> MenuItems { get; set; }
+        public int SortOrder { get; set; }
+
+        public virtual NavigationMenu NavigationMenu { get; set; }
     }
 }

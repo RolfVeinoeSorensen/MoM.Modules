@@ -12,7 +12,7 @@ namespace MoM.Blog.Repositories
         public Post AddPost(Post post)
         {
             DbSet.Add(post);
-            DatabaseContext.SaveChanges();
+            Db.SaveChanges();
             return post;
         }
 
@@ -25,13 +25,13 @@ namespace MoM.Blog.Repositories
         {
             var deletePost = DbSet.FirstOrDefault(x => x.PostId.Equals(id));
             DbSet.Remove(deletePost);
-            DatabaseContext.SaveChanges();
+            Db.SaveChanges();
         }
 
         public Post EditPost(Post post)
         {
             DbSet.Update(post);
-            DatabaseContext.SaveChanges();
+            Db.SaveChanges();
             return post;
         }
 

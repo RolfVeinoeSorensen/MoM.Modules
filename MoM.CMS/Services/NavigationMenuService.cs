@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MoM.CMS.Dtos;
 using MoM.Module.Interfaces;
+using System;
 
 namespace MoM.CMS.Services
 {
@@ -17,24 +18,49 @@ namespace MoM.CMS.Services
 
         public NavigationMenuDto GetMenuByName(string name)
         {
-            return Storage.GetRepository<INavigationMenuRepository>().Table().FirstOrDefault(n => n.Name.Equals(name)).ToDTO();
+            return Storage.GetRepository<INavigationMenuRepository>().Fetch(n => n.Name.Equals(name)).FirstOrDefault().ToDTO() ;
         }
 
-        public IEnumerable<NavigationMenuItemDto> GetMenuItemsById(int id)        {
-            var result = new List<NavigationMenuItemDto>();
-            var currentItem = Storage.GetRepository<INavigationMenuItemRepository>().Table().FirstOrDefault(i => i.NavigationMenuItemId == id).ToDTO();
-            var parentItem = currentItem.parent == null ? null : Storage.GetRepository<INavigationMenuItemRepository>().Table().FirstOrDefault(i => i.NavigationMenuItemId == currentItem.parent.navigationMenuItemId).ToDTO();
-            var siblingItems = currentItem.parent == null ?
-                Storage.GetRepository<INavigationMenuItemRepository>().Table().Where(i => i.Parent == null).ToDTOs() //root level get the items on the same level
-                :
-                Storage.GetRepository<INavigationMenuItemRepository>().Table().Where(i => i.Parent != null && i.Parent.NavigationMenuItemId == currentItem.parent.navigationMenuItemId).ToDTOs(); //lower
-            if(parentItem != null)
+
+        public IEnumerable<NavigationMenuItemDto> GetMenuItemsByMenuNameAndMenuItemId(string name, int id)
+        {
+            var menu = Storage.GetRepository<INavigationMenuRepository>().Fetch(m => m.Name == name).FirstOrDefault();
+            if (menu == null)
             {
-                parentItem.isParent = true;
-                parentItem.iconClass = "fa fa-level-up";
-                result.Add(parentItem);                
+                return null;
             }
-            foreach(var item in siblingItems)
+            var currentItem = Storage.GetRepository<INavigationMenuItemRepository>()
+                                .Fetch(i => i.NavigationMenuItemId == id 
+                                && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault();
+            var result = new List<NavigationMenuItemDto>();
+            var parentItem = currentItem != null 
+                                && currentItem.Parent != null 
+                                && currentItem.Parent.NavigationMenu.NavigationMenuId == menu.NavigationMenuId 
+                                ? currentItem.Parent : null;
+            var menuItems = parentItem == null ?
+                //root level present siblings
+                Storage.GetRepository<INavigationMenuItemRepository>().Fetch(i => i.Parent == null 
+                        && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId)
+                    .OrderBy(x => x.SortOrder).ToDTOs() 
+                :
+                //not root level present children
+                Storage.GetRepository<INavigationMenuItemRepository>().Fetch(
+                            i => i.Parent != null 
+                            && i.Parent.NavigationMenuItemId == currentItem.NavigationMenuItemId 
+                            && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId)
+                    .OrderBy(x => x.SortOrder).ToDTOs(); 
+            if(menuItems == null) //has no children present siblings
+            {
+                menuItems = Storage.GetRepository<INavigationMenuItemRepository>().Fetch(i => i.Parent != null && i.Parent.NavigationMenuItemId == currentItem.Parent.NavigationMenuItemId).OrderBy(x => x.SortOrder).ToDTOs();
+            }
+            if (parentItem != null)
+            {
+                var parentDto = parentItem.ToDTO();
+                parentDto.isParent = true;
+                parentDto.iconClass = "fa fa-level-up";
+                result.Add(parentDto);
+            }
+            foreach(var item in menuItems)
             {
                 result.Add(item);
             }
@@ -43,7 +69,7 @@ namespace MoM.CMS.Services
 
         public IEnumerable<NavigationMenuDto> GetMenus()
         {
-            return Storage.GetRepository<INavigationMenuRepository>().Table().ToDTOs();
+            return Storage.GetRepository<INavigationMenuRepository>().Table().OrderByDescending(x => x.DisplayName).ToDTOs();
         }
     }
 }

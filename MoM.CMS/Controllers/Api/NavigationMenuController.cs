@@ -20,11 +20,11 @@ namespace MoM.CMS.Controllers.Api
             Service = new NavigationMenuService(storage);
         }
 
-        [HttpGet("{id}")]
-        [Route("getmenuitemsbyid")]
-        public IEnumerable<NavigationMenuItemDto> GetMenuItemsById(int id)
+        [HttpGet("{name}/{id}")]
+        [Route("getmenuitemsbymenunameandmenuitemid")]
+        public IEnumerable<NavigationMenuItemDto> GetMenuItemsByMenuNameAndMenuItemId(string name, int id)
         {
-            return Service.GetMenuItemsById(id);
+            return Service.GetMenuItemsByMenuNameAndMenuItemId(name, id);
         }
     }
 }

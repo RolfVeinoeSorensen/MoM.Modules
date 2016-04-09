@@ -22,6 +22,8 @@ namespace MoM.CMS.Dtos
             entity.DisplayName = dto.displayName;
             entity.RouterLink = dto.routerLink;
             entity.IconClass = dto.iconClass;
+            entity.SortOrder = dto.sortOrder;
+            entity.NavigationMenu = dto.navigationMenu.ToEntity();
             
             dto.OnEntity(entity);
 
@@ -40,6 +42,8 @@ namespace MoM.CMS.Dtos
             dto.displayName = entity.DisplayName;
             dto.routerLink = entity.RouterLink;
             dto.iconClass = entity.IconClass;
+            dto.sortOrder = entity.SortOrder;
+            dto.navigationMenu = entity.NavigationMenu.ToDTO();
 
             entity.OnDTO(dto);
 

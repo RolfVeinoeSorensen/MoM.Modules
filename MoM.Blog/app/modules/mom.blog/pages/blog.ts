@@ -3,7 +3,7 @@ import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
 import {TopCategoriesComponent} from "../widgets/topcategories";
 import {LatestsPostsComponent} from "../widgets/latestsposts";
 import {TagCloudComponent} from "../widgets/tagcloud";
-import {BlogService} from "../service/blog";
+import {BlogService} from "../services/blog";
 import {Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
