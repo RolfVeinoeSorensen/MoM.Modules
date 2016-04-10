@@ -20,6 +20,8 @@ namespace MoM.CMS.Models
 
         public int SortOrder { get; set; }
 
+        public int? ParentNavigationMenuItemId { get; set; }
+
         public virtual NavigationMenu NavigationMenu { get; set; }
     }
 }

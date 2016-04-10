@@ -29,38 +29,44 @@ namespace MoM.CMS.Services
             {
                 return null;
             }
-            var currentItem = Storage.GetRepository<INavigationMenuItemRepository>()
+            var currentItem = id == 0 ?
+                Storage.GetRepository<INavigationMenuItemRepository>()
+                                .Fetch(i => i.Parent == null
+                                && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault()
+                :
+                Storage.GetRepository<INavigationMenuItemRepository>()
                                 .Fetch(i => i.NavigationMenuItemId == id 
                                 && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault();
             var result = new List<NavigationMenuItemDto>();
             var parentItem = currentItem != null 
-                                && currentItem.Parent != null 
-                                && currentItem.Parent.NavigationMenu.NavigationMenuId == menu.NavigationMenuId 
-                                ? currentItem.Parent : null;
-            var menuItems = parentItem == null ?
-                //root level present siblings
-                Storage.GetRepository<INavigationMenuItemRepository>().Fetch(i => i.Parent == null 
-                        && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId)
-                    .OrderBy(x => x.SortOrder).ToDTOs() 
-                :
-                //not root level present children
-                Storage.GetRepository<INavigationMenuItemRepository>().Fetch(
-                            i => i.Parent != null 
-                            && i.Parent.NavigationMenuItemId == currentItem.NavigationMenuItemId 
-                            && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId)
-                    .OrderBy(x => x.SortOrder).ToDTOs(); 
-            if(menuItems == null) //has no children present siblings
+                                && currentItem.ParentNavigationMenuItemId != null ? Storage.GetRepository<INavigationMenuItemRepository>()
+                                    .Fetch(i => i.NavigationMenuItemId == currentItem.ParentNavigationMenuItemId
+                                    && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault()
+                                : null;
+            var menuItems = Storage.GetRepository<INavigationMenuItemRepository>().Fetch(
+                                i => i.Parent != null 
+                                && i.Parent.NavigationMenuItemId == currentItem.NavigationMenuItemId 
+                                && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId)
+                            .OrderBy(x => x.SortOrder).ToDTOs(); 
+
+            if(menuItems.Count == 0) //has no children present siblings
             {
-                menuItems = Storage.GetRepository<INavigationMenuItemRepository>().Fetch(i => i.Parent != null && i.Parent.NavigationMenuItemId == currentItem.Parent.NavigationMenuItemId).OrderBy(x => x.SortOrder).ToDTOs();
+                menuItems = Storage.GetRepository<INavigationMenuItemRepository>().Fetch(i => i.NavigationMenuItemId == currentItem.ParentNavigationMenuItemId || i.ParentNavigationMenuItemId == currentItem.ParentNavigationMenuItemId).OrderBy(x => x.ParentNavigationMenuItemId).ThenBy(y => y.SortOrder).ToDTOs();
             }
-            if (parentItem != null)
+            else
             {
-                var parentDto = parentItem.ToDTO();
-                parentDto.isParent = true;
-                parentDto.iconClass = "fa fa-level-up";
-                result.Add(parentDto);
+                if (parentItem != null)
+                {
+                    var parentDto = parentItem.ToDTO();
+                    parentDto.displayName = string.Empty;
+                    parentDto.isParent = true;
+                    parentDto.iconClass = "fa fa-level-up";
+                    result.Add(parentDto);
+                }
+                result.Add(currentItem.ToDTO());
             }
-            foreach(var item in menuItems)
+
+            foreach (var item in menuItems)
             {
                 result.Add(item);
             }

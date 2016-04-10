@@ -1,18 +1,26 @@
 ﻿import {Component} from "angular2/core";
 import {AsyncRoute, RouteConfig, RouterLink, RouterOutlet, RouteData, Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {NavigationAdminComponent} from "../widgets/navigationadmin";
 
 declare var System: any;
 
 @Component({
     selector: "mom-admin",
     templateUrl: "/cms/pages/admin",
-    directives: [RouterOutlet, RouterLink]
+    directives: [RouterOutlet, RouterLink, NavigationAdminComponent]
 })
-@RouteConfig([
+    @RouteConfig([
     new AsyncRoute({
         path: "/",
-        name: "AdminContent",
+        name: "AdminInfo",
         useAsDefault: true,
+        data: { includeInMenu: true, icon: "fa fa-info-circle fa-2x", title: "Info" },
+        loader: () => System.import("app/modules/MoM.CMS/pages/admininfo").then(c => c["AdminInfoComponent"])
+        }),
+    new AsyncRoute({
+        path: "/content",
+        name: "AdminContent",
+        useAsDefault: false,
         data: { includeInMenu: true, icon: "fa fa-sitemap fa-2x", title: "Content" },
         loader: () => System.import("app/modules/MoM.CMS/pages/admincontent").then(c => c["AdminContentComponent"])
         }),

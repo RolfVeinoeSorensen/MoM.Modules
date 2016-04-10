@@ -72,7 +72,7 @@ namespace MoM.CMS
 
         public void RegisterRoutes(IRouteBuilder routeBuilder)
         {
-            routeBuilder.MapRoute("CMS", "cms/{controller}/{action}", new { controller = "CMS/Pages", action = "CMS" });
+            routeBuilder.MapRoute("CMS", "cms/{controller}/{action}", new { controller = "CMS/Pages", action = "Home" });
         }
 
         private Type GetIStorageImplementationType()

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+﻿using Microsoft.AspNet.Mvc;
 
 namespace MoM.CMS.Controllers
 {
@@ -16,6 +10,8 @@ namespace MoM.CMS.Controllers
         public IActionResult Services() => PartialView("~/Views/MoM.CMS/Pages/Services.cshtml");
 
         public IActionResult Admin() => PartialView("~/Views/MoM.CMS/Pages/Admin.cshtml");
+
+        public IActionResult AdminInfo() => PartialView("~/Views/MoM.CMS/Pages/AdminInfo.cshtml");
 
         public IActionResult AdminContent() => PartialView("~/Views/MoM.CMS/Pages/AdminContent.cshtml");
 
