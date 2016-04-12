@@ -1,22 +1,22 @@
 ﻿import {Component, OnInit} from "angular2/core";
 import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
-import {BlogService} from "../services/blog";
-import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
+import {BlogAdminService} from "../services/blogadminservice";
+import {Paging, PagingWithSort, Category, Tag, Post, PostTag} from "../interfaces/iblog";
 import {Router, RouteParams} from 'angular2/router';
 
 @Component({
     selector: "blog-admin",
     templateUrl: "/blog/pages/admin",
-    providers: [BlogService],
+    providers: [BlogAdminService],
     directives: [CORE_DIRECTIVES]
 })
 export class AdminComponent implements OnInit {
     posts: Post;
     isLoading: boolean = false;
-    paging: Paging;
+    paging: PagingWithSort;
 
     constructor(
-        private service: BlogService,
+        private service: BlogAdminService,
         private router: Router,
         routeParams: RouteParams
     ) { }
@@ -35,8 +35,8 @@ export class AdminComponent implements OnInit {
 
     get() {
         this.isLoading = true;
-        this.paging = { pageNo: 0, pageSize: 10 };
-        this.service.getLatestsPosts(this.paging, json => {
+        this.paging = { pageNo: 0, pageSize: 10, sortColumn: "title", sortByAscending: false };
+        this.service.getPosts(this.paging, json => {
             if (json) {
                 this.posts = json;
                 this.isLoading = false;

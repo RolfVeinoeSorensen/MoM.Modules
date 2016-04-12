@@ -4,35 +4,41 @@ using MoM.Module.Base;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using MoM.Module.Extensions;
+using System.Linq.Expressions;
 
 namespace MoM.Blog.Repositories
 {
     public class PostRepository : RepositoryBase<Post>, IPostRepository
     {
-        public Post AddPost(Post post)
-        {
-            DbSet.Add(post);
-            Db.SaveChanges();
-            return post;
-        }
 
-        public IEnumerable<Post> All()
+        public void Create(Post entity)
         {
-                return DbSet.OrderByDescending(i => i.ModifiedDate);
-        }
-
-        public void DeletePost(int id)
-        {
-            var deletePost = DbSet.FirstOrDefault(x => x.PostId.Equals(id));
-            DbSet.Remove(deletePost);
+            DbSet.Add(entity);
             Db.SaveChanges();
         }
 
-        public Post EditPost(Post post)
+        public void Delete(Post entity)
         {
-            DbSet.Update(post);
+            DbSet.Remove(entity);
             Db.SaveChanges();
-            return post;
+        }
+
+        public IQueryable<Post> Fetch(Expression<Func<Post, bool>> predicate)
+        {
+            return DbSet.Where(predicate);
+        }
+
+        public IQueryable<Post> Fetch(Expression<Func<Post, bool>> predicate, Action<Orderable<Post>> order)
+        {
+            var orderable = new Orderable<Post>(Fetch(predicate));
+            order(orderable);
+            return orderable.Queryable;
+        }
+
+        public IQueryable<Post> Fetch(Expression<Func<Post, bool>> predicate, Action<Orderable<Post>> order, int skip, int count)
+        {
+            return Fetch(predicate, order).Skip(skip).Take(count);
         }
 
         public Post Post(int id)
@@ -120,14 +126,20 @@ namespace MoM.Blog.Repositories
             }
         }
 
-        public IEnumerable<Post> Table()
+        public IQueryable<Post> Table()
         {
-            return DbSet;
+            return DbSet.AsQueryable();
         }
 
         public int TotalPosts(int isPublished = 1)
         {
             return DbSet.Count(p => p.IsPublished == isPublished);
+        }
+
+        public void Update(Post entity)
+        {
+            DbSet.Update(entity);
+            Db.SaveChanges();
         }
     }
 }

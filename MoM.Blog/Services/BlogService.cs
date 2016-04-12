@@ -16,19 +16,19 @@ namespace MoM.Blog.Services
             Storage = storage;
         }
 
-        public int AddCategory(CategoryDto category)
+        public void CreateCategory(CategoryDto category)
         {
-            return Storage.GetRepository<ICategoryRepository>().AddCategory(category.ToEntity());
+            Storage.GetRepository<ICategoryRepository>().Create(category.ToEntity());
         }
 
-        public PostDto AddPost(PostDto post)
+        public void CreatePost(PostDto post)
         {
-            return Storage.GetRepository<IPostRepository>().AddPost(post.ToEntity()).ToDTO();
+            Storage.GetRepository<IPostRepository>().Create(post.ToEntity());
         }
 
-        public int AddTag(TagDto tag)
+        public void CreateTag(TagDto tag)
         {
-            return Storage.GetRepository<ITagRepository>().AddTag(tag.ToEntity());
+            Storage.GetRepository<ITagRepository>().Create(tag.ToEntity());
         }
 
         public IList<CategoryDto> Categories()
@@ -38,6 +38,19 @@ namespace MoM.Blog.Services
         }
 
         public IList<CategoryDto> CategoriesWithPostCount(int pageSize)
+        {
+            var categories = Storage.GetRepository<ICategoryRepository>().Table();
+            var posts = Storage.GetRepository<IPostRepository>().Table()
+                .Where(p => p.Category != null && categories.Select(x => x.CategoryId)
+                .Contains(p.Category.CategoryId));
+            foreach (var category in categories)
+            {
+                category.Posts = posts.Where(p => p.Category != null && p.Category.CategoryId == category.CategoryId).ToList();
+            }
+            return categories.OrderByDescending(c => c.Posts.Count()).Take(pageSize).ToDTOs(true);
+        }
+
+        public IList<CategoryDto> CategoriesWithPostCount(int pageNo, int pageSize, string sortColumn, bool sortByAscending)
         {
             var categories = Storage.GetRepository<ICategoryRepository>().Table();
             var posts = Storage.GetRepository<IPostRepository>().Table()
@@ -60,34 +73,34 @@ namespace MoM.Blog.Services
             return Storage.GetRepository<ICategoryRepository>().Category(categorySlug).ToDTO();
         }
 
-        public void DeleteCategory(int id)
+        public void DeleteCategory(CategoryDto category)
         {
-            Storage.GetRepository<ICategoryRepository>().DeleteCategory(id);
+            Storage.GetRepository<ICategoryRepository>().Delete(category.ToEntity());
         }
 
-        public void DeletePost(int id)
+        public void DeletePost(PostDto post)
         {
-            Storage.GetRepository<IPostRepository>().DeletePost(id);
+            Storage.GetRepository<IPostRepository>().Delete(post.ToEntity());
         }
 
-        public void DeleteTag(int id)
+        public void DeleteTag(TagDto tag)
         {
-            Storage.GetRepository<ITagRepository>().DeleteTag(id);
+            Storage.GetRepository<ITagRepository>().Delete(tag.ToEntity());
         }
 
-        public void EditCategory(CategoryDto category)
+        public void UpdateCategory(CategoryDto category)
         {
-            Storage.GetRepository<ICategoryRepository>().EditCategory(category.ToEntity());
+            Storage.GetRepository<ICategoryRepository>().Update(category.ToEntity());
         }
 
-        public PostDto EditPost(PostDto post)
+        public void UpdatePost(PostDto post)
         {
-            return Storage.GetRepository<IPostRepository>().EditPost(post.ToEntity()).ToDTO();
+            Storage.GetRepository<IPostRepository>().Update(post.ToEntity());
         }
 
-        public void EditTag(TagDto tag)
+        public void UpdateTag(TagDto tag)
         {
-            Storage.GetRepository<ITagRepository>().EditTag(tag.ToEntity());
+            Storage.GetRepository<ITagRepository>().Update(tag.ToEntity());
         }
 
         public IList<PostDto> GetBlogPostsDateFormatted(IList<PostDto> postDtos)

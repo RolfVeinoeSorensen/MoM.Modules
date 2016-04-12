@@ -1,13 +1,13 @@
 ﻿import {Component, OnInit} from "angular2/core";
 import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
-import {BlogService} from "../services/blog";
+import {BlogPublicService} from "../services/blogpublicservice";
 import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
 import {Router, RouteParams} from 'angular2/router';
 
 @Component({
     selector: "blog-latestsposts",
     templateUrl: "/blog/widgets/latestsposts",
-    providers: [BlogService],
+    providers: [BlogPublicService],
     directives: CORE_DIRECTIVES
 })
 export class LatestsPostsComponent implements OnInit {
@@ -16,7 +16,7 @@ export class LatestsPostsComponent implements OnInit {
     paging: Paging;
 
     constructor(
-        private service: BlogService,
+        private service: BlogPublicService,
         private router: Router,
         routeParams: RouteParams
     ) { }

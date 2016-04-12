@@ -1,6 +1,6 @@
 ﻿import {Component, OnInit} from "angular2/core";
 import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
-import {BlogService} from "../services/blog";
+import {BlogAdminService} from "../services/blogadminservice";
 import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
 import {Router, RouteParams} from 'angular2/router';
 //import {Codeblock} from 'ng2-prism/codeblock';
@@ -9,7 +9,7 @@ import {Router, RouteParams} from 'angular2/router';
 @Component({
     selector: "blog-admin-post",
     templateUrl: "/blog/pages/AdminPost",
-    providers: [BlogService],
+    providers: [BlogAdminService],
     directives: [CORE_DIRECTIVES] //, Csharp, Css, Javascript, Json]
 })
 export class AdminPostComponent implements OnInit {
@@ -21,7 +21,7 @@ export class AdminPostComponent implements OnInit {
     submitted: boolean = false;
 
     constructor(
-        private service: BlogService,
+        private service: BlogAdminService,
         private router: Router,
         private routeParams: RouteParams
     )
@@ -62,7 +62,7 @@ export class AdminPostComponent implements OnInit {
 
     onAddPost(post: Post) {
         this.isLoading = true;
-        this.service.addPost(this.post, json => {
+        this.service.createPost(this.post, json => {
             if (json) {
                 this.post = json;
                 this.isLoading = false;
@@ -74,7 +74,7 @@ export class AdminPostComponent implements OnInit {
         console.log("update");
         console.log(post);
         this.isLoading = true;
-        this.service.editPost(this.post, json => {
+        this.service.updatePost(this.post, json => {
             if (json) {
                 this.post = json;
                 this.isLoading = false;

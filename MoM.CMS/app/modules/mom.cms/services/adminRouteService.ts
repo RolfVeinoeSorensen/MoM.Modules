@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../../../../node_modules/reflect-metadata/reflect-metadata.d.ts"/>
 import {Injectable, Type, ViewEncapsulation} from 'angular2/core'
 import {RouteRegistry} from 'angular2/router'
-import {AdminTest} from '../pages/admintest'
+import {AdminComponent} from '../pages/admin'
 
 @Injectable()
 export class AdminDynamicRouteConfigurator {
@@ -9,6 +9,8 @@ export class AdminDynamicRouteConfigurator {
 
     addRoute(component: Type, route) {
         let routeConfig = this.getRoutes(component);
+        console.log("Add route");
+        console.log(routeConfig);
         routeConfig.configs.push(route);
         this._updateRouteConfig(component, routeConfig);
         this.registry.config(component, route);
@@ -23,6 +25,8 @@ export class AdminDynamicRouteConfigurator {
         let annotations = Reflect.getMetadata('annotations', component);
         let routeConfigIndex = -1;
         for (let i = 0; i < annotations.length; i += 1) {
+            console.log("Update route");
+            console.log(annotations[i]);
             if (annotations[i].configs != undefined) {
                 routeConfigIndex = i;
                 break;
@@ -32,6 +36,6 @@ export class AdminDynamicRouteConfigurator {
             throw new Error('No route metadata attached to the component');
         }
         annotations[routeConfigIndex] = routeConfig;
-        Reflect.defineMetadata('annotations', annotations, AdminTest);
+        Reflect.defineMetadata('annotations', annotations, AdminComponent);
     }
 } 

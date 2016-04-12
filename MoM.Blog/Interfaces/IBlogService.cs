@@ -99,19 +99,19 @@ namespace MoM.Blog.Interfaces
         /// </summary>
         /// <param name="post"></param>
         /// <returns>Newly added post id</returns>
-        PostDto AddPost(PostDto post);
+        void CreatePost(PostDto post);
 
         /// <summary>
         /// Update an existing post.
         /// </summary>
         /// <param name="post"></param>
-        PostDto EditPost(PostDto post);
+        void UpdatePost(PostDto post);
 
         /// <summary>
         /// Delete the post permanently from database.
         /// </summary>
-        /// <param name="id"></param>
-        void DeletePost(int id);
+        /// <param name="post"></param>
+        void DeletePost(PostDto post);
 
         /// <summary>
         /// Return all the categories where postcount > 0
@@ -150,19 +150,19 @@ namespace MoM.Blog.Interfaces
         /// </summary>
         /// <param name="category"></param>
         /// <returns></returns>
-        int AddCategory(CategoryDto category);
+        void CreateCategory(CategoryDto category);
 
         /// <summary>
         /// Update an existing category.
         /// </summary>
         /// <param name="category"></param>
-        void EditCategory(CategoryDto category);
+        void UpdateCategory(CategoryDto category);
 
         /// <summary>
         /// Delete a category permanently.
         /// </summary>
-        /// <param name="id"></param>
-        void DeleteCategory(int id);
+        /// <param name="category"></param>
+        void DeleteCategory(CategoryDto category);
 
         /// <summary>
         /// Return all the tags.
@@ -201,19 +201,19 @@ namespace MoM.Blog.Interfaces
         /// </summary>
         /// <param name="tag"></param>
         /// <returns></returns>
-        int AddTag(TagDto tag);
+        void CreateTag(TagDto tag);
 
         /// <summary>
         /// Edit an existing tag.
         /// </summary>
         /// <param name="tag"></param>
-        void EditTag(TagDto tag);
+        void UpdateTag(TagDto tag);
 
         /// <summary>
         /// Delete an existing tag permanently.
         /// </summary>
-        /// <param name="id"></param>
-        void DeleteTag(int id);
+        /// <param name="tag"></param>
+        void DeleteTag(TagDto tag);
 
         IList<PostDto> GetBlogPostsDateFormatted(IList<PostDto> postDtos);
     }

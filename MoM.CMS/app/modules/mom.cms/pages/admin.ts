@@ -1,4 +1,4 @@
-﻿import {Component} from "angular2/core";
+﻿import {Component, OnInit} from "angular2/core";
 import {AsyncRoute, RouteConfig, RouterLink, RouterOutlet, RouteData, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {NavigationAdminComponent} from "../widgets/navigationadmin";
 
@@ -9,7 +9,7 @@ declare var System: any;
     templateUrl: "/cms/pages/admin",
     directives: [RouterOutlet, RouterLink, NavigationAdminComponent]
 })
-    @RouteConfig([
+@RouteConfig([
     new AsyncRoute({
         path: "/",
         name: "AdminInfo",
@@ -78,6 +78,10 @@ export class AdminComponent {
     constructor(
         private router: Router
     ) { }
+
+    ngOnInit() {
+        console.log(this.router);
+    }
 
     isLinkActive(instruction: any[]): boolean {
         return this.router.isRouteActive(this.router.generate(instruction));

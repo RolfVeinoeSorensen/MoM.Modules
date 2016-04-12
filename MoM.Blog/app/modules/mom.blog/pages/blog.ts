@@ -3,20 +3,20 @@ import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
 import {TopCategoriesComponent} from "../widgets/topcategories";
 import {LatestsPostsComponent} from "../widgets/latestsposts";
 import {TagCloudComponent} from "../widgets/tagcloud";
-import {BlogService} from "../services/blog";
+import {BlogPublicService} from "../services/blogpublicservice";
 import {Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
     selector: "blog",
     templateUrl: "/blog/pages/blog",
-    providers: [BlogService],
+    providers: [BlogPublicService],
     directives: [CORE_DIRECTIVES, ROUTER_DIRECTIVES, TopCategoriesComponent, LatestsPostsComponent, TagCloudComponent]
 })
 export class BlogComponent implements OnInit {
     //message: string;
     //topCategoriesComponent: TopCategoriesComponent;
     constructor(
-        private service: BlogService,
+        private service: BlogPublicService,
         private router: Router,
         routeParams: RouteParams
     ) { }
