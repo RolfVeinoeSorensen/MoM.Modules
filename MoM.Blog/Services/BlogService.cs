@@ -39,28 +39,23 @@ namespace MoM.Blog.Services
 
         public IList<CategoryDto> CategoriesWithPostCount(int pageSize)
         {
-            var categories = Storage.GetRepository<ICategoryRepository>().Table();
-            var posts = Storage.GetRepository<IPostRepository>().Table()
-                .Where(p => p.Category != null && categories.Select(x => x.CategoryId)
-                .Contains(p.Category.CategoryId));
+            var categories = Storage.GetRepository<ICategoryRepository>().Table().ToDTOs();
             foreach (var category in categories)
             {
-                category.Posts = posts.Where(p => p.Category != null && p.Category.CategoryId == category.CategoryId).ToList();
+                category.postCount = Storage.GetRepository<IPostRepository>().Fetch(p => p.Category.CategoryId == category.categoryId).Count();
             }
-            return categories.OrderByDescending(c => c.Posts.Count()).Take(pageSize).ToDTOs(true);
+            return categories.OrderByDescending(c => c.postCount).Take(pageSize).ToList();
         }
 
         public IList<CategoryDto> CategoriesWithPostCount(int pageNo, int pageSize, string sortColumn, bool sortByAscending)
         {
-            var categories = Storage.GetRepository<ICategoryRepository>().Table();
-            var posts = Storage.GetRepository<IPostRepository>().Table()
-                .Where(p => p.Category != null && categories.Select(x => x.CategoryId)
-                .Contains(p.Category.CategoryId));
+            var categories = Storage.GetRepository<ICategoryRepository>().Categories(pageNo, pageSize, sortColumn, sortByAscending).ToDTOs();
+
             foreach (var category in categories)
             {
-                category.Posts = posts.Where(p => p.Category != null && p.Category.CategoryId == category.CategoryId).ToList();
+                category.postCount = Storage.GetRepository<IPostRepository>().Fetch(p => p.Category.CategoryId == category.categoryId).Count();
             }
-            return categories.OrderByDescending(c => c.Posts.Count()).Take(pageSize).ToDTOs(true);
+            return categories;
         }
 
         public CategoryDto Category(int id)

@@ -126,6 +126,12 @@ namespace MoM.Blog.Interfaces
         IList<CategoryDto> CategoriesWithPostCount(int pageSize);
 
         /// <summary>
+        /// Return all the categories with the number of post for each category.
+        /// </summary>
+        /// <returns></returns>
+        IList<CategoryDto> CategoriesWithPostCount(int pageNo, int pageSize, string sortColumn, bool sortByAscending);
+
+        /// <summary>
         /// Return total no. of categories.
         /// </summary>
         /// <returns></returns>

@@ -1,19 +1,21 @@
 ﻿import {Component, OnInit} from "angular2/core";
 import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
 import {BlogAdminService} from "../services/blogadminservice";
-import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
+import {Paging, PagingWithSort, Category, Tag, Post, PostTag} from "../interfaces/iblog";
 import {Router, RouteParams} from 'angular2/router';
+import { BUTTON_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
     selector: "blog-admin",
     templateUrl: "/blog/pages/admincategories",
     providers: [BlogAdminService],
-    directives: [CORE_DIRECTIVES]
+    directives: [CORE_DIRECTIVES, BUTTON_DIRECTIVES]
 })
 export class AdminCategoriesComponent implements OnInit {
     categories: Category;
     isLoading: boolean = false;
-    paging: Paging;
+    paging: PagingWithSort;
+    public pageSize: string = "10";
 
     constructor(
         private service: BlogAdminService,
@@ -22,25 +24,47 @@ export class AdminCategoriesComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        //this.get();
+        this.paging = { pageNo: 0, pageSize: parseInt(this.pageSize), sortColumn: "name", sortByAscending: false };
+        this.getCategories();
     }
 
-    onPostEdit(category: Category) {
-        this.router.navigate(['../AdminBlogCategoryEdit', { postId: category.categoryId }]);
+    onCategoryEdit(category: Category) {
+        this.getCategories();
     }
 
-    onPostCreate() {
-        this.router.navigate(['../AdminBlogCategoryCreate']);
+    onCategoryCreate(category: Category) {
+        this.getCategories();
     }
 
-    //get() {
-    //    this.isLoading = true;
-    //    this.paging = { pageNo: 0, pageSize: 10 };
-    //    this.service.getCategories(this.paging, json => {
-    //        if (json) {
-    //            this.categories = json;
-    //            this.isLoading = false;
-    //        }
-    //    });
-    //}
+    onCategoryDelete(category: Category) {
+        this.getCategories();
+    }
+
+    onPageSizeChange(pageSize: string) {
+        this.paging.pageSize = parseInt(pageSize);
+        console.log(this.paging);
+        this.getCategories();
+    }
+
+    onPageChange(pageNo: number) {
+        this.paging.pageNo = pageNo;
+        this.getCategories();
+    }
+
+    onSortChange(sortColumn: string) {
+        console.log("col:" + sortColumn);
+        this.paging.sortByAscending = this.paging.sortColumn == sortColumn ? this.paging.sortByAscending : !this.paging.sortByAscending;
+        this.paging.sortColumn = sortColumn;
+        this.getCategories();
+    }
+
+    getCategories(){
+        this.isLoading = true;        
+        this.service.getCategories(this.paging, json => {
+            if (json) {
+                this.categories = json;
+                this.isLoading = false;
+            }
+        });
+    }
 }

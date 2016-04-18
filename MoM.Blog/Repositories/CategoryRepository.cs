@@ -11,6 +11,51 @@ namespace MoM.Blog.Repositories
 {
     public class CategoryRepository : RepositoryBase<Category>, ICategoryRepository
     {
+        public IEnumerable<Category> Categories(int pageNo, int pageSize, string sortColumn, bool sortByAscending)
+        {
+            switch (sortColumn.ToLower())
+            {
+                case "name":
+                    if (sortByAscending)
+                        return DbSet
+                            .OrderBy(p => p.Name)
+                            .Skip(pageNo * pageSize)
+                            .Take(pageSize);
+                    else
+                        return DbSet
+                            .OrderByDescending(p => p.Name)
+                            .Skip(pageNo * pageSize)
+                            .Take(pageSize);
+                case "urlslug":
+                    if (sortByAscending)
+                        return DbSet
+                            .OrderBy(p => p.UrlSlug)
+                            .Skip(pageNo * pageSize)
+                            .Take(pageSize);
+                    else
+                        return DbSet
+                            .OrderByDescending(p => p.UrlSlug)
+                            .Skip(pageNo * pageSize)
+                            .Take(pageSize);
+                case "postcount":
+                    if (sortByAscending)
+                        return DbSet
+                            .OrderBy(p => p.Posts.Count())
+                            .Skip(pageNo * pageSize)
+                            .Take(pageSize);
+                    else
+                        return DbSet
+                            .OrderByDescending(p => p.Posts.Count())
+                            .Skip(pageNo * pageSize)
+                            .Take(pageSize);
+                default:
+                        return DbSet
+                            .OrderByDescending(p => p.Name)
+                            .Skip(pageNo * pageSize)
+                            .Take(pageSize);
+            }
+        }
+
         public Category Category(int id)
         {
             return DbSet.FirstOrDefault(t => t.CategoryId == id);

@@ -48,26 +48,5 @@ namespace MoM.Blog.Controllers.Api
         {
             return Service.Post(year, month, urlSlug);
         }
-
-        [HttpGet("{postId}")]
-        [Route("adminpost")]
-        public PostDto Post(int postId)
-        {
-            return Service.Post(postId);
-        }
-
-        [HttpPost]
-        [Route("addpost")]
-        public void AddPost([FromBody]PostDto post)
-        {
-            Service.CreatePost(post);
-        }
-
-        [HttpPost]
-        [Route("edit")]
-        public void EditPost([FromBody]PostDto post)
-        {
-            Service.UpdatePost(post);
-        }
     }
 }

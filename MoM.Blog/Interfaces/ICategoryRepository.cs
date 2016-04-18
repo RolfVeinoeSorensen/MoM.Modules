@@ -2,6 +2,7 @@
 using MoM.Module.Extensions;
 using MoM.Module.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -19,5 +20,6 @@ namespace MoM.Blog.Interfaces
 
         Category Category(string categorySlug);
         Category Category(int id);
+        IEnumerable<Category> Categories(int pageNo, int pageSize, string sortColumn, bool sortByAscending);
     }
 }

@@ -13,5 +13,6 @@ namespace MoM.Blog.Controllers
         // Admin
         public IActionResult Admin() => PartialView("~/Views/MoM.Blog/Pages/Admin.cshtml");
         public IActionResult AdminPost() => PartialView("~/Views/MoM.Blog/Pages/AdminPost.cshtml");
+        public IActionResult AdminCategories() => PartialView("~/Views/MoM.Blog/Pages/AdminCategories.cshtml");
     }
 }
