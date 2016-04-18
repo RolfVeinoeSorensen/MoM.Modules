@@ -22,7 +22,7 @@ namespace MoM.CMS.Services
         }
 
 
-        public IEnumerable<NavigationMenuItemDto> GetMenuItemsByMenuNameAndMenuItemId(string name, int id)
+        public IEnumerable<NavigationMenuItemDto> GetMenuItemsByMenuNameAndMenuItemId(string name, int id, string routeName)
         {
             var menu = Storage.GetRepository<INavigationMenuRepository>().Fetch(m => m.Name == name).FirstOrDefault();
             if (menu == null)
@@ -30,8 +30,13 @@ namespace MoM.CMS.Services
                 return null;
             }
             var currentItem = id == 0 ?
+                routeName == null ? 
                 Storage.GetRepository<INavigationMenuItemRepository>()
                                 .Fetch(i => i.Parent == null
+                                && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault()
+                                :
+                                Storage.GetRepository<INavigationMenuItemRepository>()
+                                .Fetch(i => i.Name == routeName
                                 && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault()
                 :
                 Storage.GetRepository<INavigationMenuItemRepository>()

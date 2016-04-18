@@ -7,6 +7,6 @@ namespace MoM.CMS.Interfaces
     {
         IEnumerable<NavigationMenuDto> GetMenus();
         NavigationMenuDto GetMenuByName(string name);
-        IEnumerable<NavigationMenuItemDto> GetMenuItemsByMenuNameAndMenuItemId(string name, int id);
+        IEnumerable<NavigationMenuItemDto> GetMenuItemsByMenuNameAndMenuItemId(string name, int id, string routeName);
     }
 }

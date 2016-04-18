@@ -72,6 +72,13 @@ declare var System: any;
         useAsDefault: false,
         data: { includeInMenu: false, icon: "" },
         loader: () => System.import("app/modules/MoM.Blog/pages/adminpost").then(c => c["AdminPostComponent"])
+    }),
+    new AsyncRoute({
+        path: "/blog/categories",
+        name: "AdminBlogCategories",
+        useAsDefault: false,
+        data: { includeInMenu: false, icon: "fa fa-book", title: "Blog" },
+        loader: () => System.import("app/modules/MoM.Blog/pages/admincategories").then(c => c["AdminCategoriesComponent"])
     })
 ])
 export class AdminComponent {
@@ -80,7 +87,7 @@ export class AdminComponent {
     ) { }
 
     ngOnInit() {
-        console.log(this.router);
+        //console.log(this.router);
     }
 
     isLinkActive(instruction: any[]): boolean {

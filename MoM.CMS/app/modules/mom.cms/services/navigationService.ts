@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 export class NavigationService {
     constructor(private http: Http) { }
 
-    getMenuItemsByMenuNameAndMenuItemId(name: string, id: number, onNext: (json: NavigationMenuItem) => void) {
-        this.http.get("api/cms/navigationmenu/getmenuitemsbymenunameandmenuitemid/?name=" + name + "&id=" + id).map(response => response.json()).subscribe(onNext);
+    getMenuItemsByMenuNameAndMenuItemId(name: string, id: number, routeName: string, onNext: (json: NavigationMenuItem) => void) {
+        this.http.get("api/cms/navigationmenu/getmenuitemsbymenunameandmenuitemid/?name=" + name + "&id=" + id + "&routeName=" + routeName).map(response => response.json()).subscribe(onNext);
     }
 }

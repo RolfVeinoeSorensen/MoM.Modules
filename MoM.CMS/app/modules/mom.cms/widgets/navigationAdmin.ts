@@ -36,7 +36,7 @@ export class NavigationAdminComponent implements OnInit {
 
     loadMenu() {
         this.isLoading = true;
-        this.service.getMenuItemsByMenuNameAndMenuItemId("admin", this.currentPageId, json => {
+        this.service.getMenuItemsByMenuNameAndMenuItemId("admin", this.currentPageId, this.router.currentInstruction.component.routeName, json => {
             if (json) {
                 this.items = json;
                 this.isLoading = false;
