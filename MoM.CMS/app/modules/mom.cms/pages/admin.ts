@@ -32,6 +32,27 @@ declare var System: any;
         loader: () => System.import("app/modules/MoM.CMS/pages/adminsecurity").then(c => c["AdminSecurityComponent"])
     }),
     new AsyncRoute({
+        path: "/securityusers",
+        name: "AdminSecurityUsers",
+        useAsDefault: false,
+        data: { includeInMenu: true, icon: "fa fa-users fa-2x", title: "Users" },
+        loader: () => System.import("app/modules/MoM.CMS/pages/adminsecurityusers").then(c => c["AdminSecurityUsersComponent"])
+    }),
+    new AsyncRoute({
+        path: "/securityroles",
+        name: "AdminSecurityRoles",
+        useAsDefault: false,
+        data: { includeInMenu: true, icon: "fa fa-graduation-cap fa-2x", title: "Roles" },
+        loader: () => System.import("app/modules/MoM.CMS/pages/adminsecurityroles").then(c => c["AdminSecurityRolesComponent"])
+    }),
+    new AsyncRoute({
+        path: "/securitypermissions",
+        name: "AdminSecurityPermissions",
+        useAsDefault: false,
+        data: { includeInMenu: true, icon: "fa fa-users fa-2x", title: "Permissions" },
+        loader: () => System.import("app/modules/MoM.CMS/pages/adminsecuritypermissions").then(c => c["AdminSecurityPermissionsComponent"])
+    }),
+    new AsyncRoute({
         path: "/settings",
         name: "AdminSettings",
         useAsDefault: false,

@@ -1,6 +1,6 @@
 ﻿import {Component, OnInit} from "angular2/core";
 import {TAB_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
-import {Pager} from "../interfaces/iPager";
+import {Paging,PagingWithSort} from "../interfaces/iPager";
 import {AdminIdentityService} from "../services/adminidentityservice";
 
 @Component({
@@ -12,7 +12,7 @@ import {AdminIdentityService} from "../services/adminidentityservice";
 export class AdminSecurityComponent implements OnInit {
     isLoading: boolean = false;
     users: any;
-    pagerUsers: Pager;
+    pagerUsers: PagingWithSort;
     //message: string;
 
     constructor(

@@ -56,7 +56,21 @@ namespace MoM.CMS.Services
 
             if(menuItems.Count == 0) //has no children present siblings
             {
-                menuItems = Storage.GetRepository<INavigationMenuItemRepository>().Fetch(i => i.NavigationMenuItemId == currentItem.ParentNavigationMenuItemId || i.ParentNavigationMenuItemId == currentItem.ParentNavigationMenuItemId).OrderBy(x => x.ParentNavigationMenuItemId).ThenBy(y => y.SortOrder).ToDTOs();
+                var parentsParentItem = parentItem != null ? Storage.GetRepository<INavigationMenuItemRepository>().Fetch(i => i.NavigationMenuItemId == parentItem.ParentNavigationMenuItemId).FirstOrDefault() : null;
+                menuItems = Storage.GetRepository<INavigationMenuItemRepository>().Fetch(i => i.ParentNavigationMenuItemId == currentItem.ParentNavigationMenuItemId).OrderBy(x => x.ParentNavigationMenuItemId).ThenBy(y => y.SortOrder).ToDTOs();
+                if (parentsParentItem != null)
+                {
+                    var parentsParentDto = parentsParentItem.ToDTO();
+                    parentsParentDto.displayName = string.Empty;
+                    parentsParentDto.isParent = true;
+                    parentsParentDto.iconClass = "fa fa-level-up";
+                    result.Add(parentsParentDto);
+                }
+                if (parentItem != null)
+                {
+                    var parentDto = parentItem.ToDTO();
+                    result.Add(parentDto);
+                }
             }
             else
             {

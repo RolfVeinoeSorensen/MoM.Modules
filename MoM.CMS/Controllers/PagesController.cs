@@ -16,6 +16,9 @@ namespace MoM.CMS.Controllers
         public IActionResult AdminContent() => PartialView("~/Views/MoM.CMS/Pages/AdminContent.cshtml");
 
         public IActionResult AdminSecurity() => PartialView("~/Views/MoM.CMS/Pages/AdminSecurity.cshtml");
+        public IActionResult AdminSecurityUsers() => PartialView("~/Views/MoM.CMS/Pages/AdminSecurityUsers.cshtml");
+        public IActionResult AdminSecurityRoles() => PartialView("~/Views/MoM.CMS/Pages/AdminSecurityRoles.cshtml");
+        public IActionResult AdminSecurityPermissions() => PartialView("~/Views/MoM.CMS/Pages/AdminSecurityPermissions.cshtml");
 
         public IActionResult AdminSettings() => PartialView("~/Views/MoM.CMS/Pages/AdminSettings.cshtml");
 
