@@ -9,11 +9,15 @@ namespace MoM.CMS.Controllers
 
         public IActionResult Services() => PartialView("~/Views/MoM.CMS/Pages/Services.cshtml");
 
+
+        //Admin
         public IActionResult Admin() => PartialView("~/Views/MoM.CMS/Pages/Admin.cshtml");
 
         public IActionResult AdminInfo() => PartialView("~/Views/MoM.CMS/Pages/AdminInfo.cshtml");
 
         public IActionResult AdminContent() => PartialView("~/Views/MoM.CMS/Pages/AdminContent.cshtml");
+        public IActionResult AdminContentPages() => PartialView("~/Views/MoM.CMS/Pages/AdminContentPages.cshtml");
+        public IActionResult AdminContentPage() => PartialView("~/Views/MoM.CMS/Pages/AdminContentPage.cshtml");
 
         public IActionResult AdminSecurity() => PartialView("~/Views/MoM.CMS/Pages/AdminSecurity.cshtml");
         public IActionResult AdminSecurityUsers() => PartialView("~/Views/MoM.CMS/Pages/AdminSecurityUsers.cshtml");

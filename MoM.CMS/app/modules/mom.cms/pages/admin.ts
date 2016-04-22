@@ -23,7 +23,21 @@ declare var System: any;
         useAsDefault: false,
         data: { includeInMenu: true, icon: "fa fa-sitemap fa-2x", title: "Content" },
         loader: () => System.import("app/modules/MoM.CMS/pages/admincontent").then(c => c["AdminContentComponent"])
-        }),
+    }),
+    new AsyncRoute({
+        path: "/contentpages",
+        name: "AdminContentPages",
+        useAsDefault: false,
+        data: { includeInMenu: true, icon: "fa fa-sitemap fa-2x", title: "Content" },
+        loader: () => System.import("app/modules/MoM.CMS/pages/admincontentpages").then(c => c["AdminContentPagesComponent"])
+    }),
+    new AsyncRoute({
+        path: "/contentpage/:pageId",
+        name: "AdminContentPage",
+        useAsDefault: false,
+        data: { includeInMenu: true, icon: "fa fa-sitemap fa-2x", title: "Content" },
+        loader: () => System.import("app/modules/MoM.CMS/pages/admincontentpage").then(c => c["AdminContentPageComponent"])
+    }),
     new AsyncRoute({
         path: "/security",
         name: "AdminSecurity",
