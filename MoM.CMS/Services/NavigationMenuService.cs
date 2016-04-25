@@ -43,16 +43,18 @@ namespace MoM.CMS.Services
                                 .Fetch(i => i.NavigationMenuItemId == id 
                                 && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault();
             var result = new List<NavigationMenuItemDto>();
+            if (currentItem == null)
+                return result;
             var parentItem = currentItem != null 
                                 && currentItem.ParentNavigationMenuItemId != null ? Storage.GetRepository<INavigationMenuItemRepository>()
                                     .Fetch(i => i.NavigationMenuItemId == currentItem.ParentNavigationMenuItemId
                                     && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault()
                                 : null;
-            var menuItems = Storage.GetRepository<INavigationMenuItemRepository>().Fetch(
+            var menuItems = currentItem != null ? Storage.GetRepository<INavigationMenuItemRepository>().Fetch(
                                 i => i.Parent != null 
                                 && i.Parent.NavigationMenuItemId == currentItem.NavigationMenuItemId 
                                 && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId)
-                            .OrderBy(x => x.SortOrder).ToDTOs(); 
+                            .OrderBy(x => x.SortOrder).ToDTOs() : null; 
 
             if(menuItems.Count == 0) //has no children present siblings
             {
