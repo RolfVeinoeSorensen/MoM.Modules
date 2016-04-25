@@ -26,21 +26,36 @@ export class AdminContentPageComponent implements OnInit {
     constructor(
         //private service: BlogAdminService,
         private router: Router,
-        private routeParams: RouteParams
+        private routeParams: RouteParams,
+        private dragulaService: DragulaService
     )
     {
         this.pageId = +this.routeParams.get("pageId");
+        //setup dragNdrop for creating content
+        dragulaService.setOptions('page-bag', {
+            copy: true,
+            copySortSource: true
+        })
+        //determine if drop is allowed
+        dragulaService.drop.subscribe((value) => {
+            this.onDrop(value);
+        });
     }
-
+    //(0 - bagname, 1 - el, 2 - target, 3 - source, 4 - sibling)
+    private onDrop(value) {
+        if (value[2] == null) //dragged outside any of the bags
+            return;
+        if (value[2].id !== "content" && value[2].id !== value[3].id) //dragged to a container that should not add the element
+            value[1].remove();
+    }
     ngOnInit() {
-        console.log(this.pageId);
         if (this.pageId !== 0) {
             this.isNewPage = false;
-            this.pageTitle = "Edit post";
+            this.pageTitle = "Edit page";
             this.get();
         }
         else {
-            this.pageTitle = "Create post";
+            this.pageTitle = "Create page";
             this.page = { title: '', pageId: 0, content: '', teaser: '', isPublished: 0, meta: '', day: 0, modifiedDate: new Date(), month: null, monthName: '', monthNameShort: '', postedDate: new Date(), postTags: [], urlSlug: '', year: 0 };
             this.isLoading = false;
         }   

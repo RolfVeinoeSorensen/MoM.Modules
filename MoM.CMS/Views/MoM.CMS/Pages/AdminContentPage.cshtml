@@ -5,44 +5,42 @@
     </div>
     <div class="row">
         <div class="col-md-9">
-            <div class='container' [dragula]='"page-bag"'>
-                <div>You can move these elements between these two containers</div>
-                <div>Moving them anywhere else isn't quite possible</div>
-                <div>There's also the possibility of moving elements around in the same container, changing their position</div>
-            </div>
+            <div class='container' [dragula]='"page-bag"' data-istarget="true" id="content" style="min-height: 300px; border: 1px solid #7896b1;"></div>
         </div>
         <div class="col-md-3">
             <accordion [closeOthers]="true">
                 <accordion-group heading="Layout" [isOpen]="true">
-                    <div class='container' [dragula]='"layouts-bag"'>
-                        <div>This is the default use case. You only need to specify the containers you want to use</div>
-                        <div>More interactive use cases lie ahead</div>
-                        <div>Make sure to check out the <a href='https://github.com/bevacqua/dragula#readme'>documentation on GitHub!</a></div>
+                    <div class="list-group" [dragula]='"page-bag"' data-istarget="false" id="layouts">
+                        <button type="button" class="list-group-item">Container</button>
+                        <button type="button" class="list-group-item">Row</button>
+                        <button type="button" class="list-group-item">Column</button>
+                        <button type="button" class="list-group-item">Header</button>
+                        <button type="button" class="list-group-item">Table</button>
                     </div>
                 </accordion-group>
                 <accordion-group heading="Content">
-                    <div class='container' [dragula]='"content-bag"'>
+                    <div class='container' [dragula]='"page-bag"' data-istarget="false" id="content">
                         <div>This is the default use case. You only need to specify the containers you want to use</div>
                         <div>More interactive use cases lie ahead</div>
                         <div>Make sure to check out the <a href='https://github.com/bevacqua/dragula#readme'>documentation on GitHub!</a></div>
                     </div>
                 </accordion-group>
                 <accordion-group heading="Media">
-                    <div class='container' [dragula]='"media-bag"'>
+                    <div class='container' [dragula]='"page-bag"' data-istarget="false" id="media">
                         <div>This is the default use case. You only need to specify the containers you want to use</div>
                         <div>More interactive use cases lie ahead</div>
                         <div>Make sure to check out the <a href='https://github.com/bevacqua/dragula#readme'>documentation on GitHub!</a></div>
                     </div>
                 </accordion-group>
                 <accordion-group heading="Widgets">
-                    <div class='container' [dragula]='"widgets-bag"'>
+                    <div class='container' [dragula]='"page-bag"' data-istarget="false" id="widgets">
                         <div>This is the default use case. You only need to specify the containers you want to use</div>
                         <div>More interactive use cases lie ahead</div>
                         <div>Make sure to check out the <a href='https://github.com/bevacqua/dragula#readme'>documentation on GitHub!</a></div>
                     </div>
                 </accordion-group>
                 <accordion-group heading="Templates">
-                    <div class='container' [dragula]='"templates-bag"'>
+                    <div class='container' [dragula]='"page-bag"' data-istarget="false" id="templates">
                         <div>This is the default use case. You only need to specify the containers you want to use</div>
                         <div>More interactive use cases lie ahead</div>
                         <div>Make sure to check out the <a href='https://github.com/bevacqua/dragula#readme'>documentation on GitHub!</a></div>
