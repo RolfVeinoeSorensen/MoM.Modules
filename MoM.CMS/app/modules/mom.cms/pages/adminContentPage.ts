@@ -5,6 +5,7 @@ import {Paging, PagingWithSort} from "../interfaces/ipager";
 import {Router, RouteParams} from 'angular2/router';
 import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
 import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import { EditorHtmlComponent } from '../widgets/editorhtml';
 //import {Codeblock} from 'ng2-prism/codeblock';
 //import {Csharp, Css, Javascript, Json} from 'ng2-prism/languages';
 
@@ -12,7 +13,7 @@ import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
     selector: "cms-admin-content-page",
     templateUrl: "/cms/pages/AdminContentPage",
     //providers: [BlogAdminService],
-    directives: [ACCORDION_DIRECTIVES, CORE_DIRECTIVES, Dragula], //, Csharp, Css, Javascript, Json]
+    directives: [ACCORDION_DIRECTIVES, CORE_DIRECTIVES, Dragula, EditorHtmlComponent], //, Csharp, Css, Javascript, Json]
     viewProviders: [DragulaService]
 })
 export class AdminContentPageComponent implements OnInit {

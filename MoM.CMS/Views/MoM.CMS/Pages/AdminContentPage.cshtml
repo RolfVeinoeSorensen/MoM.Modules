@@ -5,7 +5,11 @@
     </div>
     <div class="row">
         <div class="col-md-9">
-            <div class='container' [dragula]='"page-bag"' data-istarget="true" id="content" style="min-height: 300px; border: 1px solid #7896b1;"></div>
+            <div [dragula]='"page-bag"' data-istarget="true" id="content" style="min-height: 300px; border: 1px dashed #fff;">
+                <cms-editor-html></cms-editor-html>
+                <cms-editor-html></cms-editor-html>
+                <cms-editor-html></cms-editor-html>
+            </div>
         </div>
         <div class="col-md-3">
             <accordion [closeOthers]="true">
@@ -19,31 +23,48 @@
                     </div>
                 </accordion-group>
                 <accordion-group heading="Content">
-                    <div class='container' [dragula]='"page-bag"' data-istarget="false" id="content">
-                        <div>This is the default use case. You only need to specify the containers you want to use</div>
-                        <div>More interactive use cases lie ahead</div>
-                        <div>Make sure to check out the <a href='https://github.com/bevacqua/dragula#readme'>documentation on GitHub!</a></div>
+                    <div class='list-group' [dragula]='"page-bag"' data-istarget="false" id="content">
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading">Html</h4>
+                            <p class="list-group-item-text">Insert html using WYSIWYG.</p>
+                        </button>
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading">Code</h4>
+                            <p class="list-group-item-text">Insert a code block with highlighted codeblock using prism.</p>
+                        </button>
                     </div>
                 </accordion-group>
                 <accordion-group heading="Media">
-                    <div class='container' [dragula]='"page-bag"' data-istarget="false" id="media">
-                        <div>This is the default use case. You only need to specify the containers you want to use</div>
-                        <div>More interactive use cases lie ahead</div>
-                        <div>Make sure to check out the <a href='https://github.com/bevacqua/dragula#readme'>documentation on GitHub!</a></div>
+                    <div class='list-group' [dragula]='"page-bag"' data-istarget="false" id="media">
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading">Image</h4>
+                            <p class="list-group-item-text">Insert an image from the mediabrowser.</p>
+                        </button>
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading">Video</h4>
+                            <p class="list-group-item-text">Insert a video from the mediabrowser or from another source like youtube.</p>
+                        </button>
                     </div>
                 </accordion-group>
                 <accordion-group heading="Widgets">
-                    <div class='container' [dragula]='"page-bag"' data-istarget="false" id="widgets">
-                        <div>This is the default use case. You only need to specify the containers you want to use</div>
-                        <div>More interactive use cases lie ahead</div>
-                        <div>Make sure to check out the <a href='https://github.com/bevacqua/dragula#readme'>documentation on GitHub!</a></div>
+                    <div class='list-group' [dragula]='"page-bag"' data-istarget="false" id="widgets">
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading">Slideshow</h4>
+                            <p class="list-group-item-text">Insert a slideshow with images from the mediabrowser.</p>
+                        </button>
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading">Navigation</h4>
+                            <p class="list-group-item-text">Insert a navigation menu with routes selected manually or from rule creator.</p>
+                        </button>
                     </div>
                 </accordion-group>
                 <accordion-group heading="Templates">
-                    <div class='container' [dragula]='"page-bag"' data-istarget="false" id="templates">
-                        <div>This is the default use case. You only need to specify the containers you want to use</div>
-                        <div>More interactive use cases lie ahead</div>
-                        <div>Make sure to check out the <a href='https://github.com/bevacqua/dragula#readme'>documentation on GitHub!</a></div>
+                    <div class='list-group' [dragula]='"page-bag"' data-istarget="false" id="templates">
+                        <button type="button" class="list-group-item">Template 1</button>
+                        <button type="button" class="list-group-item">Template 2</button>
+                        <button type="button" class="list-group-item">Template 3</button>
+                        <button type="button" class="list-group-item">Template 4</button>
+                        <button type="button" class="list-group-item">Template 5</button>
                     </div>
                 </accordion-group>
             </accordion>

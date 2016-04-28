@@ -8,5 +8,7 @@ namespace MoM.CMS.Controllers
     public class WidgetsController : Controller
     {
         public IActionResult AdminNavigation() => PartialView("~/Views/MoM.CMS/Widgets/AdminNavigation.cshtml");
+
+        public IActionResult EditorHtml() => PartialView("~/Views/MoM.CMS/Widgets/EditorHtml.cshtml");
     }
 }
