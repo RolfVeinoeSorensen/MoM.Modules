@@ -1,14 +1,11 @@
 ﻿<div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col-md-1">
-                <button class="btn btn-secondary btn-sm" (click)="isCollapsed = !isCollapsed"><i class="fa fa-minus-square" aria-hidden="true"></i></button>
-            </div>
-            <div class="col-md-8">
-                <h3>Html</h3>
+            <div class="col-md-9" (click)="isCollapsed = !isCollapsed">
+                <h3><i class="fa mom-icon" [ngClass]="{'fa-chevron-down': isCollapsed, 'fa-chevron-up': !isCollapsed}" aria-hidden="true"></i>Html</h3>
             </div>
             <div class="col-md-3 text-xs-right">
-                <button class="btn btn-primary btn-sm"><i class="fa fa-wrench" aria-hidden="true"></i></button>
+                <button class="btn btn-primary btn-sm"><i class="fa fa-cogs" aria-hidden="true"></i></button>
                 <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
             </div>
         </div>

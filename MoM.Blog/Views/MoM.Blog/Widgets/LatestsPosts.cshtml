@@ -1,4 +1,4 @@
-﻿<div class="container-fluid latest-posts" *ngFor="#post of posts">
+﻿<div class="container-fluid latest-posts" *ngFor="let post of posts">
     <div class="row">
         <h1>{{post.title}}</h1>   
     </div>
@@ -13,7 +13,7 @@
             <span class="text-muted">{{post.day}}. {{post.monthName}} {{post.year}}</span>
         </div>
         <div class="col-xs-3">
-            <p><i class="fa fa-tags"></i><span class="label label-default tags" *ngFor="#postTag of post.postTags">{{postTag.tag.name}}</span></p>
+            <p><i class="fa fa-tags"></i><span class="label label-default tags" *ngFor="let postTag of post.postTags">{{postTag.tag.name}}</span></p>
         </div>
     </div>
     <div class="row" [innerHTML]="post.teaser"></div>

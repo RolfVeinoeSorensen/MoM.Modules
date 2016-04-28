@@ -15,21 +15,44 @@
             <accordion [closeOthers]="true">
                 <accordion-group heading="Layout" [isOpen]="true">
                     <div class="list-group" [dragula]='"page-bag"' data-istarget="false" id="layouts">
-                        <button type="button" class="list-group-item">Container</button>
-                        <button type="button" class="list-group-item">Row</button>
-                        <button type="button" class="list-group-item">Column</button>
-                        <button type="button" class="list-group-item">Header</button>
-                        <button type="button" class="list-group-item">Table</button>
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading"><i class="fa fa-object-group mom-icon" aria-hidden="true"></i>Container</h4>
+                            <p class="list-group-item-text">Containers are spaceholders for other elements. Use .container for fixed width or .container-fluid for full width—center your site’s contents and help align your grid content.</p>                        
+                        </button>
+                        <button type="button" class="list-group-item">                        
+                            <h4 class="list-group-item-heading"><i class="fa fa-table mom-icon" aria-hidden="true"></i>Table</h4>
+                            <p class="list-group-item-text">Define a html table and add standard elements tr, th, and td elements or more complex ones like caption, col, colgroup, thead, tfoot, and tbody.</p>   
+                        </button>
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading"><i class="fa fa-columns fa-rotate-270 mom-icon" aria-hidden="true"></i>Row</h4>
+                            <p class="list-group-item-text">Rows are horizontal groups of columns that ensure your columns are lined up properly.</p>      
+                        </button>
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading"><i class="fa fa-columns mom-icon" aria-hidden="true"></i>Column</h4>
+                            <p class="list-group-item-text">Column classes indicate the number of columns you’d like to use out of the possible 12 per row. So if you want three equal-width columns, you’d use .col-sm-4.</p>
+                        </button>
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading"><i class="fa fa-header mom-icon" aria-hidden="true"></i>Header</h4>
+                            <p class="list-group-item-text">Use HTML headings for headings only. Heading helps search engines and users to skim for relevant content.</p>
+                        </button>
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading"><i class="fa fa-list mom-icon" aria-hidden="true"></i>List</h4>
+                            <p class="list-group-item-text">Lists are used to group stuff. This component can create unordered, ordered, vertical and horizontal lists. You can nest other html elements inside lists.</p>
+                        </button>
+                        <button type="button" class="list-group-item">
+                            <h4 class="list-group-item-heading"><i class="fa fa-list-alt mom-icon" aria-hidden="true"></i>Card</h4>
+                            <p class="list-group-item-text">A card is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.</p>
+                        </button>
                     </div>
                 </accordion-group>
                 <accordion-group heading="Content">
                     <div class='list-group' [dragula]='"page-bag"' data-istarget="false" id="content">
                         <button type="button" class="list-group-item">
-                            <h4 class="list-group-item-heading">Html</h4>
-                            <p class="list-group-item-text">Insert html using WYSIWYG.</p>
+                            <h4 class="list-group-item-heading"><i class="fa fa-html5 mom-icon" aria-hidden="true"></i>Html</h4>
+                            <p class="list-group-item-text">Create html using WYSIWYG.</p>
                         </button>
                         <button type="button" class="list-group-item">
-                            <h4 class="list-group-item-heading">Code</h4>
+                            <h4 class="list-group-item-heading"><i class="fa fa-code mom-icon" aria-hidden="true"></i>Code</h4>
                             <p class="list-group-item-text">Insert a code block with highlighted codeblock using prism.</p>
                         </button>
                     </div>
@@ -37,11 +60,11 @@
                 <accordion-group heading="Media">
                     <div class='list-group' [dragula]='"page-bag"' data-istarget="false" id="media">
                         <button type="button" class="list-group-item">
-                            <h4 class="list-group-item-heading">Image</h4>
-                            <p class="list-group-item-text">Insert an image from the mediabrowser.</p>
+                            <h4 class="list-group-item-heading"><i class="fa fa-picture-o mom-icon" aria-hidden="true"></i>Image</h4>
+                            <p class="list-group-item-text">Select an image from the mediabrowser.</p>
                         </button>
                         <button type="button" class="list-group-item">
-                            <h4 class="list-group-item-heading">Video</h4>
+                            <h4 class="list-group-item-heading"><i class="fa fa-film mom-icon" aria-hidden="true"></i>Video</h4>
                             <p class="list-group-item-text">Insert a video from the mediabrowser or from another source like youtube.</p>
                         </button>
                     </div>
@@ -49,22 +72,13 @@
                 <accordion-group heading="Widgets">
                     <div class='list-group' [dragula]='"page-bag"' data-istarget="false" id="widgets">
                         <button type="button" class="list-group-item">
-                            <h4 class="list-group-item-heading">Slideshow</h4>
-                            <p class="list-group-item-text">Insert a slideshow with images from the mediabrowser.</p>
+                            <h4 class="list-group-item-heading"><i class="fa fa-caret-square-o-right mom-icon" aria-hidden="true"></i>Slideshow</h4>
+                            <p class="list-group-item-text">Create a slideshow with images from the mediabrowser.</p>
                         </button>
                         <button type="button" class="list-group-item">
-                            <h4 class="list-group-item-heading">Navigation</h4>
+                            <h4 class="list-group-item-heading"><i class="fa fa-bars mom-icon" aria-hidden="true"></i>Navigation</h4>
                             <p class="list-group-item-text">Insert a navigation menu with routes selected manually or from rule creator.</p>
                         </button>
-                    </div>
-                </accordion-group>
-                <accordion-group heading="Templates">
-                    <div class='list-group' [dragula]='"page-bag"' data-istarget="false" id="templates">
-                        <button type="button" class="list-group-item">Template 1</button>
-                        <button type="button" class="list-group-item">Template 2</button>
-                        <button type="button" class="list-group-item">Template 3</button>
-                        <button type="button" class="list-group-item">Template 4</button>
-                        <button type="button" class="list-group-item">Template 5</button>
                     </div>
                 </accordion-group>
             </accordion>

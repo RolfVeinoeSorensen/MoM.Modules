@@ -1,9 +1,9 @@
 ﻿import {Component, OnInit} from "angular2/core";
-import {Alert} from 'ng2-bootstrap/ng2-bootstrap';
+import {AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
     selector: "mom-admin-content",
-    directives: [Alert],
+    directives: [AlertComponent],
     templateUrl: "/cms/pages/admincontent"
 })
 export class AdminContentComponent implements OnInit {

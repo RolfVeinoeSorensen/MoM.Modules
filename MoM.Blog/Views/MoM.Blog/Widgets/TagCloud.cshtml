@@ -6,7 +6,7 @@
     <div class="card-block">
         <div class="row">
             <div class="col-xs-12 tag-cloud">
-                <span *ngFor="#tag of tags" class="{{tag.className}}">{{tag.name}}</span>
+                <span *ngFor="let tag of tags" class="{{tag.className}}">{{tag.name}}</span>
             </div>
         </div>
     </div>

@@ -30,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="#category of categories">
+                <tr *ngFor="let category of categories">
                     <th scope="row">{{category.name}}</th>
                     <td>{{category.urlSlug}}</td>
                     <td>{{category.postCount}}</td>

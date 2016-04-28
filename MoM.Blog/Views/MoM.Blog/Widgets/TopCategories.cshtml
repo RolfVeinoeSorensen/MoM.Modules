@@ -4,7 +4,7 @@
         <h6 class="card-subtitle text-muted">These are the most used categories on this blog</h6>
     </div>
     <div class="card-block">
-        <div class="row" *ngFor="#category of categories">
+        <div class="row" *ngFor="let category of categories">
             <div class="col-xs-10">
                 <span>{{category.name}}</span>
             </div>

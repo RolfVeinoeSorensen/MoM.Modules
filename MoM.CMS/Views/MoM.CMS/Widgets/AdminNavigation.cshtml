@@ -1,4 +1,4 @@
-﻿<ul class="nav nav-sidebar" *ngFor="#item of items">
+﻿<ul class="nav nav-sidebar" *ngFor="let item of items">
     <li [class.active]="isLinkActive([item.routerLink])" (click)="onMenuItemClick(item)"><a title="{{item.displayName}}"><i class="{{item.iconClass}} fa-2x"></i><p>{{item.displayName}}</p></a></li>
 </ul>
 @*<li [class.active]="isLinkActive(['./AdminContent'])" [routerLink]="[ './AdminContent']"><a [routerLink]="[ './AdminContent']" title="Content"><i class="fa fa-sitemap fa-2x"></i><p>Content</p></a></li>
