@@ -124,13 +124,13 @@ namespace MoM.Blog.Services
 
         public IList<PostDto> Posts(int pageNo, int pageSize)
         {
-            var posts = Storage.GetRepository<IPostRepository>().Posts(pageNo, pageSize);
+            var posts = Storage.GetRepository<IPostRepository>().Posts(pageNo, pageSize).ToList();
             var categories = Storage.GetRepository<ICategoryRepository>().Table()
                 .Where(c => posts.Select(p => p.Category.CategoryId)
-                .Contains(c.CategoryId));
+                .Contains(c.CategoryId)).ToList();
             var postTags = Storage.GetRepository<IPostTagRepository>().Table()
                 .Where(pt => posts.Select(p => p.PostId)
-                .Contains(pt.PostId));
+                .Contains(pt.PostId)).ToList();
             var tags = Storage.GetRepository<ITagRepository>().Table()
                 .Where(t => postTags.Select(pt => pt.TagId)
                 .Contains(t.TagId));
@@ -205,10 +205,10 @@ namespace MoM.Blog.Services
 
         public IList<TagDto> TagsWithPostsCount(int pageSize)
         {
-            var tags = Storage.GetRepository<ITagRepository>().Table();
+            var tags = Storage.GetRepository<ITagRepository>().Table().ToList();
             var postTags = Storage.GetRepository<IPostTagRepository>().Table()
                         .Where(pt => tags.Select(p => p.TagId)
-                        .Contains(pt.TagId));
+                        .Contains(pt.TagId)).ToList();
 
             foreach (var tag in tags)
             {
