@@ -9,6 +9,8 @@ namespace MoM.CMS.Controllers
 
         public IActionResult Services() => PartialView("~/Views/MoM.CMS/Pages/Services.cshtml");
 
+        public IActionResult Products() => PartialView("~/Views/MoM.CMS/Pages/Products.cshtml");
+
 
         //Admin
         public IActionResult Admin() => PartialView("~/Views/MoM.CMS/Pages/Admin.cshtml");
