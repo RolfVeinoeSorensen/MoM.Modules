@@ -1,12 +1,12 @@
 ﻿using MoM.Module.Interfaces;
 using System;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Routing;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using MoM.Module.Managers;
-using Microsoft.AspNet.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using MoM.Module.Enums;
 using MoM.Module.Dtos;
 
@@ -45,10 +45,6 @@ namespace MoM.Tutorial
         }
 
 
-        public void Configure(IApplicationBuilder applicationBuilder, IHostingEnvironment hostingEnvironment)
-        {
-
-        }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -64,7 +60,7 @@ namespace MoM.Tutorial
                 PropertyInfo assembliesPropertyInfo = type.GetProperty("Assemblies");
 
                 if (assembliesPropertyInfo != null)
-                    assembliesPropertyInfo.SetValue(null, AssemblyManager.GetAssemblies);
+                    assembliesPropertyInfo.SetValue(null, ExtensionManager.Assemblies);
 
                 services.AddScoped(typeof(IDataStorage), type);
             }
@@ -85,6 +81,11 @@ namespace MoM.Tutorial
                         return type;
 
             return null;
+        }
+
+        public void Configure(IApplicationBuilder applicationBuilder)
+        {
+            throw new NotImplementedException();
         }
     }
 }

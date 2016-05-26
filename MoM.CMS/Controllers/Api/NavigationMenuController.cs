@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using MoM.CMS.Interfaces;
 using MoM.CMS.Services;
 using MoM.CMS.Dtos;

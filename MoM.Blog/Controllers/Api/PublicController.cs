@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using MoM.Blog.Interfaces;
 using MoM.Module.Interfaces;
 using MoM.Blog.Dtos;

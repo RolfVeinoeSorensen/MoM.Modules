@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.Data.Entity;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.Extensions.DependencyInjection;
 using MoM.Tutorial.Models;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace MoM.Tutorial
 {
@@ -12,10 +13,10 @@ namespace MoM.Tutorial
     {
         public IConfigurationRoot Configuration { get; set; }
 
-        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
+        public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(appEnv.ApplicationBasePath)
+                .SetBasePath(env.WebRootPath)
                 .AddJsonFile("../../MoM/MoM.Web/appsettings.json");
 
             Configuration = builder.Build();
@@ -24,7 +25,6 @@ namespace MoM.Tutorial
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEntityFramework()
-                .AddSqlServer()
                 .AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration["Site:ConnectionString"]));
         }

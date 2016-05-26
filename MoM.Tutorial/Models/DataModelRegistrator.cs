@@ -1,5 +1,5 @@
 ﻿using MoM.Module.Interfaces;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace MoM.Tutorial.Models
 {
