@@ -7,7 +7,7 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 var gulp = require('gulp');
 
 var paths = {
-    modulepath: "../artifacts/bin/MoM.Tutorial/Debug/dnxcore50/",
+    modulepath: "bin/Debug/netcoreapp1.0/",
     moduleDestination: "../../MoM/artifacts/bin/Modules"
 }
 

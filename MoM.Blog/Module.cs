@@ -83,7 +83,7 @@ namespace MoM.Blog
 
         public void Configure(IApplicationBuilder applicationBuilder)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

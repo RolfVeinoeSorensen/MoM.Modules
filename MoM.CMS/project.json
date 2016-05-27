@@ -26,9 +26,5 @@
       "wwwroot"
 	  ]
   },
-  "compileExclude": [
-    "wwwroot",
-    "node_modules"
-  ],
   "version": "1.0.0-*"
 }

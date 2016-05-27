@@ -85,7 +85,7 @@ namespace MoM.Tutorial
 
         public void Configure(IApplicationBuilder applicationBuilder)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

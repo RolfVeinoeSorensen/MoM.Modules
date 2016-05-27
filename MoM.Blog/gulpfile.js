@@ -24,7 +24,7 @@ var tsProject = typescript.createProject('app/tsconfig.json');
 var moduleName = "MoM.Blog";
 
 var paths = {
-    modulepath: "../artifacts/bin/" + moduleName + "/Debug/dnxcore50/",
+    modulepath: "bin/Debug/netcoreapp1.0/",
     moduleDestination: "../../MoM/artifacts/bin/Modules",
     scripDist: "./dist",
     scriptDestination: "../../MoM/MoM.Web/wwwroot/app/modules/" + moduleName
