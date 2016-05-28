@@ -24,7 +24,7 @@ namespace MoM.CMS.Services
 
         public IEnumerable<NavigationMenuItemDto> GetMenuItemsByMenuNameAndMenuItemId(string name, int id, string routeName)
         {
-            var menu = Storage.GetRepository<INavigationMenuRepository>().Fetch(m => m.Name == name).FirstOrDefault();
+            var menu = Storage.GetRepository<INavigationMenuRepository>().Fetch(m => m.Name.ToLower() == name.ToLower() ).FirstOrDefault();
             if (menu == null)
             {
                 return null;
@@ -33,11 +33,11 @@ namespace MoM.CMS.Services
                 routeName == null ? 
                 Storage.GetRepository<INavigationMenuItemRepository>()
                                 .Fetch(i => i.Parent == null
-                                && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault()
+                                && i.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault()
                                 :
                                 Storage.GetRepository<INavigationMenuItemRepository>()
                                 .Fetch(i => i.Name == routeName
-                                && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault()
+                                && i.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault()
                 :
                 Storage.GetRepository<INavigationMenuItemRepository>()
                                 .Fetch(i => i.NavigationMenuItemId == id 
@@ -48,12 +48,12 @@ namespace MoM.CMS.Services
             var parentItem = currentItem != null 
                                 && currentItem.ParentNavigationMenuItemId != null ? Storage.GetRepository<INavigationMenuItemRepository>()
                                     .Fetch(i => i.NavigationMenuItemId == currentItem.ParentNavigationMenuItemId
-                                    && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault()
+                                    && i.NavigationMenuId == menu.NavigationMenuId).FirstOrDefault()
                                 : null;
             var menuItems = currentItem != null ? Storage.GetRepository<INavigationMenuItemRepository>().Fetch(
                                 i => i.Parent != null 
                                 && i.Parent.NavigationMenuItemId == currentItem.NavigationMenuItemId 
-                                && i.NavigationMenu.NavigationMenuId == menu.NavigationMenuId)
+                                && i.NavigationMenuId == menu.NavigationMenuId)
                             .OrderBy(x => x.SortOrder).ToDTOs() : null; 
 
             if(menuItems.Count == 0) //has no children present siblings

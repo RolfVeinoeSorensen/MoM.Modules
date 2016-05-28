@@ -22,6 +22,7 @@ namespace MoM.CMS.Models
 
         public int? ParentNavigationMenuItemId { get; set; }
 
-        public virtual NavigationMenu NavigationMenu { get; set; }
+        public int NavigationMenuId { get; set; }
+        public NavigationMenu NavigationMenu { get; set; }
     }
 }

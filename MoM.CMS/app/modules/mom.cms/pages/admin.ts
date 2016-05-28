@@ -42,7 +42,7 @@ declare var System: any;
         path: "/security",
         name: "AdminSecurity",
         useAsDefault: false,
-        data: { includeInMenu: true, icon: "fa fa-sitemap fa-2x", title: "Settings" },
+        data: { includeInMenu: true, icon: "fa fa-lock fa-2x", title: "Settings" },
         loader: () => System.import("app/modules/MoM.CMS/pages/adminsecurity").then(c => c["AdminSecurityComponent"])
     }),
     new AsyncRoute({
@@ -63,35 +63,35 @@ declare var System: any;
         path: "/securitypermissions",
         name: "AdminSecurityPermissions",
         useAsDefault: false,
-        data: { includeInMenu: true, icon: "fa fa-users fa-2x", title: "Permissions" },
+        data: { includeInMenu: true, icon: "fa fa-key fa-2x", title: "Permissions" },
         loader: () => System.import("app/modules/MoM.CMS/pages/adminsecuritypermissions").then(c => c["AdminSecurityPermissionsComponent"])
     }),
     new AsyncRoute({
         path: "/settings",
         name: "AdminSettings",
         useAsDefault: false,
-        data: { includeInMenu: true, icon: "fa fa-sitemap fa-2x", title: "Settings" },
+        data: { includeInMenu: true, icon: "fa fa-cogs fa-2x", title: "Settings" },
         loader: () => System.import("app/modules/MoM.CMS/pages/adminsettings").then(c => c["AdminSettingsComponent"])
     }),
     new AsyncRoute({
         path: "/modules",
         name: "AdminModules",
         useAsDefault: false,
-        data: { includeInMenu: true, icon: "fa fa-sitemap fa-2x", title: "Modules" },
+        data: { includeInMenu: true, icon: "fa fa-cubes fa-2x", title: "Modules" },
         loader: () => System.import("app/modules/MoM.CMS/pages/adminmodules").then(c => c["AdminModulesComponent"])
     }),
     new AsyncRoute({
         path: "/reports",
         name: "AdminReports",
         useAsDefault: false,
-        data: { includeInMenu: true, icon: "fa fa-sitemap fa-2x", title: "Reports" },
+        data: { includeInMenu: true, icon: "fa fa-bar-chart fa-2x", title: "Reports" },
         loader: () => System.import("app/modules/MoM.CMS/pages/adminreports").then(c => c["AdminReportsComponent"])
     }),
     new AsyncRoute({
         path: "/blog",
         name: "AdminBlog",
         useAsDefault: false,
-        data: { includeInMenu: false, icon: "fa fa-book", title: "Blog" },
+        data: { includeInMenu: false, icon: "fa fa-book fa-2x", title: "Blog" },
         loader: () => System.import("app/modules/MoM.Blog/pages/admin").then(c => c["AdminComponent"])
     }),
     new AsyncRoute({
