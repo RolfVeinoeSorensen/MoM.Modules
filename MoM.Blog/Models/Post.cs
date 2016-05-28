@@ -18,7 +18,8 @@ namespace MoM.Blog.Models
         public DateTime PostedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
 
-        public virtual Category Category { get; set; }
-        public virtual List<PostTag> PostTags { get; set; }
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+        public List<PostTag> PostTags { get; set; }
     }
 }

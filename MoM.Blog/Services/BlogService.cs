@@ -126,7 +126,7 @@ namespace MoM.Blog.Services
         {
             var posts = Storage.GetRepository<IPostRepository>().Posts(pageNo, pageSize).ToList();
             var categories = Storage.GetRepository<ICategoryRepository>().Table()
-                .Where(c => posts.Select(p => p.Category.CategoryId)
+                .Where(c => posts.Select(p => p.CategoryId)
                 .Contains(c.CategoryId)).ToList();
             var postTags = Storage.GetRepository<IPostTagRepository>().Table()
                 .Where(pt => posts.Select(p => p.PostId)
