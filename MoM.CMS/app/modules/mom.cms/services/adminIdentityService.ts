@@ -1,4 +1,4 @@
-﻿import {Http, Headers, HTTP_PROVIDERS} from "angular2/http";
+﻿import {Http, Headers, HTTP_PROVIDERS} from "@angular/http";
 import {Injectable} from "angular2/core";
 import {Paging, PagingWithSort} from "../interfaces/iPager";
 import {User, Role} from "../interfaces/iIdentity";
