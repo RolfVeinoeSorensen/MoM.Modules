@@ -1,13 +1,13 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
+﻿import {Component, OnInit} from "@angular/core";
+import {CORE_DIRECTIVES} from "@angular/common";
 //import {BlogAdminService} from "../services/blogadminservice";
 import {Paging, PagingWithSort} from "../interfaces/ipager";
-import {Router, RouteParams} from 'angular2/router';
-import {Dragula, DragulaService} from 'ng2-dragula/ng2-dragula';
-import { ACCORDION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
-import { EditorHtmlComponent } from '../widgets/editorhtml';
-//import {Codeblock} from 'ng2-prism/codeblock';
-//import {Csharp, Css, Javascript, Json} from 'ng2-prism/languages';
+import {Router, RouteParams} from "@angular/router-deprecated";
+import {Dragula, DragulaService} from "ng2-dragula/ng2-dragula";
+import { ACCORDION_DIRECTIVES } from "ng2-bootstrap/ng2-bootstrap";
+import { EditorHtmlComponent } from "../widgets/editorhtml";
+//import {Codeblock} from "ng2-prism/codeblock";
+//import {Csharp, Css, Javascript, Json} from "ng2-prism/languages";
 
 @Component({
     selector: "cms-admin-content-page",
@@ -29,14 +29,13 @@ export class AdminContentPageComponent implements OnInit {
         private router: Router,
         private routeParams: RouteParams,
         private dragulaService: DragulaService
-    )
-    {
+    ) {
         this.pageId = +this.routeParams.get("pageId");
         //setup dragNdrop for creating content
-        dragulaService.setOptions('page-bag', {
+        dragulaService.setOptions("page-bag", {
             copy: true,
             copySortSource: true
-        })
+        });
         //determine if drop is allowed
         dragulaService.drop.subscribe((value) => {
             this.onDrop(value);
@@ -45,9 +44,9 @@ export class AdminContentPageComponent implements OnInit {
     //(0 - bagname, 1 - el, 2 - target, 3 - source, 4 - sibling)
     private onDrop(value) {
         if (value[2] == null) //dragged outside any of the bags
-            return;
+        { return; }
         if (value[2].id !== "content" && value[2].id !== value[3].id) //dragged to a container that should not add the element
-            value[1].remove();
+        { value[1].remove(); }
     }
     ngOnInit() {
         if (this.pageId !== 0) {
@@ -57,9 +56,25 @@ export class AdminContentPageComponent implements OnInit {
         }
         else {
             this.pageTitle = "Create page";
-            this.page = { title: '', pageId: 0, content: '', teaser: '', isPublished: 0, meta: '', day: 0, modifiedDate: new Date(), month: null, monthName: '', monthNameShort: '', postedDate: new Date(), postTags: [], urlSlug: '', year: 0 };
+            this.page = {
+                title: "",
+                pageId: 0,
+                content: "",
+                teaser: "",
+                isPublished: 0,
+                meta: "",
+                day: 0,
+                modifiedDate: new Date(),
+                month: null,
+                monthName: "",
+                monthNameShort: "",
+                postedDate: new Date(),
+                postTags: [],
+                urlSlug: "",
+                year: 0
+            };
             this.isLoading = false;
-        }   
+        }
     }
 
     get() {
@@ -102,6 +117,6 @@ export class AdminContentPageComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['../AdminContentPages']);
+        this.router.navigate(["../AdminContentPages"]);
     }
 }

@@ -1,6 +1,6 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
-import {Router, RouteParams} from 'angular2/router';
+﻿import {Component, OnInit} from "@angular/core";
+import {CORE_DIRECTIVES} from "@angular/common";
+import {Router, RouteParams} from "@angular/router-deprecated";;
 import {NavigationService} from "../services/navigationservice";
 import {NavigationMenu, NavigationMenuItem} from "../interfaces/inavigation";
 

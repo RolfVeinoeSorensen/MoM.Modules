@@ -38,23 +38,28 @@ gulp.task('copy-module', function () {
     .pipe(gulp.dest(paths.moduleDestination));
 });
 
-gulp.task('copy-scripts', ['typescript-transpile'], function () {
+gulp.task("app-copy-scripts", ["app-typescript-transpile"], function () {
     gulp.src(paths.scripDist + "/app/modules/" + moduleName + "/**/*.js")
     //.pipe(webpack())
     .pipe(gulp.dest(paths.scriptDestination))
 });
 
-gulp.task('lint-typescript', function () {
-    gulp.src(['app/**/*.ts'])
-        .pipe(tslint())
-        .pipe(tslint.report('verbose'));
+gulp.task("app-lint-typescript", function () {
+    gulp.src(["app/**/*.ts"])
+        .pipe(tslint({ configuration: "../../tslint.json" }))
+        .pipe(tslint.report("verbose"));
 });
 
-gulp.task('typescript-transpile', ['lint-typescript'], function () {
+gulp.task("app-typescript-transpile", ["app-lint-typescript", 'app-clean-dist'], function () {
     var tsResult = tsProject.src()
         .pipe(typescript(tsProject));
     return tsResult.js.pipe(gulp.dest(paths.scripDist + "/app/modules/" + moduleName));
 });
+
+gulp.task('app-clean-dist', function (cb) {
+    rimraf('./dist', cb);
+});
+
 gulp.task('watch-blog', function () {
-    gulp.watch('app/**/*.ts', ['copy-scripts']);
+    gulp.watch('app/**/*.ts', ['app-copy-scripts']);
 });

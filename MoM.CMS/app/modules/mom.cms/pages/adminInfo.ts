@@ -1,5 +1,5 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
+﻿import {Component, OnInit} from "@angular/core";
+import {AlertComponent} from "ng2-bootstrap/ng2-bootstrap";
 
 @Component({
     selector: "mom-admin-info",
@@ -9,7 +9,7 @@ import {AlertComponent} from 'ng2-bootstrap/ng2-bootstrap';
 export class AdminInfoComponent implements OnInit {
     //message: string;
 
-    constructor() { }
+    //constructor() { }
 
     ngOnInit() {
         //this.message = "Welcome to EasyModules.NET"

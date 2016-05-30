@@ -1,10 +1,10 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
+﻿import {Component, OnInit} from "@angular/core";
+import {CORE_DIRECTIVES} from "@angular/common";
 import {Paging, PagingWithSort} from "../interfaces/iPager";
 import {User, Role} from "../interfaces/iIdentity";
 import {AdminIdentityService} from "../services/adminidentityservice";
-import {Router, RouteParams} from 'angular2/router';
-import { BUTTON_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import {Router, RouteParams} from "@angular/router-deprecated";
+import { BUTTON_DIRECTIVES } from "ng2-bootstrap/ng2-bootstrap";
 
 @Component({
     selector: "mom-admin-security-roles",
@@ -54,7 +54,7 @@ export class AdminSecurityRolesComponent implements OnInit {
 
     onSortChange(sortColumn: string) {
         console.log("col:" + sortColumn);
-        this.paging.sortByAscending = this.paging.sortColumn == sortColumn ? !this.paging.sortByAscending : this.paging.sortByAscending;
+        this.paging.sortByAscending = this.paging.sortColumn === sortColumn ? !this.paging.sortByAscending : this.paging.sortByAscending;
         this.paging.sortColumn = sortColumn;
         this.getRoles();
     }

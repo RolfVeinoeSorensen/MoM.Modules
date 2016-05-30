@@ -1,7 +1,10 @@
 ﻿import {Http, Headers, HTTP_PROVIDERS} from "@angular/http";
-import {Injectable} from "angular2/core";
+import {Injectable} from "@angular/core";
 import {ExtensionInfo} from "../interfaces/iExtensionInfo";
-import 'rxjs/Rx';
+
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/share";
 
 @Injectable()
 export class AdminModuleService {

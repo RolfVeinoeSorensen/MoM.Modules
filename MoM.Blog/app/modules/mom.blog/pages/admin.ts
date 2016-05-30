@@ -1,8 +1,8 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
+﻿import {Component, OnInit} from "@angular/core";
+import {CORE_DIRECTIVES} from "@angular/common";
 import {BlogAdminService} from "../services/blogadminservice";
 import {Paging, PagingWithSort, Category, Tag, Post, PostTag} from "../interfaces/iblog";
-import {Router, RouteParams} from 'angular2/router';
+import {Router, RouteParams} from "@angular/router-deprecated";
 
 @Component({
     selector: "blog-admin",
@@ -26,11 +26,11 @@ export class AdminComponent implements OnInit {
     }
 
     onPostEdit(post: Post) {
-        this.router.navigate(['../AdminBlogPostEdit', { postId: post.postId }]);
+        this.router.navigate(["../AdminBlogPostEdit", { postId: post.postId }]);
     }
 
     onPostCreate() {
-        this.router.navigate(['../AdminBlogPostCreate']);
+        this.router.navigate(["../AdminBlogPostCreate"]);
     }
 
     get() {

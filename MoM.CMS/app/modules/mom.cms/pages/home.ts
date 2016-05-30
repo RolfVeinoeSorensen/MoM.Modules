@@ -1,5 +1,5 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {RouterLink} from 'angular2/router';
+﻿import {Component, OnInit} from "@angular/core";
+import {RouterLink} from "@angular/router-deprecated";
 
 @Component({
     selector: "mvc",
@@ -9,7 +9,7 @@ import {RouterLink} from 'angular2/router';
 export class HomeComponent implements OnInit {
     //message: string;
 
-    constructor() { }
+    //constructor() { }
 
     ngOnInit() {
         //this.message = "Welcome to EasyModules.NET"

@@ -1,5 +1,5 @@
 ﻿import {AdminDynamicRouteConfigurator} from "../services/adminrouteservice";
-import {AsyncRoute, RouteConfig, RouterLink, RouterOutlet, RouteData, Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {AsyncRoute, RouteConfig, RouterLink, RouterOutlet, RouteData, Router, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 
 declare var System: any;
 
@@ -82,7 +82,7 @@ export class AdminTest {
     private getAppRoutes(): any[] {
         return this.dynamicRouteConfigurator
             .getRoutes(this.constructor).configs.map(route => {
-                return { link: [`/${route.name}`], title: route.name, icon: 'mdi-action-dashboard' };
+                return { link: [`/${route.name}`], title: route.name, icon: "mdi-action-dashboard" };
             });
     }
 }

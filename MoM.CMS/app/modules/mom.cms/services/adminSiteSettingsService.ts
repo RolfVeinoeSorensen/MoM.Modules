@@ -1,7 +1,7 @@
 ﻿import {Http, Headers, HTTP_PROVIDERS} from "@angular/http";
-import {Injectable} from "angular2/core";
+import {Injectable} from "@angular/core";
 import {SiteSettings, Theme, Authentication, Facebook, Google, Microsoft, Twitter, Logo, Email} from "../interfaces/iSiteSettings";
-import 'rxjs/Rx';
+import "rxjs/Rx";
 
 @Injectable()
 export class AdminSiteSettingsService {
@@ -13,7 +13,7 @@ export class AdminSiteSettingsService {
 
     saveSiteSettings(siteSettings: SiteSettings, onNext: (json: SiteSettings) => void) {
         var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+        headers.append("Content-Type", "application/json");
         this.http.post("api/sitesettings/savesitesettings", JSON.stringify(siteSettings), { headers }).map(response => response.json()).subscribe(onNext);
     }
 }

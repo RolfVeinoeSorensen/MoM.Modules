@@ -1,5 +1,5 @@
-﻿//import {Component, OnInit} from "angular2/core";
-//import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
+﻿//import {Component, OnInit} from "@angular/core";
+//import {CORE_DIRECTIVES} from "@angular/common";
 //import {BlogService} from "../service/blog";
 //import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
 

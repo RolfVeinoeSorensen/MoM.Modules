@@ -1,4 +1,4 @@
-﻿import {Component, OnInit} from "angular2/core";
+﻿import {Component, OnInit} from "@angular/core";
 
 @Component({
     selector: "mvc",
@@ -7,7 +7,7 @@
 export class ServicesComponent implements OnInit {
     //message: string;
 
-    constructor() { }
+    //constructor() { }
 
     ngOnInit() {
         //this.message = "Welcome to EasyModules.NET"

@@ -1,8 +1,10 @@
 ﻿import {Http, Headers, HTTP_PROVIDERS} from "@angular/http";
-import {Injectable} from "angular2/core";
+import {Injectable} from "@angular/core";
 import {Paging, PagingWithSort} from "../interfaces/iPager";
 import {User, Role} from "../interfaces/iIdentity";
-import 'rxjs/Rx';
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/share";
 
 
 @Injectable()

@@ -1,8 +1,8 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
+﻿import {Component, OnInit} from "@angular/core";
+import {CORE_DIRECTIVES} from "@angular/common";
 import {BlogPublicService} from "../services/blogpublicservice";
 import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
-import {Router, RouteParams} from 'angular2/router';
+import {Router, RouteParams} from "@angular/router-deprecated";
 
 @Component({
     selector: "blog-latestsposts",
@@ -26,8 +26,8 @@ export class LatestsPostsComponent implements OnInit {
     }
 
     onPostViewMore(post: Post) {
-        console.log(post)
-        this.router.navigate(['../Post', { year: post.year, month: post.month, urlSlug: post.urlSlug }]);
+        console.log(post);
+        this.router.navigate(["../Post", { year: post.year, month: post.month, urlSlug: post.urlSlug }]);
     }
 
     get() {

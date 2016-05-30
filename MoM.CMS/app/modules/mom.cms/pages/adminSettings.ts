@@ -1,8 +1,8 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {TAB_DIRECTIVES, BUTTON_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
+﻿import {Component, OnInit} from "@angular/core";
+import {TAB_DIRECTIVES, BUTTON_DIRECTIVES} from "ng2-bootstrap/ng2-bootstrap";
 import {SiteSettings, Theme, Authentication, Facebook, Google, Microsoft, Twitter, Logo, Email} from "../interfaces/iSiteSettings";
-import {AdminSiteSettingsService} from '../services/adminsitesettingsservice';
-import {Router, RouteParams} from 'angular2/router';
+import {AdminSiteSettingsService} from "../services/adminsitesettingsservice";
+import {Router, RouteParams} from "@angular/router-deprecated";
 
 @Component({
     selector: "mom-admin-settings",
@@ -48,6 +48,6 @@ export class AdminSettingsComponent implements OnInit {
     }
 
     onCancel() {
-        //this.router.navigate(['../AdminSettings']);
+        //this.router.navigate(["../AdminSettings"]);
     }
 }

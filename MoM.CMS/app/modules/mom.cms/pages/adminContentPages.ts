@@ -1,8 +1,8 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
+﻿import {Component, OnInit} from "@angular/core";
+import {CORE_DIRECTIVES} from "@angular/common";
 //import {BlogAdminService} from "../services/blogadminservice";
 import {Paging, PagingWithSort} from "../interfaces/ipager";
-import {Router, RouteParams} from 'angular2/router';
+import {Router, RouteParams} from "@angular/router-deprecated";
 
 @Component({
     selector: "cms-admin-content-pages",
@@ -26,11 +26,11 @@ export class AdminContentPagesComponent implements OnInit {
     }
 
     onPageEdit(page: any) {
-        this.router.navigate(['../AdminContentPage', { pageId: page.pageId }]);
+        this.router.navigate(["../AdminContentPage", { pageId: page.pageId }]);
     }
 
     onPageCreate() {
-        this.router.navigate(['../AdminContentPage', { pageId: 0 }]);
+        this.router.navigate(["../AdminContentPage", { pageId: 0 }]);
     }
 
     get() {

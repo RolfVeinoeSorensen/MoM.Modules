@@ -9,7 +9,7 @@
     postedDate?: Date;
     modifiedDate?: Date;
     category?: Category;
-    postTags?: Array<PostTag>
+    postTags?: Array<PostTag>;
     day?: number;
     month?: number;
     year?: number;

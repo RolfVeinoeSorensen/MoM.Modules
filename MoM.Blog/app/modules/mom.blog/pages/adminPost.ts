@@ -1,10 +1,10 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
+﻿import {Component, OnInit} from "@angular/core";
+import {CORE_DIRECTIVES} from "@angular/common";
 import {BlogAdminService} from "../services/blogadminservice";
 import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
-import {Router, RouteParams} from 'angular2/router';
-//import {Codeblock} from 'ng2-prism/codeblock';
-//import {Csharp, Css, Javascript, Json} from 'ng2-prism/languages';
+import {Router, RouteParams} from "@angular/router-deprecated";
+//import {Codeblock} from "ng2-prism/codeblock";
+//import {Csharp, Css, Javascript, Json} from "ng2-prism/languages";
 
 @Component({
     selector: "blog-admin-post",
@@ -38,15 +38,15 @@ export class AdminPostComponent implements OnInit {
         }
         else {
             this.pageTitle = "Create post";
-            this.post = { title: '', postId: 0, content: '', category: null, teaser: '', isPublished: 0, meta: '', day: 0, modifiedDate: new Date(), month: null, monthName: '', monthNameShort: '', postedDate: new Date(), postTags: [], urlSlug: '', year: 0 };
+            this.post = { title: "", postId: 0, content: "", category: null, teaser: "", isPublished: 0, meta: "", day: 0, modifiedDate: new Date(), month: null, monthName: "", monthNameShort: "", postedDate: new Date(), postTags: [], urlSlug: "", year: 0 };
             this.isLoading = false;
-        }   
+        }
     }
 
     get() {
         this.isLoading = true;
         this.service.getPostById(this.postId, json => {
-            if (json) {             
+            if (json) {
                 this.post = json;
                 this.isLoading = false;
             }
@@ -83,6 +83,6 @@ export class AdminPostComponent implements OnInit {
     }
 
     onCancel() {
-        this.router.navigate(['../AdminBlog']);
+        this.router.navigate(["../AdminBlog"]);
     }
 }

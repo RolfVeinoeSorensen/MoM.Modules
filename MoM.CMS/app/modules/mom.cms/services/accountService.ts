@@ -1,7 +1,9 @@
 ﻿import {Http, Headers, HTTP_PROVIDERS} from "@angular/http";
-import {Injectable} from "angular2/core";
+import {Injectable} from "@angular/core";
 
-import 'rxjs/Rx';
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/share";
 
 @Injectable()
 export class AccountService {
@@ -9,7 +11,7 @@ export class AccountService {
 
     logOff(onNext: (json: any) => void) {
         var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+        headers.append("Content-Type", "application/json");
         this.http.post("account/logoff", "", { headers }).map(response => response.json()).subscribe(onNext);
     }
 }

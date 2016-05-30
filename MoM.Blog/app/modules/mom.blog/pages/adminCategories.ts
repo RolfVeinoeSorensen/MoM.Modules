@@ -1,9 +1,9 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
+﻿import {Component, OnInit} from "@angular/core";
+import {CORE_DIRECTIVES} from "@angular/common";
 import {BlogAdminService} from "../services/blogadminservice";
 import {Paging, PagingWithSort, Category, Tag, Post, PostTag} from "../interfaces/iblog";
-import {Router, RouteParams} from 'angular2/router';
-import { BUTTON_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+import {Router, RouteParams} from "@angular/router-deprecated";
+import { BUTTON_DIRECTIVES } from "ng2-bootstrap/ng2-bootstrap";
 
 @Component({
     selector: "blog-admin",
@@ -53,13 +53,13 @@ export class AdminCategoriesComponent implements OnInit {
 
     onSortChange(sortColumn: string) {
         console.log("col:" + sortColumn);
-        this.paging.sortByAscending = this.paging.sortColumn == sortColumn ? this.paging.sortByAscending : !this.paging.sortByAscending;
+        this.paging.sortByAscending = this.paging.sortColumn === sortColumn ? this.paging.sortByAscending : !this.paging.sortByAscending;
         this.paging.sortColumn = sortColumn;
         this.getCategories();
     }
 
     getCategories(){
-        this.isLoading = true;        
+        this.isLoading = true;
         this.service.getCategories(this.paging, json => {
             if (json) {
                 this.categories = json;

@@ -10,7 +10,7 @@
         phoneNumber: string;
         phoneNumberConfirmed: boolean;
         twoFactorEnabled: boolean;
-        roles: [Role]
+        roles: [Role];
 }
 
 export interface Role {

@@ -1,5 +1,5 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {AsyncRoute, RouteConfig, RouterLink, RouterOutlet, RouteData, Router, ROUTER_DIRECTIVES} from 'angular2/router';
+﻿import {Component, OnInit} from "@angular/core";
+import {AsyncRoute, RouteConfig, RouterLink, RouterOutlet, RouteData, Router, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 import {NavigationAdminComponent} from "../widgets/navigationadmin";
 
 declare var System: any;

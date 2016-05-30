@@ -1,4 +1,4 @@
-﻿import { Page, PageComponent } from "../interfaces/ipage"
+﻿import { Page, PageComponent } from "../interfaces/ipage";
 
 export class AdminPageEditService<Page> {
     originalItem: Page;

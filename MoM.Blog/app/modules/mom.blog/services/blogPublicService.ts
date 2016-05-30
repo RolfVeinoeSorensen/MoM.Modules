@@ -1,7 +1,10 @@
 ﻿import {Http, Headers, HTTP_PROVIDERS} from "@angular/http";
-import {Injectable} from "angular2/core";
+import {Injectable} from "@angular/core";
 import {Paging, Category, Tag, Post, PostTag} from "../interfaces/iblog";
-import 'rxjs/Rx';
+
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/share";
 
 @Injectable()
 export class BlogPublicService {
@@ -21,7 +24,7 @@ export class BlogPublicService {
 
     getLatestsPosts(paging: Paging, onNext: (json: Post) => void) {
         var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
+        headers.append("Content-Type", "application/json");
         this.http.post("api/blog/public/posts", JSON.stringify(paging), { headers }).map(response => response.json()).subscribe(onNext);
     }
 }

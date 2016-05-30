@@ -1,10 +1,10 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {CORE_DIRECTIVES} from "angular2/src/common/directives/core_directives";
+﻿import {Component, OnInit} from "@angular/core";
+import {CORE_DIRECTIVES} from "@angular/common";
 import {TopCategoriesComponent} from "../widgets/topcategories";
 import {LatestsPostsComponent} from "../widgets/latestsposts";
 import {TagCloudComponent} from "../widgets/tagcloud";
 import {BlogPublicService} from "../services/blogpublicservice";
-import {Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {Router, RouteParams, RouteConfig, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 
 @Component({
     selector: "blog",

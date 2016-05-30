@@ -1,5 +1,5 @@
-﻿import {Component, OnInit} from "angular2/core";
-import {CAROUSEL_DIRECTIVES} from 'ng2-bootstrap/ng2-bootstrap';
+﻿import {Component, OnInit} from "@angular/core";
+import {CAROUSEL_DIRECTIVES} from "ng2-bootstrap/ng2-bootstrap";
 
 @Component({
     selector: "mvc",
@@ -10,9 +10,7 @@ export class ProductsComponent implements OnInit {
     public noWrapSlides: boolean = false;
     public slides: Array<any> = [];
 
-    constructor() {
-
-    }
+    //constructor() {  }
 
     ngOnInit() {
         for (let i = 0; i < 4; i++) {
@@ -24,8 +22,8 @@ export class ProductsComponent implements OnInit {
         let newWidth = 600 + this.slides.length + 1;
         this.slides.push({
             image: `//placekitten.com/${newWidth}/300`,
-            text: `${['More', 'Extra', 'Lots of', 'Surplus'][this.slides.length % 4]}
-      ${['Cats', 'Kittys', 'Felines', 'Cutes'][this.slides.length % 4]}`
+            text: `${["More", "Extra", "Lots of", "Surplus"][this.slides.length % 4]}
+      ${["Cats", "Kittys", "Felines", "Cutes"][this.slides.length % 4]}`
         });
     }
 
