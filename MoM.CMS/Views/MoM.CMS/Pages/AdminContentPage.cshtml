@@ -1,11 +1,11 @@
 ﻿
-<div class="fluide-container">
+<div class="container-fluid">
     <div class="row">
         <h1>{{pageTitle}}</h1>
     </div>
     <div class="row">
         <div class="col-md-9">
-            <div [dragula]=""page-bag"" data-istarget="true" id="content" style="min-height: 300px; border: 1px dashed #fff;">
+            <div [dragula]='"page-bag"' data-istarget="true" id="content" style="min-height: 300px; border: 1px dashed #fff;">
                 <cms-editor-html></cms-editor-html>
                 <cms-editor-html></cms-editor-html>
                 <cms-editor-html></cms-editor-html>
@@ -14,18 +14,18 @@
         <div class="col-md-3">
             <accordion [closeOthers]="true">
                 <accordion-group heading="Layout" [isOpen]="true">
-                    <div class="list-group" [dragula]=""page-bag"" data-istarget="false" id="layouts">
+                    <div class="list-group" [dragula]='"page-bag"' data-istarget="false" id="layouts">
                         <button type="button" class="list-group-item">
                             <h4 class="list-group-item-heading"><i class="fa fa-object-group mom-icon" aria-hidden="true"></i>Container</h4>
-                            <p class="list-group-item-text">Containers are spaceholders for other elements. Use .container for fixed width or .container-fluid for full width—center your site’s contents and help align your grid content.</p>                        
+                            <p class="list-group-item-text">Containers are spaceholders for other elements. Use .container for fixed width or .container-fluid for full width—center your site’s contents and help align your grid content.</p>
                         </button>
-                        <button type="button" class="list-group-item">                        
+                        <button type="button" class="list-group-item">
                             <h4 class="list-group-item-heading"><i class="fa fa-table mom-icon" aria-hidden="true"></i>Table</h4>
-                            <p class="list-group-item-text">Define a html table and add standard elements tr, th, and td elements or more complex ones like caption, col, colgroup, thead, tfoot, and tbody.</p>   
+                            <p class="list-group-item-text">Define a html table and add standard elements tr, th, and td elements or more complex ones like caption, col, colgroup, thead, tfoot, and tbody.</p>
                         </button>
                         <button type="button" class="list-group-item">
                             <h4 class="list-group-item-heading"><i class="fa fa-columns fa-rotate-270 mom-icon" aria-hidden="true"></i>Row</h4>
-                            <p class="list-group-item-text">Rows are horizontal groups of columns that ensure your columns are lined up properly.</p>      
+                            <p class="list-group-item-text">Rows are horizontal groups of columns that ensure your columns are lined up properly.</p>
                         </button>
                         <button type="button" class="list-group-item">
                             <h4 class="list-group-item-heading"><i class="fa fa-columns mom-icon" aria-hidden="true"></i>Column</h4>
@@ -46,7 +46,7 @@
                     </div>
                 </accordion-group>
                 <accordion-group heading="Content">
-                    <div class="list-group" [dragula]=""page-bag"" data-istarget="false" id="content">
+                    <div class="list-group" [dragula]='"page-bag"' data-istarget="false" id="content">
                         <button type="button" class="list-group-item">
                             <h4 class="list-group-item-heading"><i class="fa fa-html5 mom-icon" aria-hidden="true"></i>Html</h4>
                             <p class="list-group-item-text">Create html using WYSIWYG.</p>
@@ -58,7 +58,7 @@
                     </div>
                 </accordion-group>
                 <accordion-group heading="Media">
-                    <div class="list-group" [dragula]=""page-bag"" data-istarget="false" id="media">
+                    <div class="list-group" [dragula]='"page-bag"' data-istarget="false" id="media">
                         <button type="button" class="list-group-item">
                             <h4 class="list-group-item-heading"><i class="fa fa-picture-o mom-icon" aria-hidden="true"></i>Image</h4>
                             <p class="list-group-item-text">Select an image from the mediabrowser.</p>
@@ -70,7 +70,7 @@
                     </div>
                 </accordion-group>
                 <accordion-group heading="Widgets">
-                    <div class="list-group" [dragula]=""page-bag"" data-istarget="false" id="widgets">
+                    <div class="list-group" [dragula]='"page-bag"' data-istarget="false" id="widgets">
                         <button type="button" class="list-group-item">
                             <h4 class="list-group-item-heading"><i class="fa fa-caret-square-o-right mom-icon" aria-hidden="true"></i>Slideshow</h4>
                             <p class="list-group-item-text">Create a slideshow with images from the mediabrowser.</p>
