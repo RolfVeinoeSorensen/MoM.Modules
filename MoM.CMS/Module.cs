@@ -16,11 +16,11 @@ namespace MoM.CMS
         private IConfiguration Configuration;
         private DataStorageManager StorageManager;
 
-        public ExtensionInfoDto Info
+        public ModuleInfoDto Info
         {
             get
             {
-                return new ExtensionInfoDto
+                return new ModuleInfoDto
                 {
                     name = "CMS",
                     description = "This module contains all you need to create a site with pages and widgets. The admin part also resides here",

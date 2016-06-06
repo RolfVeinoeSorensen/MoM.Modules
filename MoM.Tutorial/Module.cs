@@ -17,11 +17,11 @@ namespace MoM.Tutorial
         private IConfiguration Configuration;
         private DataStorageManager StorageManager;
 
-        public ExtensionInfoDto Info
+        public ModuleInfoDto Info
         {
             get
             {
-                return new ExtensionInfoDto
+                return new ModuleInfoDto
                 {
                     name = "Tutorial",
                     description = "This module contains the basic methods and examples you need as a module developer to get started.",

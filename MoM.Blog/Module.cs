@@ -17,11 +17,11 @@ namespace MoM.Blog
         private IConfiguration Configuration;
         private DataStorageManager StorageManager;
 
-        public ExtensionInfoDto Info
+        public ModuleInfoDto Info
         {
             get
             {
-                return new ExtensionInfoDto
+                return new ModuleInfoDto
                 {
                     name = "Blog",
                     description = "This module contains all you need to create a personal blog for your site.",
