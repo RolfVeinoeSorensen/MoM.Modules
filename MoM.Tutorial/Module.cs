@@ -55,7 +55,7 @@ namespace MoM.Tutorial
                 PropertyInfo connectionStringPropertyInfo = type.GetProperty("ConnectionString");
 
                 if (connectionStringPropertyInfo != null)
-                    connectionStringPropertyInfo.SetValue(null, Configuration["Site:ConnectionString"]);
+                    connectionStringPropertyInfo.SetValue(null, Configuration.GetConnectionString("DefaultConnection"));
 
                 PropertyInfo assembliesPropertyInfo = type.GetProperty("Assemblies");
 

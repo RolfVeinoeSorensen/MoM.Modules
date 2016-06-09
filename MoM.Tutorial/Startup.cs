@@ -26,7 +26,7 @@ namespace MoM.Tutorial
         {
             services.AddEntityFramework()
                 .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration["Site:ConnectionString"]));
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
         public void Configure(IApplicationBuilder app)
         {
