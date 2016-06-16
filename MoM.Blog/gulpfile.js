@@ -25,7 +25,7 @@ var moduleName = "MoM.Blog";
 
 var paths = {
     modulepath: "bin/Debug/netcoreapp1.0/",
-    moduleDestination: "../../MoM/artifacts/bin/Modules",
+    moduleDestination: "../../MoM/MoM.Web/Modules",
     scripDist: "./dist",
     scriptDestination: "../../MoM/MoM.Web/wwwroot/app/modules/" + moduleName
 }
