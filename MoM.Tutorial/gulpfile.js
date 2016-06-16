@@ -8,7 +8,7 @@ var gulp = require('gulp');
 
 var paths = {
     modulepath: "bin/Debug/netcoreapp1.0/",
-    moduleDestination: "../../MoM/artifacts/bin/Modules"
+    moduleDestination: "../../MoM/MoM.Web/Modules"
 }
 
 gulp.task('copy-module', function () {
