@@ -1,5 +1,5 @@
 ﻿$Classes(MoM.*.Dtos*Dto)[$Properties[$Imports]
-export interface $Name { $Properties[
+export interface $Name {$Properties[
     $name: $Type;]
     }]
 ${
@@ -8,6 +8,6 @@ ${
 		var type = property.Type;
 		if (type.IsPrimitive)
 			return string.Empty;
-		return "import {" + type.ToString().Replace("[", string.Empty).Replace("]", string.Empty) + "} from \"" + property.Type.ToString().Replace("[", string.Empty).Replace("]", string.Empty) + "\";" + Environment.NewLine;
+		return "import {" + type.ToString().Replace("[", string.Empty).Replace("]", string.Empty) + "} from \"./" + property.Type.ToString().Replace("[", string.Empty).Replace("]", string.Empty) + "\";" + Environment.NewLine;
 	}
 }

@@ -23,7 +23,8 @@ import {TagDto} from "../dtos/TagDto";
 
 @Injectable()
 export class AdminService {
-    constructor(private _http: Http) { }
+constructor(private _http: Http) { }
+
     public createPost = (post: PostDto) : Observable<Response> => {
         return this._http.request(`createpost`, new RequestOptions({
             method: "put",
@@ -78,7 +79,7 @@ export class AdminService {
             body: JSON.stringify(tag)
         }));
     }
-    
+
     public posts = (paging: PagingWithSortDto) : Observable<PostDto[]> => {
         return this._http.request(`posts`, new RequestOptions({
             method: "post",
@@ -91,5 +92,5 @@ export class AdminService {
             body: JSON.stringify(null)
         })).map(res => (<CategoryDto[]>res.json()));
     }
-    
+
 }

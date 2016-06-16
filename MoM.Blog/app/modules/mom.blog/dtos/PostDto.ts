@@ -1,7 +1,7 @@
-import {CategoryDto} from "CategoryDto";
-import {PostTagDto} from "PostTagDto";
+import {CategoryDto} from "./CategoryDto";
+import {PostTagDto} from "./PostTagDto";
 
-export interface PostDto { 
+export interface PostDto {
     postId: number;
     title: string;
     teaser: string;

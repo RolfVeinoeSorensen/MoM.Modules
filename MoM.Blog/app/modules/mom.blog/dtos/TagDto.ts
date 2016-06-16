@@ -1,5 +1,5 @@
 
-export interface TagDto { 
+export interface TagDto {
     tagId: number;
     name: string;
     urlSlug: string;

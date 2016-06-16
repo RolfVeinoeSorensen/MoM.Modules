@@ -20,14 +20,14 @@ import {NavigationMenuItemDto} from "../dtos/NavigationMenuItemDto";
 
 @Injectable()
 export class NavigationMenuService {
-    constructor(private _http: Http) { }
-    
-    
+constructor(private _http: Http) { }
+
+
     public getMenuItemsByMenuNameAndMenuItemId = (name: string, id: number, routeName: string) : Observable<NavigationMenuItemDto[]> => {
         return this._http.request(`getmenuitemsbymenunameandmenuitemid?name=${name}&id=${id}&routeName=${routeName}`, new RequestOptions({
             method: "get",
             body: JSON.stringify(null)
         })).map(res => (<NavigationMenuItemDto[]>res.json()));
     }
-    
+
 }

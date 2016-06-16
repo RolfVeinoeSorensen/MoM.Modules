@@ -1,5 +1,5 @@
 
-export interface CategoryDto { 
+export interface CategoryDto {
     categoryId: number;
     name: string;
     urlSlug: string;

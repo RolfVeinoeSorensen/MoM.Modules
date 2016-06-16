@@ -60,22 +60,22 @@ import {$ClassName} from "../dtos/$ClassName";]
 
 @Injectable()
 export class $ServiceName {
-    constructor(private _http: Http) { }
-    $Methods(m => CalculatedTypeName(m.Type) == "void")[
+constructor(private _http: Http) { }
+$Methods(m => CalculatedTypeName(m.Type) == "void")[
     public $name = ($Parameters[$name: $Type][, ]) : Observable<Response> => {
         return this._http.request(`$UrlTrimmed`, new RequestOptions({
             method: "$HttpMethod",
             body: JSON.stringify($RequestData)
         }));
     }]
-    $Methods(m => CalculatedTypeName(m.Type) != "void" && !CalculatedType(m.Type).IsPrimitive)[
+$Methods(m => CalculatedTypeName(m.Type) != "void" && !CalculatedType(m.Type).IsPrimitive)[
     public $name = ($Parameters[$name: $Type][, ]) : Observable<$Type[$CalculatedTypeName]> => {
         return this._http.request(`$UrlTrimmed`, new RequestOptions({
             method: "$HttpMethod",
             body: JSON.stringify($RequestData)
         })).map(res => (<$Type[$CalculatedTypeName]>res.json()));
     }]
-    $Methods(m => CalculatedTypeName(m.Type) != "void" && CalculatedType(m.Type).IsPrimitive)[
+$Methods(m => CalculatedTypeName(m.Type) != "void" && CalculatedType(m.Type).IsPrimitive)[
     public $name = ($Parameters[$name: $Type][, ]) : Observable<$Type[$CalculatedTypeName]> => {
         return this._http.request(`$UrlTrimmed`, new RequestOptions({
             method: "$HttpMethod",

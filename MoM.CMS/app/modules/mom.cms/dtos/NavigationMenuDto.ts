@@ -1,5 +1,5 @@
 
-export interface NavigationMenuDto { 
+export interface NavigationMenuDto {
     navigationMenuId: number;
     name: string;
     displayName: string;

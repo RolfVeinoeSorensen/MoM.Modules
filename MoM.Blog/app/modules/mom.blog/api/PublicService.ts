@@ -23,8 +23,9 @@ import {TagDto} from "../dtos/TagDto";
 
 @Injectable()
 export class PublicService {
-    constructor(private _http: Http) { }
-    
+constructor(private _http: Http) { }
+
+
     public categoriesWithPostCount = (pageSize: number) : Observable<CategoryDto[]> => {
         return this._http.request(`categorieswithpostcount?pageSize=${pageSize}`, new RequestOptions({
             method: "get",
@@ -49,5 +50,5 @@ export class PublicService {
             body: JSON.stringify(null)
         })).map(res => (<PostDto>res.json()));
     }
-    
+
 }

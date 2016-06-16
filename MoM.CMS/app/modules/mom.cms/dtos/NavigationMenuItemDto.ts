@@ -1,7 +1,7 @@
-import {NavigationMenuItemDto} from "NavigationMenuItemDto";
-import {NavigationMenuDto} from "NavigationMenuDto";
+import {NavigationMenuItemDto} from "./NavigationMenuItemDto";
+import {NavigationMenuDto} from "./NavigationMenuDto";
 
-export interface NavigationMenuItemDto { 
+export interface NavigationMenuItemDto {
     navigationMenuItemId: number;
     parent: NavigationMenuItemDto;
     name: string;
