@@ -1,7 +1,7 @@
 ﻿import {Http, Headers, HTTP_PROVIDERS} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {SiteSettings, Theme, Authentication, Facebook, Google, Microsoft, Twitter, Logo, Email} from "../interfaces/iSiteSettings";
-import "rxjs/Rx";
+//import "rxjs/Rx";
 
 @Injectable()
 export class AdminSiteSettingsService {
