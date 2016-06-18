@@ -7,6 +7,7 @@ Modules created for MoM
 Please go to [MoM.Dev](https://github.com/RolfVeinoeSorensen/MoM.Dev) and follow the instructions there.
 
 ### Repositories
+ * [MoM](https://github.com/RolfVeinoeSorensen/MoM) 
  * [MoM.Dev](https://github.com/RolfVeinoeSorensen/MoM.Dev)
  * [MoM.Modules](https://github.com/RolfVeinoeSorensen/MoM.Modules)
  * [MoM.Themes](https://github.com/RolfVeinoeSorensen/MoM.Themes)
