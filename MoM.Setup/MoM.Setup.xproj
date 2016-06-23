@@ -6,8 +6,8 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>9a68d8d9-8c5f-45f8-87ec-9bc97f10d6c7</ProjectGuid>
-    <RootNamespace>MoM.CMS</RootNamespace>
+    <ProjectGuid>2c839924-3e04-40da-9150-268f8762b5c6</ProjectGuid>
+    <RootNamespace>MoM.Setup</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">..\artifacts\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>

@@ -1,20 +1,10 @@
-{
+﻿{
   "authors": [ "Rolf Veinø Sørensen" ],
   "commands": {
     "ef": "EntityFramework.Commands"
   },
   "dependencies": {
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-rc2-final",
     "MoM.Module": "1.0.0-*"
-  },
-  "tools": {
-    "Microsoft.EntityFrameworkCore.Tools": {
-      "version": "1.0.0-preview1-final",
-      "imports": [
-        "portable-net45+win8+dnxcore50",
-        "portable-net45+win8"
-      ]
-    }
   },
   "frameworks": {
     "netcoreapp1.0": {
@@ -29,12 +19,15 @@
     "embed": "Views/**"
   },
   "packOptions": {
-    "files": { "dist/": "dist/**/*.*" }
+    "files": {
+      "dist/": "dist/**/*.*",
+      "assets": "assets/**/*.*"
+    }
   },
   "publishOptions": {
-      "include": [
+    "include": [
       "wwwroot"
-	  ]
+    ]
   },
   "version": "1.0.0-*"
 }
