@@ -27,55 +27,64 @@ constructor(private _http: Http) { }
 
 
     public init = () : Observable<SiteSettingInstallationStatusDto> => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
         return this._http.request("api/setup/init", new RequestOptions({
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: headers,
             method: "get",
             body: JSON.stringify(null)
         })).map(res => (<SiteSettingInstallationStatusDto>res.json()));
     }
     public getConnectionString = () : Observable<SiteSettingConnectionStringDto> => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
         return this._http.request("api/setup/getconnectionstring", new RequestOptions({
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: headers,
             method: "get",
             body: JSON.stringify(null)
         })).map(res => (<SiteSettingConnectionStringDto>res.json()));
     }
     public saveConnectionstring = (connectionstring: SiteSettingConnectionStringDto) : Observable<SiteSettingInstallationStatusDto> => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
         return this._http.request("api/setup/saveconnectionstring", new RequestOptions({
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: headers,
             method: "post",
             body: JSON.stringify(connectionstring)
         })).map(res => (<SiteSettingInstallationStatusDto>res.json()));
     }
     public createAdmin = (user: UserCreateDto) : Observable<SiteSettingInstallationStatusDto> => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
         return this._http.request("api/setup/createadmin", new RequestOptions({
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: headers,
             method: "post",
             body: JSON.stringify(user)
         })).map(res => (<SiteSettingInstallationStatusDto>res.json()));
     }
     public setupSocial = (siteSetting: SiteSettingDto) : Observable<SiteSettingInstallationStatusDto> => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
         return this._http.request("api/setup/setupsocial", new RequestOptions({
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: headers,
+            method: "post",
+            body: JSON.stringify(siteSetting)
+        })).map(res => (<SiteSettingInstallationStatusDto>res.json()));
+    }
+    public setupMail = (siteSetting: SiteSettingDto) : Observable<SiteSettingInstallationStatusDto> => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        return this._http.request("api/setup/setupmail", new RequestOptions({
+            headers: headers,
             method: "post",
             body: JSON.stringify(siteSetting)
         })).map(res => (<SiteSettingInstallationStatusDto>res.json()));
     }
     public installModules = () : Observable<SiteSettingInstallationStatusDto> => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
         return this._http.request("api/setup/installmodules", new RequestOptions({
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: headers,
             method: "post",
             body: JSON.stringify(null)
         })).map(res => (<SiteSettingInstallationStatusDto>res.json()));

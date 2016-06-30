@@ -3,9 +3,9 @@ import {CORE_DIRECTIVES, FORM_DIRECTIVES, ControlGroup, FormBuilder, Validators}
 import {RouterLink} from "@angular/router-deprecated";
 
 import {SiteSettingDto} from "../dtos/SiteSettingDto";
-import {SiteSettingInputDto} from "../dtos/SiteSettingInputDto";
 import {SiteSettingConnectionStringDto} from "../dtos/SiteSettingConnectionStringDto";
 import {SiteSettingInstallationStatusDto} from "../dtos/SiteSettingInstallationStatusDto";
+import {SiteSettingEmailDto} from "../dtos/SiteSettingEmailDto";
 import {UserCreateDto} from "../dtos/UserCreateDto";
 import { SetupService } from "../api/SetupService";
 import { ControlMessages } from "../validation/control-messages.component";
@@ -37,6 +37,8 @@ export class InstallComponent implements OnInit {
     errorMessage: string;
     admin: UserCreateDto;
     adminCreateForm: ControlGroup;
+    mailForm: ControlGroup;
+    socialAccountsForm: ControlGroup;
     constructor(
         private service: SetupService,
         fromBuilder: FormBuilder
@@ -46,6 +48,22 @@ export class InstallComponent implements OnInit {
             email: ["", Validators.compose([Validators.required, ValidationService.emailValidator])],
             password: ["", Validators.compose([Validators.required, ValidationService.passwordValidator])],
             confirm: ["", Validators.compose([Validators.required, ValidationService.passwordMatchValidator])],
+        });
+
+        //this.socialAccountsForm = fromBuilder.group({
+        //    facebookEnabled: [this.siteSetting.authentication.facebook.enabled],
+        //    facebookAppId: [this.siteSetting.authentication.facebook.appId, Validators.required],
+        //    facebookAppSecret: [this.siteSetting.authentication.facebook.appSecret, Validators.required],
+        //});
+
+        this.mailForm = fromBuilder.group({
+            hostname: ["", Validators.required],
+            password: [""], //, ValidationService.requiredIfRequireCredentialsValidator],
+            port: ["25", Validators.compose([Validators.required, ValidationService.numberValidator])],
+            requireCredentials: [true],
+            senderEmailAdress: ["", Validators.compose([Validators.required, ValidationService.emailValidator])],
+            userName: [""], //, ValidationService.requiredIfRequireCredentialsValidator],
+            useSSL: [false]
         });
     }
 
@@ -61,6 +79,7 @@ export class InstallComponent implements OnInit {
                 this.status = status;
                 this.checkCompletedSteps();
                 this.getConnectionstring();
+                //this.mailForm.value = this.siteSetting.email;
             },
             error => {
                 this.hasError = true;
@@ -117,7 +136,51 @@ export class InstallComponent implements OnInit {
                     this.hasError = true;
                     this.errorMessage = <any>error;
                     this.isLoading = false;
-                });
+                }
+            );
+        }
+    }
+
+    onSocialAccountsSave() {
+        this.service.setupSocial(this.siteSetting).subscribe(
+            status => {
+                this.status = status;
+                this.checkCompletedSteps();
+                this.isLoading = false;
+            },
+            error => {
+                this.hasError = true;
+                this.errorMessage = <any>error;
+                this.isLoading = false;
+            }
+        );
+    }
+
+    onMailSettingsSave() {
+        var self = this;
+        if (this.mailForm.dirty && this.mailForm.valid) {
+            this.siteSetting.email = {
+                hostName: this.mailForm.value.hostname,
+                password: this.mailForm.value.password,
+                port: this.mailForm.value.port,
+                requireCredentials: this.mailForm.value.requireCredentials,
+                senderEmailAdress: this.mailForm.value.senderEmailAdress,
+                userName: this.mailForm.value.userName,
+                useSSL: this.mailForm.value.useSSL
+            };
+            console.log(this.siteSetting.email);
+            this.service.setupMail(this.siteSetting).subscribe(
+                status => {
+                    this.status = status;
+                    this.checkCompletedSteps();
+                    this.isLoading = false;
+                },
+                error => {
+                    this.hasError = true;
+                    this.errorMessage = <any>error;
+                    this.isLoading = false;
+                }
+            );
         }
     }
 
@@ -127,6 +190,7 @@ export class InstallComponent implements OnInit {
         for (var i = 0; i < self.installStepsCompleted; i++) {
             self.setCompletedStep(i);
         };
+        console.log(self.installStepsCompleted);
     }
 
     setCompletedStep(status: number) {

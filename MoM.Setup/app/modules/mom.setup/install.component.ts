@@ -9,7 +9,7 @@ declare var System: any;
 
 @Component({
     selector: "app",
-    templateUrl: "/setup/app/outlet",
+    templateUrl: "/setupapp/outlet",
     directives: [RouterOutlet, RouterLink, ROUTER_DIRECTIVES, CollapseDirective]
 })
 

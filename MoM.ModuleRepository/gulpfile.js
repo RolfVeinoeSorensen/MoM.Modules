@@ -1,4 +1,4 @@
-﻿/// <binding AfterBuild="copy-module" ProjectOpened="watch-setup" />
+﻿/// <binding AfterBuild="copy-module" ProjectOpened="watch-modulerepository" />
 /*
 This file in the main entry point for defining Gulp tasks and using Gulp plugins.
 Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
@@ -21,7 +21,7 @@ var gulp = require("gulp"),
 
 var tsProject = typescript.createProject("app/tsconfig.json");
 
-var moduleName = "MoM.Setup";
+var moduleName = "MoM.ModuleRepository";
 
 var paths = {
     modulepath: "bin/Debug/netcoreapp1.0/",
@@ -60,7 +60,7 @@ gulp.task('app-clean-dist', function (cb) {
     rimraf('./dist', cb);
 });
 
-gulp.task("watch-setup", function () {
+gulp.task("watch-modulerepository", function () {
     gulp.watch("app/**/*.ts", ["app-copy-scripts"]);
 });
 

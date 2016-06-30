@@ -55,7 +55,7 @@ import "rxjs/add/operator/share";
 
 // import {parseModel} from '../models/ModelHelper';
 
-$Classes(c => c.Namespace == "MoM.Web.Controllers.Api")[
+$Classes(c => c.Namespace == "MoM.Setup.Controllers.Api")[
 $CalculatedModelTypes[
 import {$ClassName} from "../dtos/$ClassName";]
 
@@ -64,30 +64,30 @@ export class $ServiceName {
 constructor(private _http: Http) { }
 $Methods(m => CalculatedTypeName(m.Type) == "void")[
     public $name = ($Parameters[$name: $Type][, ]) : Observable<Response> => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
         return this._http.request("$Route", new RequestOptions({
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: headers,
             method: "$HttpMethod",
             body: JSON.stringify($RequestData)
         }));
     }]
 $Methods(m => CalculatedTypeName(m.Type) != "void" && !CalculatedType(m.Type).IsPrimitive)[
     public $name = ($Parameters[$name: $Type][, ]) : Observable<$Type[$CalculatedTypeName]> => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
         return this._http.request("$Route", new RequestOptions({
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: headers,
             method: "$HttpMethod",
             body: JSON.stringify($RequestData)
         })).map(res => (<$Type[$CalculatedTypeName]>res.json()));
     }]
 $Methods(m => CalculatedTypeName(m.Type) != "void" && CalculatedType(m.Type).IsPrimitive)[
     public $name = ($Parameters[$name: $Type][, ]) : Observable<$Type[$CalculatedTypeName]> => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
         return this._http.request("$Route", new RequestOptions({
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: headers,
             method: "$HttpMethod",
             body: JSON.stringify($RequestData)
         })).map(res => (<$Type[$CalculatedTypeName]>res.json()));

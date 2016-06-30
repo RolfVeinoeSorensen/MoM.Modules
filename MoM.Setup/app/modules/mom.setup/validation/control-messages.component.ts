@@ -15,7 +15,7 @@ export class ControlMessages {
         let c = this._formDir.form.find(this.controlName);
 
         for (let propertyName in c.errors) {
-            if (c.errors.hasOwnProperty(propertyName) && c.touched) {
+            if (c.errors.hasOwnProperty(propertyName) && c.touched && !c.pristine) {
                 return ValidationService.getValidatorErrorMessage(propertyName);
             }
         }

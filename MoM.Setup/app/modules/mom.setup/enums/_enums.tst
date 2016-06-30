@@ -1,13 +1,13 @@
-﻿$Classes(MoM.Module.Dtos.*Dto)[$Properties[$Imports]
-export interface $Name {$Properties[
-    $name: $Type;]
-}]
+﻿$Enums(MoM.Module.Enums*)[
+    export enum $Name {$Values[
+        $name = $Value,]
+    }]
 ${
     using Typewriter.Extensions.Types;
 	string Imports(Property property){
 		var type = property.Type;
         if(type.IsEnum){
-            return "import {" + type.ToString() + "} from \"../enums/" + property.Type.ToString() + "\";" + Environment.NewLine;
+            return "import {" + type.ToString() + "} from \"./" + property.Type.ToString() + "\";" + Environment.NewLine;
         }
 		if (type.IsPrimitive){
 			return string.Empty;

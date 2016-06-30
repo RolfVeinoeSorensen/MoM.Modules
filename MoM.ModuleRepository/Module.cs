@@ -9,7 +9,7 @@ using MoM.Module.Managers;
 using System;
 using System.Reflection;
 
-namespace MoM.Setup
+namespace MoM.ModuleRepository
 {
     public class Module : IModule
     {
@@ -72,7 +72,7 @@ namespace MoM.Setup
             //routeBuilder.MapRoute("default", "{controller=setup}/{action=Index}/{id?}");
             //routeBuilder.MapRoute("default", "setup/{controller}/{action}", new { controller = "app", action = "Index" });
             routeBuilder.MapRoute("setuppages", "setup/{controller}/{action}", new { controller = "pages", action = "Outlet" });
-            
+
         }
 
         private Type GetIStorageImplementationType()

@@ -3,160 +3,414 @@
 }
 <div class="container-fluid margin-bottom">
     <div class="row">
-        <div class="col-sm-2 col-sm-offset-1">
-            <img src="~/site/momlogo.png" srcset="~/site/momlogo.svg 1x" class="navbar-brand" alt="EasyModules.NET Logo" width="152" height="150">
+        <div class="col-md-2 col-md-offset-1">
+            <img src="~/assets/modules/mom.setup/logo/momlogo.png" srcset="~/assets/modules/mom.setup/logo/momlogo.svg 1x" class="navbar-brand" alt="EasyModules.NET Logo" width="152" height="150">
         </div>
-        <div class="col-sm-6">
+        <div class="col-md-8">
             <h1>Install MoM</h1>
             <p>Please follow these steps below in order to setup you new website.</p>
             <progress class="progress progress-success" [value]="installStepsCompleted" max="5"></progress>
-            <div class="text-sm-center"><span>Progress {{installStepsCompleted/5*100}}%</span></div>
+            <div class="text-xs-center"><span>Progress {{installStepsCompleted/5*100}}%</span></div>
         </div>
-        <div class="col-sm-1"></div>
+        <div class="col-md-1"></div>
     </div>
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-11 col-sm-offset-1">
-                <tabset type="pills">
-                    <tab>
-                        <template tabHeading>
-                            <i class="fa fa-database fa-2x mom-icon"></i>
-                            <span>Database</span>
-                            <i class="fa fa-check-circle-o fa-2x mom-icon" style="color:#5cb85c"></i>
-                        </template>
-                        <div class="container-fluid margin-top">
-                            <div class="row">
-                                <div class="col-sm-8 col-sm-offset-1">
-                                    <form *ngIf="!isLoading" (ngSubmit)="onSaveDatabaseSettings()" #postForm="ngForm">
-                                        <div class="form-group row">
-                                            <label for="inputServer" class="col-sm-2 form-control-label">Server</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" [(ngModel)]="connectionstring.server" required id="inputServer" ngControl="server" #server="ngForm" placeholder="Server">
-                                                <div [hidden]="server.valid || server.pristine" class="alert alert-danger">Server is required</div>
+        <div class="col-md-11 col-md-offset-1">
+            <tabset type="pills">
+                <tab>
+                    <template tabHeading>
+                        <i class="fa fa-database fa-2x mom-icon"></i>
+                        <span>Database</span>
+                        <i *ngIf="installStepsCompleted > 0" class="fa fa-check-circle-o fa-2x mom-icon" style="color:#5cb85c"></i>
+                    </template>
+                    <div class="container-fluid margin-top">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-1">
+                                <form *ngIf="!isLoading" (ngSubmit)="onSaveDatabaseSettings()" #postForm="ngForm">
+                                    <div class="form-group row">
+                                        <label for="inputServer" class="col-md-2 form-control-label">Server</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-server"></i></div>
+                                            <input type="text" class="form-control" [(ngModel)]="connectionstring.server" required id="inputServer" ngControl="server" #server="ngForm" placeholder="Server">
+                                            <div [hidden]="server.valid || server.pristine" class="form-control alert-danger">Server is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputDatabase" class="col-md-2 form-control-label">Database</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-database"></i></div>
+                                            <input type="text" class="form-control" [(ngModel)]="connectionstring.database" required id="inputDatabase" ngControl="database" #database="ngForm" placeholder="Database">
+                                            <div [hidden]="database.valid || database.pristine" class="form-control alert-danger">Database is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-2">
+                                            <label>Authentication</label>
+                                        </div>
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="btn-group">
+                                                <label btnRadio="sql" class="btn btn-primary"
+                                                       [(ngModel)]="connectionAuthenticationModel">
+                                                    Sql Server
+                                                </label>
+                                                <label btnRadio="windows" class="btn btn-primary"
+                                                       [(ngModel)]="connectionAuthenticationModel">
+                                                    Windows
+                                                </label>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="inputDatabase" class="col-sm-2 form-control-label">Database</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" [(ngModel)]="connectionstring.database" required id="inputDatabase" ngControl="database" #database="ngForm" placeholder="Database">
-                                                <div [hidden]="database.valid || database.pristine" class="alert alert-danger">Database is required</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-2">
-                                                <label>Authentication</label>
-                                            </div>
-                                            <div class="col-sm-10 col-sm-offset-2">
-                                                <div class="btn-group">
-                                                    <label btnRadio="sql" class="btn btn-primary"
-                                                            [(ngModel)]="connectionAuthenticationModel">
-                                                        Sql Server
-                                                    </label>
-                                                    <label btnRadio="windows" class="btn btn-primary"
-                                                           [(ngModel)]="connectionAuthenticationModel">
-                                                        Windows
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row" *ngIf="connectionAuthenticationModel === 'sql'">
-                                                <label for="inputUsername" class="col-sm-2 form-control-label">Username</label>
-                                                <div class="col-sm-10">
-                                                    <input type="text" class="form-control" [(ngModel)]="connectionstring.username" required id="inputUsername" ngControl="username" #username="ngForm" placeholder="Username">
-                                                    <div [hidden]="username.valid || username.pristine" class="alert alert-danger">Username is required</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row" *ngIf="connectionAuthenticationModel === 'sql'">
-                                                <label for="inputPassword" class="col-sm-2 form-control-label">Password</label>
-                                                <div class="col-sm-10">
-                                                    <input type="password" class="form-control" [(ngModel)]="connectionstring.password" required id="inputPassword" ngControl="password" #password="ngForm" placeholder="Password">
-                                                    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Password is required</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-offset-2 col-sm-10 text-sm-right">
-                                                <button type="submit" class="btn btn-success" [disabled]="!postForm.form.valid">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </tab>
-                    <tab [disabled]="installStepsCompleted < 1" [active]="installStepsCompleted === 1">
-                        <template tabHeading>
-                            <i class="fa fa-user-secret fa-2x mom-icon"></i>
-                            <span>Admin account</span>
-                        </template>
-                        <div class="container-fluid margin-top-small">
-                            <div class="row">
-                                <div class="col-sm-8 col-sm-offset-1">
-                                    <form [ngFormModel]="adminCreateForm" *ngIf="!isLoading" (submit)="onAdminAccountSave()">
-                                        <div class="form-group row">
-                                            <label for="name" class="col-sm-2 form-control-label">Name</label>
-                                            <div class="col-sm-10 input-group">
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="form-group row" *ngIf="connectionAuthenticationModel === 'sql'">
+                                            <label for="inputUsername" class="col-md-2 form-control-label">Username</label>
+                                            <div class="col-md-10 input-group">
                                                 <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                                <input ngControl="username" id="username" type="text" class="form-control"/>
-                                                <control-messages control="username"></control-messages>
+                                                <input type="text" class="form-control" [(ngModel)]="connectionstring.username" required id="inputUsername" ngControl="username" #username="ngForm" placeholder="Username">
+                                                <div [hidden]="username.valid || username.pristine" class="form-control alert-danger">Username is required</div>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="email" class="col-sm-2 form-control-label">Email</label>
-                                            <div class="col-sm-10 input-group">
-                                                <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
-                                                <input ngControl="email" id="email" type="email" class="form-control"/>
-                                                <control-messages control="email"></control-messages>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="password" class="col-sm-2 form-control-label">Password</label>
-                                            <div class="col-sm-10 input-group">
+                                        <div class="form-group row" *ngIf="connectionAuthenticationModel === 'sql'">
+                                            <label for="inputPassword" class="col-md-2 form-control-label">Password</label>
+                                            <div class="col-md-10 input-group">
                                                 <div class="input-group-addon"><i class="fa fa-user-secret"></i></div>
-                                                <input ngControl="password" id="password" type="password" class="form-control"/>
-                                                <control-messages control="password"></control-messages>
+                                                <input type="password" class="form-control" [(ngModel)]="connectionstring.password" required id="inputPassword" ngControl="password" #password="ngForm" placeholder="Password">
+                                                <div [hidden]="password.valid || password.pristine" class="form-control alert-danger">Password is required</div>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="confirm" class="col-sm-2 form-control-label">Confirm</label>
-                                            <div class="col-sm-10 input-group">
-                                                <div class="input-group-addon"><i class="fa fa-user-secret"></i></div>
-                                                <input ngControl="confirm" id="confirm" type="password" class="form-control" />
-                                                <control-messages control="confirm"></control-messages>
-                                            </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-offset-2 col-md-10 text-sm-right">
+                                            <button type="submit" class="btn btn-success" [disabled]="!postForm.form.valid">Submit</button>
                                         </div>
-                                        <div class="form-group row">
-                                            <div class="col-sm-offset-2 col-sm-10 text-sm-right">
-                                                <button type="submit" class="btn btn-success" [disabled]="!adminCreateForm.valid">Submit</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </tab>
-                    <tab [disabled]="installStepsCompleted < 2" [active]="installStepsCompleted === 2">
-                        <template tabHeading>
-                            <i class="fa fa-users fa-2x mom-icon"></i>
-                            <span>Social accounts</span>
-                        </template>
-                        Configure Mail and SMS(optional) content
-                    </tab>
-                    <tab [disabled]="installStepsCompleted < 3" [active]="installStepsCompleted === 3">
-                        <template tabHeading>
-                            <i class="fa fa-envelope-o fa-2x mom-icon"></i>
-                            <span>Mail</span>
-                        </template>
-                        Select modules content
-                    </tab>
-                    <tab [disabled]="installStepsCompleted < 4" [active]="installStepsCompleted === 4">
-                        <template tabHeading>
-                            <i class="fa fa-cubes fa-2x mom-icon"></i>
-                            <span>Modules</span>
-                        </template>
-                        Social accounts content
-                    </tab>
-                </tabset>
-</div>
+                    </div>
+                </tab>
+                <tab [disabled]="installStepsCompleted < 1" [active]="installStepsCompleted === 1">
+                    <template tabHeading>
+                        <i class="fa fa-user-secret fa-2x mom-icon"></i>
+                        <span>Admin account</span>
+                        <i *ngIf="installStepsCompleted > 1" class="fa fa-check-circle-o fa-2x mom-icon" style="color:#5cb85c"></i>
+                    </template>
+                    <div class="container-fluid margin-top">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-1">
+                                <form [ngFormModel]="adminCreateForm" *ngIf="!isLoading" (submit)="onAdminAccountSave()">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-md-2 form-control-label">Name</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                            <input ngControl="username" id="username" type="text" class="form-control" />
+                                            <control-messages control="username"></control-messages>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email" class="col-md-2 form-control-label">Email</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
+                                            <input ngControl="email" id="email" type="email" class="form-control" />
+                                            <control-messages control="email"></control-messages>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="password" class="col-md-2 form-control-label">Password</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user-secret"></i></div>
+                                            <input ngControl="password" id="password" type="password" class="form-control" />
+                                            <control-messages control="password"></control-messages>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="confirm" class="col-md-2 form-control-label">Confirm</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user-secret"></i></div>
+                                            <input ngControl="confirm" id="confirm" type="password" class="form-control" />
+                                            <control-messages control="confirm"></control-messages>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-offset-2 col-md-10 text-sm-right">
+                                            <button type="submit" class="btn btn-success" [disabled]="!adminCreateForm.valid">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+                <tab [disabled]="installStepsCompleted < 2" [active]="installStepsCompleted === 2">
+                    <template tabHeading>
+                        <i class="fa fa-users fa-2x mom-icon"></i>
+                        <span>Social accounts</span>
+                        <i *ngIf="installStepsCompleted > 2" class="fa fa-check-circle-o fa-2x mom-icon" style="color:#5cb85c"></i>
+                    </template>
+                    <div class="container-fluid margin-top">
+                        <form *ngIf="!isLoading" (ngSubmit)="onSocialAccountsSave()" #postForm="ngForm">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-1">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h4>
+                                                <img src="~/assets/modules/mom.setup/social/microsoft.png" srcset="~/assets/modules/mom.setup/social/microsoft.svg 1x" alt="Microsoft Logo" width="32" height="32">
+                                                Microsoft
+                                            </h4>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="onoffswitch">
+                                                <input type="checkbox" [(ngModel)]="siteSetting.authentication.microsoft.enabled" name="microsoftonoffswitch" class="onoffswitch-checkbox" id="microsoftonoffswitch">
+                                                <label class="onoffswitch-label" for="microsoftonoffswitch">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" *ngIf="siteSetting.authentication.microsoft.enabled">
+                                        <label for="inputMicrosoftClientId" class="col-md-2 form-control-label">Client Id</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
+                                            <input type="text" class="form-control" [(ngModel)]="siteSetting.authentication.microsoft.clientId" required id="inputMicrosoftClientId" ngControl="microsoftClientId" #microsoftClientId="ngForm" placeholder="Client Id">
+                                            <div [hidden]="microsoftClientId.valid || microsoftClientId.pristine" class="form-control alert-danger">Client Id is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" *ngIf="siteSetting.authentication.microsoft.enabled">
+                                        <label for="inputMicrosoftClientSecret" class="col-md-2 form-control-label">Client Secret</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user-secret"></i></div>
+                                            <input type="text" class="form-control" [(ngModel)]="siteSetting.authentication.microsoft.clientSecret" required id="inputMicrosoftClientSecret" ngControl="microsoftClientSecret" #microsoftClientSecret="ngForm" placeholder="Client Secret">
+                                            <div [hidden]="microsoftClientSecret.valid || microsoftClientSecret.pristine" class="form-control alert-danger">Client Secret is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margin-top">
+                                <div class="col-md-8 col-md-offset-1">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h4>
+                                                <img src="~/assets/modules/mom.setup/social/facebook.png" srcset="~/assets/modules/mom.setup/social/facebook.svg 1x" alt="Facebook Logo" width="32" height="32">
+                                                Facebook
+                                            </h4>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="onoffswitch">
+                                                <input type="checkbox" [(ngModel)]="siteSetting.authentication.facebook.enabled" name="facebookonoffswitch" class="onoffswitch-checkbox" id="facebookonoffswitch">
+                                                <label class="onoffswitch-label" for="facebookonoffswitch">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" *ngIf="siteSetting.authentication.facebook.enabled">
+                                        <label for="inputMicrosoftClientId" class="col-md-2 form-control-label">App Id</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
+                                            <input type="text" class="form-control" [(ngModel)]="siteSetting.authentication.microsoft.appId" required id="inputFacebookAppId" ngControl="facebookAppId" #facebookAppId="ngForm" placeholder="App Id">
+                                            <div [hidden]="facebookAppId.valid || facebookAppId.pristine" class="form-control alert-danger">App Id is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" *ngIf="siteSetting.authentication.facebook.enabled">
+                                        <label for="inputFacebookAppSecret" class="col-md-2 form-control-label">App Secret</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user-secret"></i></div>
+                                            <input type="text" class="form-control" [(ngModel)]="siteSetting.authentication.facebook.appSecret" required id="inputFacebookAppSecret" ngControl="facebookAppSecret" #facebookAppSecret="ngForm" placeholder="App Secret">
+                                            <div [hidden]="facebookAppSecret.valid || facebookAppSecret.pristine" class="form-control alert-danger">App Secret is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margin-top">
+                                <div class="col-md-8 col-md-offset-1">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h4>
+                                                <img src="~/assets/modules/mom.setup/social/google.png" srcset="~/assets/modules/mom.setup/social/google.svg 1x" alt="Google Logo" width="32" height="32">
+                                                Google
+                                            </h4>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="onoffswitch">
+                                                <input type="checkbox" [(ngModel)]="siteSetting.authentication.google.enabled" name="onoffswitch" class="onoffswitch-checkbox" id="googleonoffswitch">
+                                                <label class="onoffswitch-label" for="googleonoffswitch">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" *ngIf="siteSetting.authentication.google.enabled">
+                                        <label for="inputGoogleClientId" class="col-md-2 form-control-label">Client Id</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
+                                            <input type="text" class="form-control" [(ngModel)]="siteSetting.authentication.google.clientId" required id="inputGoogleClientId" ngControl="googleClientId" #googleClientId="ngForm" placeholder="Client Id">
+                                            <div [hidden]="googleClientId.valid || googleClientId.pristine" class="form-control alert-danger">Client Id is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" *ngIf="siteSetting.authentication.google.enabled">
+                                        <label for="inputGoogleClientSecret" class="col-md-2 form-control-label">Client Secret</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user-secret"></i></div>
+                                            <input type="text" class="form-control" [(ngModel)]="siteSetting.authentication.google.clientSecret" required id="inputGoogleClientSecret" ngControl="googleClientSecret" #googleClientSecret="ngForm" placeholder="Client Secret">
+                                            <div [hidden]="googleClientSecret.valid || googleClientSecret.pristine" class="form-control alert-danger">Client Secret is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margin-top">
+                                <div class="col-md-8 col-md-offset-1">
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <h4>
+                                                <img src="~/assets/modules/mom.setup/social/twitter.png" srcset="~/assets/modules/mom.setup/social/twitter.svg 1x" alt="Facebook Logo" width="32" height="32">
+                                                Twitter
+                                            </h4>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="onoffswitch">
+                                                <input type="checkbox" [(ngModel)]="siteSetting.authentication.twitter.enabled" name="twitteronoffswitch" class="onoffswitch-checkbox" id="twitteronoffswitch">
+                                                <label class="onoffswitch-label" for="twitteronoffswitch">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" *ngIf="siteSetting.authentication.twitter.enabled">
+                                        <label for="inputTwitterConsumerKey" class="col-md-2 form-control-label">Consumer Key</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
+                                            <input type="text" class="form-control" [(ngModel)]="siteSetting.authentication.twitter.consumerKey" required id="inputTwitterConsumerKey" ngControl="twitterConsumerKey" #twitterConsumerKey="ngForm" placeholder="Consumer Key">
+                                            <div [hidden]="twitterConsumerKey.valid || twitterConsumerKey.pristine" class="form-control alert-danger">Consumer Key is required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" *ngIf="siteSetting.authentication.twitter.enabled">
+                                        <label for="inputTwitterConsumerSecret" class="col-md-2 form-control-label">Consumer Secret</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user-secret"></i></div>
+                                            <input type="text" class="form-control" [(ngModel)]="siteSetting.authentication.twitter.consumerSecret" required id="inputTwitterConsumerSecret" ngControl="twitterConsumerSecret" #twitterConsumerSecret="ngForm" placeholder="Consumer Secret">
+                                            <div [hidden]="twitterConsumerSecret.valid || twitterConsumerSecret.pristine" class="form-control alert-danger">Consumer Secret is required</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-1">
+                                    <div class="form-group row">
+                                        <div class="col-md-offset-2 col-md-10 text-sm-right">
+                                            <button type="submit" class="btn btn-success" [disabled]="!postForm.form.valid">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </tab>
+                <tab [disabled]="installStepsCompleted < 3" [active]="installStepsCompleted === 3">
+                    <template tabHeading>
+                        <i class="fa fa-envelope-o fa-2x mom-icon"></i>
+                        <span>Mail</span>
+                        <i *ngIf="installStepsCompleted > 3" class="fa fa-check-circle-o fa-2x mom-icon" style="color:#5cb85c"></i>
+                    </template>
+                    <div class="container-fluid margin-top">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-1">
+                                <form [ngFormModel]="mailForm" *ngIf="!isLoading" (submit)="onMailSettingsSave()">
+                                    <div class="form-group row">
+                                        <label for="hostname" class="col-md-2 form-control-label">Hostname</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-server"></i></div>
+                                            <input ngControl="hostname" id="hostname" type="text" class="form-control" />
+                                            <control-messages control="hostname"></control-messages>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="port" class="col-md-2 form-control-label">Port</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-hashtag"></i></div>
+                                            <input ngControl="port" id="port" type="number" class="form-control" />
+                                            <control-messages control="port"></control-messages>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="senderEmailAdress" class="col-md-2 form-control-label">Send from Email</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-envelope-o"></i></div>
+                                            <input ngControl="senderEmailAdress" id="senderEmailAdress" type="email" class="form-control" />
+                                            <control-messages control="senderEmailAdress"></control-messages>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-10">
+                                            <p>
+                                                Use SSL
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="onoffswitch">
+                                                <input type="checkbox" [(ngModel)]="useSSL" name="usesslonoffswitch" class="onoffswitch-checkbox" id="usesslonoffswitch">
+                                                <label class="onoffswitch-label" for="usesslonoffswitch">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-10">
+                                            <p>
+                                                Require Credentials
+                                            </p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="onoffswitch">
+                                                <input type="checkbox" [(ngModel)]="requireCredentials" name="requireCredentialsonoffswitch" class="onoffswitch-checkbox" id="requireCredentialsonoffswitch">
+                                                <label class="onoffswitch-label" for="requireCredentialsonoffswitch">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" *ngIf="requireCredentials">
+                                        <label for="userName" class="col-md-2 form-control-label">Username</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-server"></i></div>
+                                            <input ngControl="userName" id="userName" type="text" class="form-control" />
+                                            <control-messages control="userName"></control-messages>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" *ngIf="requireCredentials">
+                                        <label for="password" class="col-md-2 form-control-label">Password</label>
+                                        <div class="col-md-10 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user-secret"></i></div>
+                                            <input ngControl="password" id="password" type="password" class="form-control" />
+                                            <control-messages control="password"></control-messages>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-offset-2 col-md-10 text-sm-right">
+                                            <button type="submit" class="btn btn-success" [disabled]="!mailForm.valid">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+                <tab [disabled]="installStepsCompleted < 4" [active]="installStepsCompleted === 4">
+                    <template tabHeading>
+                        <i class="fa fa-cubes fa-2x mom-icon"></i>
+                        <span>Modules</span>
+                        <i *ngIf="installStepsCompleted > 4" class="fa fa-check-circle-o fa-2x mom-icon" style="color:#5cb85c"></i>
+                    </template>
+                    Select modules content
+                </tab>
+            </tabset>
+        </div>
     </div>
 </div>

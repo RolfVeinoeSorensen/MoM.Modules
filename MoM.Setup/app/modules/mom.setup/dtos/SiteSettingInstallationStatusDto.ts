@@ -1,4 +1,5 @@
 import {SiteSettingDto} from "./SiteSettingDto";
+import {InstallationStatus} from "../enums/InstallationStatus";
 
 export interface SiteSettingInstallationStatusDto {
     siteSetting: SiteSettingDto;

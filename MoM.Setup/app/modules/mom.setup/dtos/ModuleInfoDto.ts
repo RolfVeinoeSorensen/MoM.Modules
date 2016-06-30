@@ -1,3 +1,4 @@
+import {ModuleType} from "../enums/ModuleType";
 
 export interface ModuleInfoDto {
     name: string;

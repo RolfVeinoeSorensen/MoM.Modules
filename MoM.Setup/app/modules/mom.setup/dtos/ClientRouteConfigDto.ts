@@ -1,3 +1,4 @@
+import {ClientRouteConfigType} from "../enums/ClientRouteConfigType";
 
 export interface ClientRouteConfigDto {
     clientRouteConfigId: number;

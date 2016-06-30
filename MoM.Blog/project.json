@@ -4,23 +4,21 @@
     "ef": "EntityFramework.Commands"
   },
   "dependencies": {
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-rc2-final",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
     "MoM.Module": "1.0.0-*"
   },
   "tools": {
     "Microsoft.EntityFrameworkCore.Tools": {
-      "version": "1.0.0-preview1-final",
       "imports": [
-        "portable-net45+win8+dnxcore50",
         "portable-net45+win8"
-      ]
+      ],
+      "version": "1.0.0-preview2-final"
     }
   },
   "frameworks": {
     "netcoreapp1.0": {
       "imports": [
         "dotnet5.6",
-        "dnxcore50",
         "portable-net45+win8"
       ]
     }

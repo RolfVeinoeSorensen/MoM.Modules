@@ -114,7 +114,7 @@ namespace MoM.Setup.Controllers.Api
             }
             builder.MultipleActiveResultSets = true;
             appsettingsFile.ConnectionStrings.DefaultConnection = builder.ConnectionString;
-            appsettingsFile.InstallStatusMoM = InstallationStatus.DatabaseCreated.ToString();
+            appsettingsFile.InstallStatusMoM = ((int)InstallationStatus.DatabaseCreated).ToString();
             System.IO.File.WriteAllText(filepath, JsonConvert.SerializeObject(appsettingsFile));
 
             //Todo apply migrations to the database
@@ -137,6 +137,8 @@ namespace MoM.Setup.Controllers.Api
                 || adminAccountExist.Count != 0
                 )
             {
+                if(InstallStatus != InstallationStatus.Installed)
+                    SaveInstallationStatus(InstallationStatus.AdminAccountCreated);
                 return new SiteSettingInstallationStatusDto
                 {
                     message = "Admin account is allready created. Please use the admin interface to alter them.",
@@ -146,19 +148,25 @@ namespace MoM.Setup.Controllers.Api
             }
             try
             {
-                var roleExistTask = IdentityService.GetRole("Administrator");
-                roleExistTask.Wait();
-                if (string.IsNullOrEmpty(roleExistTask.Result.name))
+                var roleExist = IdentityService.GetRole("Administrator");
+                roleExist.Wait();
+                if (string.IsNullOrEmpty(roleExist.Result.name))
                 {
                     IdentityService.CreateRole("Administrator").Wait();
-                    roleExistTask = IdentityService.GetRole("Administrator");
-                    roleExistTask.Wait();
+                    roleExist = IdentityService.GetRole("Administrator");
+                    roleExist.Wait();
                 }
-                
 
-                var userToCreate = new ApplicationUser { UserName = user.username, Email = user.email, EmailConfirmed=true };
-                IdentityService.CreateUser(userToCreate.ToDTO(), user.password).Wait();
-                UserManager.AddToRoleAsync(userToCreate, "Administrator").Wait();
+                var userExist = UserManager.FindByEmailAsync(user.email); //IdentityService.GetUserByEmail(user.email);
+                userExist.Wait();
+                if (string.IsNullOrEmpty(userExist.Result.Email))
+                {
+                    var userToCreate = new ApplicationUser { UserName = user.username, Email = user.email, EmailConfirmed = true };
+                    IdentityService.CreateUser(userToCreate.ToDTO(), user.password).Wait();
+                    userExist = UserManager.FindByEmailAsync(user.email);
+                    userExist.Wait();
+                }
+                UserManager.AddToRoleAsync(userExist.Result, "Administrator").Wait();
             }
             catch (Exception e) {
                 return new SiteSettingInstallationStatusDto
@@ -169,7 +177,7 @@ namespace MoM.Setup.Controllers.Api
                 };
             }
 
-            InstallStatus = InstallationStatus.AdminAccountCreated;
+            SaveInstallationStatus(InstallationStatus.AdminAccountCreated);
             return new SiteSettingInstallationStatusDto
             {
                 message = "Admin account with username: " + user.username + " and email: " + user.email + ", was created",
@@ -187,11 +195,27 @@ namespace MoM.Setup.Controllers.Api
                 return new SiteSettingInstallationStatusDto
                 {
                     installationStatus = InstallStatus,
-                    message = "Social account are allready configured. Please use the admin interface to alter them.",
+                    message = "Social accounts are allready configured. Please use the admin interface to alter them.",
                     installationResultCode = Result.Warning.ToString()
                 };
             }
             return SaveSiteSetting(siteSetting, InstallationStatus.SocialLoginsConfigured);
+        }
+
+        [HttpPost]
+        [Route("api/setup/setupmail")]
+        public SiteSettingInstallationStatusDto SetupMail([FromBody]SiteSettingDto siteSetting)
+        {
+            if (InstallStatus == InstallationStatus.MailConfigured)
+            {
+                return new SiteSettingInstallationStatusDto
+                {
+                    installationStatus = InstallStatus,
+                    message = "Mail is allready configured. Please use the admin interface to alter it.",
+                    installationResultCode = Result.Warning.ToString()
+                };
+            }
+            return SaveSiteSetting(siteSetting, InstallationStatus.MailConfigured);
         }
 
         [HttpPost]
@@ -224,7 +248,7 @@ namespace MoM.Setup.Controllers.Api
         {
             var filepath = Host.ContentRootPath + "\\" + "appsettings.json";
             var appsettingsFile = JsonConvert.DeserializeObject<dynamic>(System.IO.File.ReadAllText(filepath));
-            appsettingsFile.InstallStatusMoM = installationStatus.ToString();
+            appsettingsFile.InstallStatusMoM = ((int)installationStatus).ToString();
             System.IO.File.WriteAllText(filepath, JsonConvert.SerializeObject(appsettingsFile));
             InstallStatus = installationStatus;
         }

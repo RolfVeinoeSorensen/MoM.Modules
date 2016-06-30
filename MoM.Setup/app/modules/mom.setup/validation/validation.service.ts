@@ -6,7 +6,9 @@ export class ValidationService {
             "invalidCreditCard": "Is invalid credit card number",
             "invalidEmailAddress": "Invalid email address",
             "invalidPassword": "Invalid password. Password must be at least 6 characters long, and contain a number.",
-            "noMatchPassword": "The confirm password does not match the password"
+            "noMatchPassword": "The confirm password does not match the password",
+            "mustBeNumber": "You must write a number",
+            "requiredIfRequireCredentials": "Required when you have selected Require Credentials",
         };
 
         return config[code];
@@ -31,9 +33,14 @@ export class ValidationService {
     }
 
     static passwordValidator(control) {
-        // {6,100}           - Assert password is between 6 and 100 characters
-        // (?=.*[0-9])       - Assert a string has at least one number
-        if (control.value.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$/)) {
+        // this regex will enforce these rules:
+        // at least one upper case english letter
+        // at least one lower case english letter
+        // at least one digit
+        // at least one special character
+        // minimum 6 in length
+        // maximum 100 in length
+        if (control.value.match(/^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{6,100}$/)) {
             return null;
         } else {
             return { "invalidPassword": true };
@@ -45,6 +52,23 @@ export class ValidationService {
             return null;
         } else {
             return { "noMatchPassword": true };
+        }
+    }
+
+    static requiredIfRequireCredentialsValidator(control) {
+        console.log(control);
+        if (control._parent === undefined || (control._parent.controls.requireCredentials.value === false) || (control._parent.controls.requireCredentials.value === true && control.value !== "")) {
+            return null;
+        } else {
+            return { "requiredIfRequireCredentials": true };
+        }
+    }
+
+    static numberValidator(control) {
+        if (control.value.match(/^[0-9]*$/)) {
+            return null;
+        } else {
+            return { "mustBeNumber": true };
         }
     }
 }

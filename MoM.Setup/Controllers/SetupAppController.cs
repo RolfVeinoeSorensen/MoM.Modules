@@ -6,12 +6,12 @@ using MoM.Module.Dtos;
 
 namespace MoM.Setup.Controllers
 {
-    [Route("setup/[controller]/[action]")]
-    public class AppController : Controller
+    //[Route("setup/[controller]/[action]")]
+    public class SetupAppController : Controller
     {
         IOptions<SiteSettingDto> SiteSetting;
 
-        public AppController(IOptions<SiteSettingDto> siteSetting)
+        public SetupAppController(IOptions<SiteSettingDto> siteSetting) 
         {
             SiteSetting = siteSetting;
         }
@@ -19,11 +19,12 @@ namespace MoM.Setup.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var theme = SiteSetting.Value.Theme;
-            ViewData["CssPath"] = "css/" + theme.Module + "/" + theme.Name + "/";
+            var theme = SiteSetting.Value.theme;
+            ViewData["CssPath"] = "css/" + theme.module + "/" + theme.name + "/";
+            ViewData["Title"] = "Welcome to MoM Install guide";
             return View("~/Views/MoM.Setup/App/Index.cshtml");
         }
 
-        public IActionResult Outlet() => View("~/Views/MoM.Setup/App/Outlet.cshtml");
+        public IActionResult Outlet() => PartialView("~/Views/MoM.Setup/App/Outlet.cshtml");
     }
 }
