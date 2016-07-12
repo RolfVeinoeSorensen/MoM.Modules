@@ -6,9 +6,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using MoM.Module.Managers;
-using Microsoft.AspNetCore.Hosting;
 using MoM.Module.Enums;
 using MoM.Module.Dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MoM.Tutorial
 {
@@ -84,6 +84,11 @@ namespace MoM.Tutorial
         }
 
         public void Configure(IApplicationBuilder applicationBuilder)
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void CreatePolicies(AuthorizationOptions options)
         {
             //throw new NotImplementedException();
         }

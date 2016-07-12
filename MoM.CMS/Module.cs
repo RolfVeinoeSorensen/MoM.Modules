@@ -8,6 +8,7 @@ using System.Reflection;
 using MoM.Module.Managers;
 using MoM.Module.Enums;
 using MoM.Module.Dtos;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MoM.CMS
 {
@@ -83,6 +84,15 @@ namespace MoM.CMS
         public void Configure(IApplicationBuilder applicationBuilder)
         {
             //throw new NotImplementedException();
+        }
+
+        public void CreatePolicies(AuthorizationOptions options)
+        {
+            options.AddPolicy("AdminAccess", policy =>
+                policy.RequireClaim("AdminAccess")                
+            );
+
+
         }
     }
 

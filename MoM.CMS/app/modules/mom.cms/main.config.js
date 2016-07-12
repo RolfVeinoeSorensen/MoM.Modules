@@ -18,7 +18,7 @@
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
-    'app':                          { main: 'main.js',  defaultExtension: 'js' },
+    'app':                          { main: 'modules/MoM.CMS/main.js', defaultExtension: 'js' },
     'rxjs':                         { defaultExtension: 'js' },
     'ng2-dragula':                  { defaultExtension: 'js' },
     //'angular2-in-memory-web-api': { defaultExtension: 'js' },

@@ -16,6 +16,7 @@ import "rxjs/add/operator/share";
 
 
 
+import {NavigationMenuRequestDto} from "../dtos/NavigationMenuRequestDto";
 import {NavigationMenuItemDto} from "../dtos/NavigationMenuItemDto";
 
 @Injectable()
@@ -23,10 +24,13 @@ export class NavigationMenuService {
 constructor(private _http: Http) { }
 
 
-    public getMenuItemsByMenuNameAndMenuItemId = (name: string, id: number, routeName: string) : Observable<NavigationMenuItemDto[]> => {
-        return this._http.request(`getmenuitemsbymenunameandmenuitemid?name=${name}&id=${id}&routeName=${routeName}`, new RequestOptions({
-            method: "get",
-            body: JSON.stringify(null)
+    public getMenuItemsByMenuNameAndMenuItemId = (request: NavigationMenuRequestDto) : Observable<NavigationMenuItemDto[]> => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        return this._http.request("api/cms/getmenuitemsbymenunameandmenuitemid", new RequestOptions({
+            headers: headers,
+            method: "post",
+            body: JSON.stringify(request)
         })).map(res => (<NavigationMenuItemDto[]>res.json()));
     }
 

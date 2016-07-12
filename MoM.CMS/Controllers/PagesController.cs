@@ -1,11 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using MoM.CMS.Models;
+using MoM.Module.Interfaces;
+using MoM.Module.Models;
 
 namespace MoM.CMS.Controllers
 {
+    [AllowAnonymous]
     [Route("cms/[controller]/[action]")]
     public class PagesController : Controller
     {
+        private IDataStorage Storage;
+        private readonly UserManager<ApplicationUser> UserManager;
+        private readonly IAuthorizationService AuthorizationService;
+
+        public PagesController(
+            IDataStorage storage,
+            UserManager<ApplicationUser> userManager,
+            IAuthorizationService authorizationService)
+        {
+            Storage = storage;
+            UserManager = userManager;
+            AuthorizationService = authorizationService;
+        }
+
         public IActionResult Home() => PartialView("~/Views/MoM.CMS/Pages/Home.cshtml");
+
 
         public IActionResult Services() => PartialView("~/Views/MoM.CMS/Pages/Services.cshtml");
 
@@ -13,6 +34,7 @@ namespace MoM.CMS.Controllers
 
 
         //Admin
+        [Authorize(Policy = "AdminAccess")]
         public IActionResult Admin() => PartialView("~/Views/MoM.CMS/Pages/Admin.cshtml");
 
         public IActionResult AdminInfo() => PartialView("~/Views/MoM.CMS/Pages/AdminInfo.cshtml");

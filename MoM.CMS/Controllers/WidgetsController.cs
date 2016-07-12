@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MoM.CMS.Controllers
 {
+    [AllowAnonymous]
     [Route("cms/[controller]/[action]")]
     public class WidgetsController : Controller
     {

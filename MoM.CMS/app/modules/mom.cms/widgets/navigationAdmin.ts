@@ -1,22 +1,27 @@
 ﻿import {Component, OnInit} from "@angular/core";
 import {CORE_DIRECTIVES} from "@angular/common";
 import {Router, RouteParams} from "@angular/router-deprecated";;
-import {NavigationService} from "../services/navigationservice";
-import {NavigationMenu, NavigationMenuItem} from "../interfaces/inavigation";
+import {NavigationMenuService} from "../api/navigationmenuservice";
+import {NavigationMenuDto} from "../dtos/NavigationMenuDto";
+import {NavigationMenuItemDto} from "../dtos/NavigationMenuItemDto";
+import {NavigationMenuRequestDto} from "../dtos/NavigationMenuRequestDto";
 
 @Component({
     selector: "admin-navigation",
     templateUrl: "/cms/widgets/adminnavigation",
-    providers: [NavigationService],
+    providers: [NavigationMenuService],
     directives: [CORE_DIRECTIVES]
 })
 export class NavigationAdminComponent implements OnInit {
     isLoading: boolean = false;
     currentPageId: number = 0;
-    items: NavigationMenuItem;
+    items: NavigationMenuItemDto[];
+    hasError: boolean = false;
+    errorMessage: string;
+    requestDto: NavigationMenuRequestDto;
 
     constructor(
-        private service: NavigationService,
+        private service: NavigationMenuService,
         private router: Router
     ) { }
 
@@ -28,7 +33,7 @@ export class NavigationAdminComponent implements OnInit {
         return this.router.isRouteActive(this.router.generate(instruction));
     }
 
-    onMenuItemClick(item: NavigationMenuItem) {
+    onMenuItemClick(item: NavigationMenuItemDto) {
         this.router.navigate([item.routerLink, {}]);
         this.currentPageId = item.navigationMenuItemId;
         this.loadMenu();
@@ -36,11 +41,20 @@ export class NavigationAdminComponent implements OnInit {
 
     loadMenu() {
         this.isLoading = true;
-        this.service.getMenuItemsByMenuNameAndMenuItemId("admin", this.currentPageId, this.router.currentInstruction.component.routeName, json => {
-            if (json) {
-                this.items = json;
+        this.requestDto = {
+            id: this.currentPageId, name: "admin", routeName: this.router.currentInstruction.component.routeName
+        };
+        console.log(this.requestDto);
+        this.service.getMenuItemsByMenuNameAndMenuItemId(this.requestDto).subscribe(
+            navitems => {
+                this.items = navitems;
+                this.isLoading = false;
+            },
+            error => {
+                this.hasError = true;
+                this.errorMessage = <any>error;
                 this.isLoading = false;
             }
-        });
+        );
     }
 }

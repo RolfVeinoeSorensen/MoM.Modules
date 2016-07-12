@@ -4,12 +4,13 @@ using MoM.CMS.Interfaces;
 using MoM.CMS.Services;
 using MoM.CMS.Dtos;
 using MoM.Module.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MoM.CMS.Controllers.Api
 {
-    [Route("api/cms/[controller]")]
+    [AllowAnonymous]
     public class NavigationMenuController : Controller
     {
         private IDataStorage Storage;
@@ -20,11 +21,11 @@ namespace MoM.CMS.Controllers.Api
             Service = new NavigationMenuService(storage);
         }
 
-        [HttpGet("{name}/{id}/{routeName}")]
-        [Route("getmenuitemsbymenunameandmenuitemid")]
-        public IEnumerable<NavigationMenuItemDto> GetMenuItemsByMenuNameAndMenuItemId(string name, int id, string routeName)
+        [HttpPost()]
+        [Route("api/cms/getmenuitemsbymenunameandmenuitemid")]
+        public IEnumerable<NavigationMenuItemDto> GetMenuItemsByMenuNameAndMenuItemId([FromBody] NavigationMenuRequestDto request)
         {
-            return Service.GetMenuItemsByMenuNameAndMenuItemId(name, id, routeName);
+            return Service.GetMenuItemsByMenuNameAndMenuItemId(request.name, request.id, request.routeName);
         }
     }
 }

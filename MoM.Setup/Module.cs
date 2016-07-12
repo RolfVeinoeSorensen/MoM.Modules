@@ -8,6 +8,7 @@ using MoM.Module.Interfaces;
 using MoM.Module.Managers;
 using System;
 using System.Reflection;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MoM.Setup
 {
@@ -87,6 +88,11 @@ namespace MoM.Setup
         }
 
         public void Configure(IApplicationBuilder applicationBuilder)
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void CreatePolicies(AuthorizationOptions options)
         {
             //throw new NotImplementedException();
         }
