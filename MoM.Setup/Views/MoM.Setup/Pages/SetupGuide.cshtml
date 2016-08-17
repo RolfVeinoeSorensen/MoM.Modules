@@ -33,7 +33,7 @@
                                         <label for="inputServer" class="col-md-2 form-control-label">Server</label>
                                         <div class="col-md-10 input-group">
                                             <div class="input-group-addon"><i class="fa fa-server"></i></div>
-                                            <input type="text" class="form-control" [(ngModel)]="connectionstring.server" required id="inputServer" ngControl="server" #server="ngForm" placeholder="Server">
+                                            <input type="text" class="form-control" [(ngModel)]="connectionstring.server" name="server" required id="inputServer" ngControl="server" #server="ngForm" placeholder="Server">
                                             <div [hidden]="server.valid || server.pristine" class="form-control alert-danger">Server is required</div>
                                         </div>
                                     </div>
@@ -41,7 +41,7 @@
                                         <label for="inputDatabase" class="col-md-2 form-control-label">Database</label>
                                         <div class="col-md-10 input-group">
                                             <div class="input-group-addon"><i class="fa fa-database"></i></div>
-                                            <input type="text" class="form-control" [(ngModel)]="connectionstring.database" required id="inputDatabase" ngControl="database" #database="ngForm" placeholder="Database">
+                                            <input type="text" class="form-control" [(ngModel)]="connectionstring.database" name="database" required id="inputDatabase" ngControl="database" #database="ngForm" placeholder="Database">
                                             <div [hidden]="database.valid || database.pristine" class="form-control alert-danger">Database is required</div>
                                         </div>
                                     </div>
@@ -51,11 +51,11 @@
                                         </div>
                                         <div class="col-md-10 col-md-offset-2">
                                             <div class="btn-group">
-                                                <label btnRadio="sql" class="btn btn-primary"
+                                                <label btnRadio="sql" class="btn btn-primary" name="authtype"
                                                        [(ngModel)]="connectionAuthenticationModel">
                                                     Sql Server
                                                 </label>
-                                                <label btnRadio="windows" class="btn btn-primary"
+                                                <label btnRadio="windows" class="btn btn-primary" name="authtype"
                                                        [(ngModel)]="connectionAuthenticationModel">
                                                     Windows
                                                 </label>
@@ -67,7 +67,7 @@
                                             <label for="inputUsername" class="col-md-2 form-control-label">Username</label>
                                             <div class="col-md-10 input-group">
                                                 <div class="input-group-addon"><i class="fa fa-user"></i></div>
-                                                <input type="text" class="form-control" [(ngModel)]="connectionstring.username" required id="inputUsername" ngControl="username" #username="ngForm" placeholder="Username">
+                                                <input type="text" class="form-control" [(ngModel)]="connectionstring.username" name="username" required id="inputUsername" ngControl="username" #username="ngForm" placeholder="Username">
                                                 <div [hidden]="username.valid || username.pristine" class="form-control alert-danger">Username is required</div>
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@
                                             <label for="inputPassword" class="col-md-2 form-control-label">Password</label>
                                             <div class="col-md-10 input-group">
                                                 <div class="input-group-addon"><i class="fa fa-user-secret"></i></div>
-                                                <input type="password" class="form-control" [(ngModel)]="connectionstring.password" required id="inputPassword" ngControl="password" #password="ngForm" placeholder="Password">
+                                                <input type="password" class="form-control" [(ngModel)]="connectionstring.password" name="password" required id="inputPassword" ngControl="password" #password="ngForm" placeholder="Password">
                                                 <div [hidden]="password.valid || password.pristine" class="form-control alert-danger">Password is required</div>
                                             </div>
                                         </div>

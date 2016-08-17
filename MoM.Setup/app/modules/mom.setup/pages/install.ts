@@ -1,5 +1,6 @@
 ﻿import {Component, OnInit} from "@angular/core";
-import {CORE_DIRECTIVES, FORM_DIRECTIVES, ControlGroup, FormBuilder, Validators} from "@angular/common";
+import {CORE_DIRECTIVES} from "@angular/common";
+import { NgForm, FormGroup, REACTIVE_FORM_DIRECTIVES, FORM_DIRECTIVES, FormBuilder, Validators }    from "@angular/forms";
 import {RouterLink} from "@angular/router-deprecated";
 
 import {SiteSettingDto} from "../dtos/SiteSettingDto";
@@ -18,7 +19,7 @@ import { BUTTON_DIRECTIVES, TAB_DIRECTIVES, PROGRESSBAR_DIRECTIVES } from "ng2-b
     selector: "install-page",
     templateUrl: "/setup/pages/setupguide",
     providers: [SetupService],
-    directives: [RouterLink, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES, TAB_DIRECTIVES, PROGRESSBAR_DIRECTIVES, ControlMessages ]
+    directives: [RouterLink, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES, TAB_DIRECTIVES, PROGRESSBAR_DIRECTIVES, ControlMessages, REACTIVE_FORM_DIRECTIVES ]
 })
 export class InstallComponent implements OnInit {
     installStepsCompleted: number = 0;
@@ -36,9 +37,9 @@ export class InstallComponent implements OnInit {
     hasError: boolean = false;
     errorMessage: string;
     admin: UserCreateDto;
-    adminCreateForm: ControlGroup;
-    mailForm: ControlGroup;
-    socialAccountsForm: ControlGroup;
+    adminCreateForm: FormGroup;
+    mailForm: FormGroup;
+    socialAccountsForm: FormGroup;
     constructor(
         private service: SetupService,
         fromBuilder: FormBuilder

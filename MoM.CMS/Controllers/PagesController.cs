@@ -34,7 +34,7 @@ namespace MoM.CMS.Controllers
 
 
         //Admin
-        [Authorize(Policy = "AdminAccess")]
+        //[Authorize(Policy = "AdminAccess")]
         public IActionResult Admin() => PartialView("~/Views/MoM.CMS/Pages/Admin.cshtml");
 
         public IActionResult AdminInfo() => PartialView("~/Views/MoM.CMS/Pages/AdminInfo.cshtml");

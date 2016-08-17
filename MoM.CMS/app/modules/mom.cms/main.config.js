@@ -24,15 +24,16 @@
     //'angular2-in-memory-web-api': { defaultExtension: 'js' },
   };
   var ngPackageNames = [
-    'common',
-    'compiler',
-    'core',
-    'http',
-    'platform-browser',
-    'platform-browser-dynamic',
-    'router',
-    'router-deprecated',
-    'upgrade',
+     'common',
+     'compiler',
+     'core',
+     'forms',
+     'http',
+     'platform-browser',
+     'platform-browser-dynamic',
+     'router',
+     'router-deprecated',
+     'upgrade',
   ];
     // Add package entries for angular packages
     // Individual files (~300 requests):
