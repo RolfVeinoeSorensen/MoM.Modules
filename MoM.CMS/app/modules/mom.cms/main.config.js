@@ -7,7 +7,7 @@
   var map = {
     'app':                          'app', // 'dist',
     '@angular':                     'lib/@angular',
-    //'angular2-in-memory-web-api':   'lib/angular2-in-memory-web-api',
+    'angular2-in-memory-web-api':   'lib/angular2-in-memory-web-api',
     'rxjs':                         'lib/rxjs',
     'moment':                       'lib/moment.min.js',
     //'ng2-bootstrap':                'lib/extensions/ng2-bootstrap',
@@ -31,9 +31,7 @@
      'http',
      'platform-browser',
      'platform-browser-dynamic',
-     'router',
-     'router-deprecated',
-     'upgrade',
+     'router'
   ];
     // Add package entries for angular packages
     // Individual files (~300 requests):
