@@ -1,20 +1,14 @@
-﻿import {bootstrap}    from "@angular/platform-browser-dynamic";
-import {ROUTER_PROVIDERS} from "@angular/router-deprecated";
-import {HTTP_PROVIDERS} from "@angular/http";
+﻿/// <reference path="../../../../../typings/index.d.ts" />
+/// <reference path="../../../../../node_modules/zone.js/dist/zone.js.d.ts" />
+
+// main entry point
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { InstallModule } from "./install.module";
+
 import {Ng2BootstrapConfig, Ng2BootstrapTheme} from "ng2-bootstrap/ng2-bootstrap";
-import {disableDeprecatedForms, provideForms} from "@angular/forms";
 
-import {InstallComponent} from "./install.component";
+import {InstallComponent} from "./pages/install";
 
-import { enableProdMode } from "@angular/core";
 Ng2BootstrapConfig.theme = Ng2BootstrapTheme.BS4;
 //enableProdMode();
-bootstrap(
-    InstallComponent,
-    [
-        ROUTER_PROVIDERS,
-        HTTP_PROVIDERS,
-        disableDeprecatedForms(),
-        provideForms()
-    ]
-).catch((err: any) => console.error(err));
+platformBrowserDynamic().bootstrapModule(InstallModule);

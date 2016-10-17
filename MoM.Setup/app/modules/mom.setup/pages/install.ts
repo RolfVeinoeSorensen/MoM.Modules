@@ -1,7 +1,7 @@
-﻿import {Component, OnInit} from "@angular/core";
-import {CORE_DIRECTIVES} from "@angular/common";
-import { NgForm, FormGroup, REACTIVE_FORM_DIRECTIVES, FORM_DIRECTIVES, FormBuilder, Validators }    from "@angular/forms";
-import {RouterLink} from "@angular/router-deprecated";
+﻿import { Component, OnInit }      from "@angular/core";
+import { ActivatedRoute, Params } from "@angular/router";
+import { Location }               from "@angular/common";
+import { NgForm, FormGroup, FormBuilder, Validators }    from "@angular/forms";
 
 import {SiteSettingDto} from "../dtos/SiteSettingDto";
 import {SiteSettingConnectionStringDto} from "../dtos/SiteSettingConnectionStringDto";
@@ -12,14 +12,14 @@ import { SetupService } from "../api/SetupService";
 import { ControlMessages } from "../validation/control-messages.component";
 import { ValidationService } from "../validation/validation.service";
 
-import { BUTTON_DIRECTIVES, TAB_DIRECTIVES, PROGRESSBAR_DIRECTIVES } from "ng2-bootstrap/ng2-bootstrap";
+import { ButtonsModule, TabsModule, ProgressbarComponent } from "ng2-bootstrap/ng2-bootstrap";
 
 
 @Component({
     selector: "install-page",
     templateUrl: "/setup/pages/setupguide",
     providers: [SetupService],
-    directives: [RouterLink, CORE_DIRECTIVES, FORM_DIRECTIVES, BUTTON_DIRECTIVES, TAB_DIRECTIVES, PROGRESSBAR_DIRECTIVES, ControlMessages, REACTIVE_FORM_DIRECTIVES ]
+    directives: [ControlMessages]
 })
 export class InstallComponent implements OnInit {
     installStepsCompleted: number = 0;

@@ -31,9 +31,7 @@
      'http',
      'platform-browser',
      'platform-browser-dynamic',
-     'router',
-     'router-deprecated',
-     'upgrade',
+     'router'
   ];
     // Add package entries for angular packages
     // Individual files (~300 requests):

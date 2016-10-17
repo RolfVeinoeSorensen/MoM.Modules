@@ -47,12 +47,12 @@ gulp.task("app-copy-scripts", ["app-typescript-transpile"], function () {
 gulp.task("app-lint-typescript", function () {
     gulp.src(["app/**/*.ts"])
         .pipe(tslint({ configuration: "../../tslint.json" }))
-        .pipe(tslint.report("verbose"));
+        .pipe(tslint.report());
 });
 
 gulp.task("app-typescript-transpile", ["app-lint-typescript", 'app-clean-dist'], function () {
     var tsResult = tsProject.src()
-        .pipe(typescript(tsProject));
+        .pipe(tsProject());
     return tsResult.js.pipe(gulp.dest(paths.scripDist + "/app/modules/" + moduleName));
 });
 

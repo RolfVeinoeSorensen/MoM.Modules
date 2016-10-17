@@ -6,7 +6,7 @@
     <div class="spinner-container" *ngIf="isLoading">
         <div class="spinner-outer">
             <div class="spinner-inner">
-                <p><img src="~/site/momlogo.png" srcset="~/site/momlogo.svg 1x" class="navbar-brand" alt="MoM Logo" width="152" height="150"></p>
+                <p><img src="~/site/momlogo.png" srcset="~/assets/momlogo.svg 1x" class="navbar-brand" alt="MoM Logo" width="152" height="150"></p>
                 <p><i class="fa fa-cog fa-spin fa-5x spinner-cog"></i></p>
                 <p class="spinner-loading-text">Loading...</p>
             </div>
@@ -23,11 +23,11 @@
     <script src="lib/zone.js/dist/zone.js"></script>
     <script src="lib/reflect-metadata/Reflect.js"></script>
     <script src="lib/systemjs/dist/system.src.js"></script>
-    <script src="lib/extensions/ng2-bootstrap/bundles/ng2-bootstrap.js"></script>
+    <script src="lib/extensions/ng2-bootstrap/bundles/ng2-bootstrap.umd.js"></script>
     <!-- Configure SystemJS -->
-    <script src="app/modules/MoM.Setup/install.config.js"></script>
+    <script src="app/modules/mom.setup/install.config.js"></script>
     <script>
-    System.import('app/modules/MoM.Setup/install').catch(function (err) { console.error(err); });
+        System.import('app/modules/mom.setup/install').catch(function (err) { console.error(err); });
     </script>
 </environment>
 <!-- TODO: Libraries should be the minified versions but not all frameworks are working with min files -->
@@ -39,11 +39,11 @@
     <script src="lib/zone.js/dist/zone.js"></script>
     <script src="lib/reflect-metadata/Reflect.js"></script>
     <script src="lib/systemjs/dist/system.src.js"></script>
-    <script src="lib/extensions/ng2-bootstrap/bundles/ng2-bootstrap.js"></script>
+    <script src="lib/extensions/ng2-bootstrap/bundles/ng2-bootstrap.umd.js"></script>
     <!-- Configure SystemJS -->
-    <script src="app/modules/MoM.Setup/install.config.js"></script>
+    <script src="app/modules/mom.setup/install.config.js"></script>
     <script>
-    System.import('app/Modules/MoM.Setup/install').catch(function (err) { console.error(err); });
+        System.import('app/modules/mom.setup/install').catch(function (err) { console.error(err); });
     </script>
 </environment>
 }
