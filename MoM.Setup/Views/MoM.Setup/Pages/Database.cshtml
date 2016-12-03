@@ -1,0 +1,36 @@
+﻿<div class="container">
+    <div [hidden]="submitted">
+        <h1>Database Connection</h1>
+        <form [formGroup]="connectionStringForm" *ngIf="active" (ngSubmit)="onSubmit()">
+            <div class="form-group row">
+                <label for="server">Server</label>
+                <input type="text" id="server" class="form-control"
+                       [formControl]="connectionStringForm.controls['server']" required>
+                <div *ngIf="formErrors.server" class="alert alert-danger">
+                    {{ formErrors.server }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="database">Database</label>
+                <input type="text" id="database" class="form-control"
+                       [formControl]="connectionStringForm.controls['database']" required>
+                <div *ngIf="formErrors.database" class="alert alert-danger">
+                    {{ formErrors.database }}
+                </div>
+            </div>
+            <div class="form-group row">
+                <label>Use Windows Authentication?</label>
+                <pre class="card card-block card-header">{{connectionAuthenticationModel || 'null'}}</pre>
+                <div class="btn-group">
+                    <label class="btn btn-primary" [formControl]="connectionStringForm.controls['useWindowsAuthentication']" btnRadio="false">No</label>
+                    <label class="btn btn-primary" [formControl]="connectionStringForm.controls['useWindowsAuthentication']" btnRadio="true">Yes</label>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary"
+                    [disabled]="!connectionStringForm.valid">
+                Submit
+            </button>
+        </form>
+    </div>
+    @*<connectionstring-submitted [connectionstring]="connectionstring" [(submitted)]="submitted"></connectionstring-submitted>*@
+</div>

@@ -25,6 +25,6 @@ namespace MoM.Setup.Controllers
             return View("~/Views/MoM.Setup/App/Index.cshtml");
         }
 
-        public IActionResult Outlet() => PartialView("~/Views/MoM.Setup/App/Outlet.cshtml");
+        public IActionResult App() => PartialView("~/Views/MoM.Setup/App/App.cshtml");
     }
 }

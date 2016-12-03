@@ -31,6 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{674CFB51-A
 	ProjectSection(SolutionItems) = preProject
 		..\gulpfile.js = ..\gulpfile.js
 		..\package.json = ..\package.json
+		..\tslint.json = ..\tslint.json
 		..\typings.json = ..\typings.json
 	EndProjectSection
 EndProject

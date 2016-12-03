@@ -1,4 +1,4 @@
-﻿import {Http, Headers, HTTP_PROVIDERS} from "@angular/http";
+﻿import {Http, Headers} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {ExtensionInfo} from "../interfaces/iExtensionInfo";
 

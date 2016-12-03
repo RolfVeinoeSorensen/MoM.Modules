@@ -1,6 +1,5 @@
 ﻿import {Component, OnInit} from "@angular/core";
-import {CORE_DIRECTIVES} from "@angular/common";
-import {Router, RouteParams} from "@angular/router-deprecated";;
+import {Router} from "@angular/router";;
 import {NavigationMenuService} from "../api/navigationmenuservice";
 import {NavigationMenuDto} from "../dtos/NavigationMenuDto";
 import {NavigationMenuItemDto} from "../dtos/NavigationMenuItemDto";
@@ -9,8 +8,7 @@ import {NavigationMenuRequestDto} from "../dtos/NavigationMenuRequestDto";
 @Component({
     selector: "admin-navigation",
     templateUrl: "/cms/widgets/adminnavigation",
-    providers: [NavigationMenuService],
-    directives: [CORE_DIRECTIVES]
+    providers: [NavigationMenuService]
 })
 export class NavigationAdminComponent implements OnInit {
     isLoading: boolean = false;
@@ -30,7 +28,8 @@ export class NavigationAdminComponent implements OnInit {
     }
 
     isLinkActive(instruction: any[]): boolean {
-        return this.router.isRouteActive(this.router.generate(instruction));
+        return false;
+        //return this.router.isRouteActive(this.router.generate(instruction));
     }
 
     onMenuItemClick(item: NavigationMenuItemDto) {
@@ -41,9 +40,9 @@ export class NavigationAdminComponent implements OnInit {
 
     loadMenu() {
         this.isLoading = true;
-        this.requestDto = {
-            id: this.currentPageId, name: "admin", routeName: this.router.currentInstruction.component.routeName
-        };
+        //this.requestDto = {
+        //    id: this.currentPageId, name: "admin", routeName: this.router.currentInstruction.component.routeName
+        //};
         console.log(this.requestDto);
         this.service.getMenuItemsByMenuNameAndMenuItemId(this.requestDto).subscribe(
             navitems => {

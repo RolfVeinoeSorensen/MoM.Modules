@@ -67,7 +67,7 @@ namespace MoM.Security
 
         public void RegisterRoutes(IRouteBuilder routeBuilder)
         {
-            routeBuilder.MapRoute("Blog", "blog/{controller}/{action}", new { controller = "Blog/Pages", action = "Blog" });
+            //routeBuilder.MapRoute("Blog", "blog/{controller}/{action}", new { controller = "Blog/Pages", action = "Blog" });
         }
 
         private Type GetIStorageImplementationType()

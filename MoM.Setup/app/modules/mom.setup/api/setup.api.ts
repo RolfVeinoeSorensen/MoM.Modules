@@ -22,7 +22,7 @@ import {UserCreateDto} from "../dtos/UserCreateDto";
 import {SiteSettingDto} from "../dtos/SiteSettingDto";
 
 @Injectable()
-export class SetupService {
+export class SetupApi {
 constructor(private _http: Http) { }
 
 

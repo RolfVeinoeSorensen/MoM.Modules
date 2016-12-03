@@ -9,11 +9,12 @@
         //settings.IncludeProject("Project.Name");
         settings.OutputExtension = ".ts"; //could also be .tsx
         
-        settings.OutputFilenameFactory = file => System.IO.Path.ChangeExtension(RenameControllerToService(file.Name), settings.OutputExtension);
+        settings.OutputFilenameFactory = file => System.IO.Path.ChangeExtension(RenameControllerToApi(file.Name), settings.OutputExtension);
     }
 
     // Custom extension methods can be used in the template by adding a $ prefix
-    string RenameControllerToService(string name) => name.Replace("Controller", "Service");
+    string RenameControllerToApi(string name) => name.Replace("Controller", ".api").ToLower();
+    string RenameControllerToService(string name) => name.Replace("Controller", "Api");
     string ServiceName(Class c) => RenameControllerToService(c.Name);
     string ServiceUrl(Class c) => c.Attributes.FirstOrDefault(x => x.Name.Equals("Route")).Value;
     Type[] CalculatedModelTypes(Class c)

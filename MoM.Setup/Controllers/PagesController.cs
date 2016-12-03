@@ -8,6 +8,7 @@ namespace MoM.Setup.Controllers
     public class PagesController : Controller
     {
         
-        public IActionResult SetupGuide() => PartialView("~/Views/MoM.Setup/Pages/SetupGuide.cshtml");
+        public IActionResult Welcome() => PartialView("~/Views/MoM.Setup/Pages/Welcome.cshtml");
+        public IActionResult Database() => PartialView("~/Views/MoM.Setup/Pages/Database.cshtml");
     }
 }

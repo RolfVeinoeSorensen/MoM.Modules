@@ -1,12 +1,10 @@
 ﻿import {Component, OnInit} from "@angular/core";
-import {CORE_DIRECTIVES} from "@angular/common";
 import {AccountService} from "../services/accountservice";
 
 @Component({
     selector: "account-login-partial",
     templateUrl: "/account/widgets/loginpartial",
-    providers: [AccountService],
-    directives: CORE_DIRECTIVES
+    providers: [AccountService]
 })
 export class LoginPartialComponent implements OnInit {
     isLoading: boolean = false;

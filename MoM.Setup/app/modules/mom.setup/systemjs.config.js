@@ -1,4 +1,5 @@
 ﻿/**
+ * (based on systemjs.config.js in angular.io)
  * System configuration for MoM Angular 2
  * Adjust as necessary for your application needs.
  */
@@ -7,10 +8,10 @@
   var map = {
     'app':                          'app', // 'dist',
     '@angular':                     'lib/@angular',
-    'angular2-in-memory-web-api':   'lib/angular2-in-memory-web-api',
+    //'angular2-in-memory-web-api':   'lib/angular2-in-memory-web-api',
     'rxjs':                         'lib/rxjs',
     'moment':                       'lib/moment.min.js',
-    //'ng2-bootstrap':                'lib/extensions/ng2-bootstrap',
+    'ng2-bootstrap/ng2-bootstrap':  'lib/extensions/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
     'ng2-prism':                    'lib/extensions/ng2-prism',
     'prismjs':                      'lib/extensions/ng2-prism/node_modules/prismjs',
     'dragula':                      'lib/extensions/dragula/dragula.js',
@@ -18,10 +19,10 @@
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
-    'app':                          { main: 'modules/MoM.CMS/main.js', defaultExtension: 'js' },
+    'app':                          { main: 'modules/MoM.Setup/main.js',  defaultExtension: 'js' },
     'rxjs':                         { defaultExtension: 'js' },
     'ng2-dragula':                  { defaultExtension: 'js' },
-    //'angular2-in-memory-web-api': { defaultExtension: 'js' },
+    'angular2-in-memory-web-api':   { defaultExtension: 'js' },
   };
   var ngPackageNames = [
      'common',

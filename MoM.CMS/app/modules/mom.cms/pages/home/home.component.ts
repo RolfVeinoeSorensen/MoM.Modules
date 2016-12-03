@@ -1,10 +1,8 @@
 ﻿import {Component, OnInit} from "@angular/core";
-import {RouterLink} from "@angular/router-deprecated";
 
 @Component({
-    selector: "mvc",
-    templateUrl: "/cms/pages/home",
-    directives: [RouterLink]
+    selector: "app-home",
+    templateUrl: "/cms/pages/home"
 })
 export class HomeComponent implements OnInit {
     //message: string;

@@ -1,7 +1,7 @@
 ﻿import {Component, OnInit} from "@angular/core";
 
 @Component({
-    selector: "mvc",
+    selector: "app-services",
     templateUrl: "/cms/pages/services"
 })
 export class ServicesComponent implements OnInit {

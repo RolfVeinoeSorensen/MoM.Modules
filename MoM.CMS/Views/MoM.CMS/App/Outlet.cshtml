@@ -2,7 +2,7 @@
     ViewBag.Title = "Home";
 }
 
-<nav class="navbar navbar-light navbar-fixed-top mom-header-navbar">
+@*<nav class="navbar navbar-light navbar-fixed-top mom-header-navbar">
     <div class="pull-xs-left">
         <a class="navbar-brand text-xs-left" [routerLink]="['/Home']">
             <img src="~/site/logo.png" srcset="~/site/logo.svg 1x" class="navbar-brand" alt="EasyModules.NET Logo" width="320" height="48">
@@ -37,7 +37,35 @@
             </div>
         </form>
     </div>
+</nav>*@
+<nav class="navbar navbar-light navbar-fixed-top mom-header-navbar">
+    <div class="navbar-header">
+        <a class="navbar-brand" routerLink="home" routerLinkActive="active">
+            <img src="~/site/logo.png" srcset="~/site/logo.svg 1x" class="navbar-brand" alt="EasyModules.NET Logo" width="320" height="48">
+        </a>
+    </div>
+    <button class="navbar-toggler hidden-md-up pull-xs-right" type="button" (click)="isCollapsed = !isCollapsed">
+        <i class="fa fa-bars"></i>
+    </button>
+    <div class="hidden-sm-down">
+        <ul class="nav navbar-nav pull-sm-left">
+            <li class="nav-item" routerLink="services" routerLinkActive="active">
+                <a class="nav-item nav-link" routerLink="services" routerLinkActive="active">Services</a>
+            </li>
+        </ul>
+    </div>
+    <div class="collapse hidden-md-up" (collapsed)="collapsed($event)" (expanded)="expanded($event)" [collapse]="isCollapsed" style="clear:both;">
+        <ul class="nav mom-nav-dropdown">
+            <li class="nav-item" routerLink="services" routerLinkActive="active">
+                <a class="nav-link" routerLink="services" routerLinkActive="active">Services</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="services">test</a>
+            </li>
+        </ul>
+    </div>
 </nav>
+
 <div class="container-fluid">
     <div class="row margin-top-small margin-bottom-small">
         <div class="col-md-12 text-md-right text-sm-right text-xs-right">
